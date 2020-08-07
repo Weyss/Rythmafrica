@@ -1,0 +1,112 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}- Tableau de Bord
+{% endblock %}
+
+{% block body %}
+	<main class="container-fluid mt-5">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light flex-column" style="width: 15%!important">
+			<h4>Ajouter du contenu</h4>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav flex-column">
+					<a class="nav-link active" href="#">Ajouter un artiste</a>
+					<a class="nav-link" href="#">Ajouter une musique</a>
+					<a class="nav-link" href="#">Ajouter un événement</a>
+					<a class="nav-link" href="#">Ajouter une catégories</a>
+				</div>
+			</div>
+		</nav>
+        <!-- Derniers artistes ajoutés -->
+        <div class="d-flex flex-column w-75">
+				<h2>Les derniers Artistes ajoutés</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col" class="auto">Image</th>
+							<th scope="col">Nom</th>
+							<th scope="col">Prénom</th>
+							<th scope="col">Nom d'artiste</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="" alt="" class="card-img" style="width:15rem; height: 15rem;"></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<a href="#" data-toggle="modal" data-target="#delete" data-id="" class="btn btn-primary mr-3">Supprimer</a>
+								<a href="#" class="btn btn-primary">Editer</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<div class="d-flex justify-content-around">
+			
+			
+			<!-- Derniers events ajoutés -->
+			<div class="container-fluid d-flex flex-column">
+				<h2>Les derniers Evènements ajoutés</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col" class="auto">Image</th>
+							<th scope="col">Titre de l'évènement</th>
+							<th scope="col">Description</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="" alt="" class="card-img" style="width:15rem; height: 15rem;"></td>
+							<td></td>
+							<td></td>
+							<td>
+								<a href="" data-toggle="modal" data-target="#delete" data-id="" class="btn btn-primary mr-3">Supprimer</a>
+								<a href="" class="btn btn-primary">Editer</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- Derniers sons ajoutés -->
+		<div class="">
+			<div class="d-flex flex-column">
+				<h2>Les derniers Sons ajoutés</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col" class="auto">Image</th>
+							<th scope="col">Titre de la chanson</th>
+							<th scope="col">Description</th>
+							<th scope="col">La Chanson</th>
+							<th scope="col">Nom d'artiste</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="" alt="" class="card-img" style="width:15rem; height: 15rem;"></td>
+							<td></td>
+							<td></td>
+							<td>
+								<audio controls src=""></audio>
+							</td>
+							<td></td>
+							<td>
+								<a href="" class="btn btn-primary mr-3">Supprimer</a>
+								<a href="" class="btn btn-primary">Editer</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+{% endblock %}

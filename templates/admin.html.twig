@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='fr'>
+	<head>
+		<meta charset="UTF-8">
+		<title>DashBoard
+			{% block title %}{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> {% block stylesheets %}{% endblock %}
+		</head>
+		<body>
+			<header>
+				<!-- Barre de navgiation -->
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<a class="navbar-brand" href="#" style="font-size:3em">DashBoard</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav" style="font-size:1.3rem">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">Artistes</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Musiques</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Événements</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#" tabindex="-1">Catégories</a>
+							</li>
+						</ul>
+					</div>
+					<div class="collapse navbar-collapse color_nav py-1 justify-content-end" id="navbarText">
+						<p class="m-0">Bienvenue
+														Admin -</p>
+						<a href="#" class="btn btn-sm btn-light" type="button">Log Out</a>
+					</div>
+				</nav>
+			</header>
+			{% block body %}{% endblock %}
+			{% block javascripts %}{% endblock %}
+		</body>
+	</html>
