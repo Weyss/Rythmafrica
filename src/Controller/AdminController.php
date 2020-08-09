@@ -2,27 +2,44 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Artist;
+use App\Form\ArtistType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="index")
      */
-    public function index()
+    public function index(Request $request)
     {
+        $artist = new Artist;
+
+        $formArtist = $this->createForm(ArtistType::class, $artist);
+        $formArtist->handleRequest($request);
+
+        dump($request);
+
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'formArtist' => $formArtist->createView(),
         ]);
     }
 
     /**
      * @Route("/admin/artists", name="artists")
      */
-    public function artists()
+    public function artists(Request $request)
     {
-        return $this->render('admin/artists.html.twig');
+        $artist = new Artist;
+
+        $form = $this->createForm(ArtistType::class, $artist);
+        $form->handleRequest($request);
+
+        return $this->render('admin/artists.html.twig', [
+            'formArtist' => $form->createView(),
+        ]);
     }
 
     /**

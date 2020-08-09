@@ -5,18 +5,19 @@
 
 {% block body %}
 	<main class="container-fluid mt-5">
-		<div class="row">
-		{# Action rapides #}
+		<div
+			class="row">
+			{# Action rapides #}
 			<nav class="navbar navbar-expand-lg navbar-light justify-content-center align-items-start col-sm-2">
 				<div class="navbar-nav flex-column bg-primary rounded p-3">
 					<h4>Ajouter du contenu</h4>
-					<a class="nav-link" href="#">Ajouter un artiste</a>
+					<button class="btn btn-primary" href="#" data-toggle="modal" data-target="#artist">Ajouter un artiste</button>
 					<a class="nav-link" href="#">Ajouter une musique</a>
 					<a class="nav-link" href="#">Ajouter un événement</a>
 					<a class="nav-link" href="#">Ajouter une catégories</a>
 				</div>
 			</nav>
-		{# Derniers artistes ajoutés  #}
+			{# Derniers artistes ajoutés  #}
 			<div class="col-sm-5">
 				<h4>Les derniers Artistes ajoutés</h4>
 				<table class="table">
@@ -32,7 +33,7 @@
 					<tbody>
 						<tr>
 							<td><img src="" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
-							<td>Bon
+							<td>Bon</td>
 							<td>Jean</td>
 							<td>JamBon le charcutier</td>
 							<td class="d-flex flex-column">
@@ -43,7 +44,7 @@
 					</tbody>
 				</table>
 			</div>
-		{# Derniers events ajoutés #}
+			{# Derniers events ajoutés #}
 			<div class="col-sm-5">
 				<h4>Les derniers Evènements ajoutés</h4>
 				<table class="table">
@@ -69,8 +70,9 @@
 				</table>
 			</div>
 		</div>
-		<div class="row mt-5">
-		{# Dernières musiques #}
+		<div
+			class="row mt-5">
+			{# Dernières musiques #}
 			<div class="offset-sm-2 col-10">
 				<h4>Les dernieres Musiques ajoutées</h4>
 				<table class="table">
