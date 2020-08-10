@@ -1,71 +1,128 @@
 <!DOCTYPE html>
 <html lang='fr'>
-	<head>
-		<meta charset="UTF-8">
-		<title>Admin
-			{% block title %}{% endblock %}
-		</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> {% block stylesheets %}{% endblock %}
-		</head>
-		<body>
-			<header>
-				<!-- Barre de navgiation -->
-				<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-					<a class="navbar-brand" href="{{ path('index') }}" style="font-size:3em">DashBoard</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav" style="font-size:1.3rem">
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('artists') }}">Artistes</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('musics') }}">Musiques</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('events') }}">Événements</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('categories') }}">Catégories</a>
-							</li>
-						</ul>
-					</div>
-					<div class="collapse navbar-collapse py-1 justify-content-end" id="navbarText">
-						<p class="m-0">Bienvenue Admin -</p>
-						<a href="#" class="btn btn-sm btn-light ml-1" type="button">Log Out</a>
-					</div>
-				</nav>
-			</header>
-			{% block body %}{% endblock %}
-			{# Modals #}
-			<div class="modal fade" id="artist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Ajouter un artiste</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							{% form_theme formArtist 'bootstrap_4_layout.html.twig' %}
-							{{ form_start(formArtist) }}
-							{{ form_row(formArtist.lastname, { 'label': 'Nom', 'attrib': { 'placeholder': 'Nom'}}) }}
-							{{ form_row(formArtist.firstname, { 'label': 'Prénom', 'attrib': { 'placeholder': 'Prénom'}}) }}
-							{{ form_row(formArtist.nickname, { 'label': 'Pseudonyme', 'attrib': { 'placeholder': 'Pseudonyme'}}) }}
-							{{ form_row(formArtist.description) }}
-							{{ form_row(formArtist.picture, { 'label': 'Nom' }) }}
-							{{ form_row(formArtist.save, {'label': 'Ajouter'}) }}
 
-							{{ form_end(formArtist) }}
-						</div>
-					</div>
+<head>
+	<meta charset="UTF-8">
+	<title>Admin
+		{% block title %}{% endblock %}
+	</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	{% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+	<header>
+		<!-- Barre de navgiation -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+			<a class="navbar-brand" href="{{ path('index') }}" style="font-size:3em">DashBoard</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav" style="font-size:1.3rem">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('artists') }}">Artistes</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('musics') }}">Musiques</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('events') }}">Événements</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('categories') }}">Catégories</a>
+					</li>
+				</ul>
+			</div>
+			<div class="collapse navbar-collapse py-1 justify-content-end" id="navbarText">
+				<p class="m-0">Bienvenue Admin -</p>
+				<a href="#" class="btn btn-sm btn-light ml-1" type="button">Log Out</a>
+			</div>
+		</nav>
+	</header>
+	{% block body %}{% endblock %}
+	{# Modals #}
+	<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Formulaire</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
 				</div>
 			</div>
-			{% block javascripts %}{% endblock %}
-			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		</body>
-	</html>
+		</div>
+	</div>
+
+	{% block javascripts %}
+	{% endblock %}
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+
+	<script>
+		// FONCTIONS //
+		function clickAddArtist() {
+			let httpRequest = new XMLHttpRequest;
+			httpRequest.onreadystatechange = function () {
+				if (httpRequest.readyState === 4) {
+					if (httpRequest.status == 200) {
+						$('#form').modal('show');
+
+						let form = document.querySelector('#form .modal-body');
+						let text = httpRequest.responseText;
+
+						form.innerHTML = text;
+
+						let btnSave = document.querySelector('#js-save');
+						let formToSubmit = document.querySelector('form');
+
+						btnSave.addEventListener('click', function (e) {
+
+							e.preventDefault();
+							let data = new FormData(formToSubmit);
+							let xhr = new XMLHttpRequest;
+							xhr.onreadystatechange = function () {
+								if (xhr.readyState === 4) {
+									if (xhr.status == 200) {
+										$('#form').modal('hide');
+										//recup json update data
+									}
+								}
+							}
+							xhr.open('POST', "{{ path('artist_add') }}", true);
+							xhr.send(data);
+						})
+					}
+				}
+			}
+			httpRequest.open('POST', "{{ path('artist_add') }}", true);
+			httpRequest.send();
+		}
+
+
+
+		document.addEventListener('DOMContentLoaded', function () {
+
+			let btn = document.querySelector('button.btn');
+			btn.addEventListener('click', clickAddArtist);
+		});
+
+	</script>
+</body>
+
+</html>

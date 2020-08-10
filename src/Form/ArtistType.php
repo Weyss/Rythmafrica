@@ -6,7 +6,7 @@ use App\Entity\Artist;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class ArtistType extends AbstractType
 {
@@ -17,8 +17,7 @@ class ArtistType extends AbstractType
             ->add('firstname')
             ->add('nickname')
             ->add('picture')
-            ->add('description')
-            ->add('save', SubmitType::class);
+            ->add('description');
     }
 
     public function configureOptions(OptionsResolver $resolver)

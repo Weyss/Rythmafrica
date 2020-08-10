@@ -1,0 +1,12 @@
+{% form_theme formArtist 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(formArtist) }}
+
+{{ form_row(formArtist.lastname, { 'label': 'Nom', 'attrib': { 'placeholder': 'Nom'}}) }}
+{{ form_row(formArtist.firstname, { 'label': 'Prénom', 'attrib': { 'placeholder': 'Prénom'}}) }}
+{{ form_row(formArtist.nickname, { 'label': 'Pseudonyme', 'attrib': { 'placeholder': 'Pseudonyme'}}) }}
+{{ form_row(formArtist.description) }}
+{{ form_row(formArtist.picture, { 'label': 'Image' }) }}
+<button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
+
+{{ form_end(formArtist) }}
