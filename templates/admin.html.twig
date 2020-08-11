@@ -76,45 +76,75 @@
 
 	<script>
 		// FONCTIONS //
+		function submitData(e){
+			e.preventDefault();
+			let data = new FormData(e.target);
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === xhr.DONE && xhr.status == 200) {
+						$('#form').modal('hide');
+
+						//recup json update data
+						let newData = JSON.parse(xhr.responseText);
+						let tableArtist = document.querySelector('table#artists tbody');
+						let tr = document.createElement('tr');
+
+						let tdPicture = document.createElement('td');
+						let picture = document.createElement('img');
+							picture.classList.add('card-img');
+							picture.setAttribute('style', 'width:10rem; height: 10rem;');
+							picture.setAttribute('src', newData[0].picture);
+							tdPicture.append(picture);
+
+						let tdLastname = document.createElement('td');
+						let tdFirstname = document.createElement('td');
+						let tdDescription = document.createElement('td');
+						let tdPseudo = document.createElement('td');
+						let tdAction = document.createElement('td');
+							tdAction.classList.add('d-flex', 'flex-column');
+						let edit = document.createElement('a');
+							edit.setAttribute('href', '#');
+							edit.classList.add('btn', 'btn-primary', 'btn-sm');
+							edit.innerText = 'Éditer';
+						let supp = document.createElement('button');
+						// Ajouter les attributs plus tard quand la fonctionnalité de suppression sera mise en place
+							supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
+							supp.innerText = 'Supprimer';
+						tdAction.append(edit, supp);
+						
+						tdLastname.innerText = newData[0].lastname;
+						tdFirstname.innerText = newData[0].firstname;
+						tdPseudo.innerText = newData[0].nickname;
+						tdDescription.innerText = newData[0].description;
+
+						tr.append(tdPicture,tdLastname,tdFirstname,tdPseudo,tdDescription,tdAction);
+						
+						tableArtist.prepend(tr);
+				}
+			}
+			xhr.open('POST', "{{ path('artist_add') }}", true);
+			xhr.send(data);
+		}
+
 		function clickAddArtist() {
 			let httpRequest = new XMLHttpRequest;
 			httpRequest.onreadystatechange = function () {
-				if (httpRequest.readyState === 4) {
-					if (httpRequest.status == 200) {
+				if (httpRequest.readyState === httpRequest.DONE && httpRequest.status == 200) {
+					 
 						$('#form').modal('show');
 
 						let form = document.querySelector('#form .modal-body');
-						let text = httpRequest.responseText;
 
-						form.innerHTML = text;
+						form.innerHTML = httpRequest.responseText;
 
-						let btnSave = document.querySelector('#js-save');
-						let formToSubmit = document.querySelector('form');
-
-						btnSave.addEventListener('click', function (e) {
-
-							e.preventDefault();
-							let data = new FormData(formToSubmit);
-							let xhr = new XMLHttpRequest;
-							xhr.onreadystatechange = function () {
-								if (xhr.readyState === 4) {
-									if (xhr.status == 200) {
-										$('#form').modal('hide');
-										//recup json update data
-									}
-								}
-							}
-							xhr.open('POST', "{{ path('artist_add') }}", true);
-							xhr.send(data);
-						})
-					}
+						let formAdd = document.querySelector('#form form');
+						
+						formAdd.addEventListener('submit', submitData);
 				}
 			}
 			httpRequest.open('POST', "{{ path('artist_add') }}", true);
 			httpRequest.send();
 		}
-
-
 
 		document.addEventListener('DOMContentLoaded', function () {
 

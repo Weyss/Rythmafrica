@@ -20,27 +20,31 @@
 			{# Derniers artistes ajoutés  #}
 			<div class="col-sm-5">
 				<h4>Les derniers Artistes ajoutés</h4>
-				<table class="table">
+				<table class="table" id="artists">
 					<thead>
 						<tr>
 							<th scope="col" class="auto">Image</th>
 							<th scope="col">Nom</th>
 							<th scope="col">Prénom</th>
 							<th scope="col">Pseudo</th>
+							<th scope="col">Desciption</th>
 							<th scope="col">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
+						{% for artist in lastArtists %}
 						<tr>
-							<td><img src="" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
-							<td>Bon</td>
-							<td>Jean</td>
-							<td>JamBon le charcutier</td>
+							<td><img src="{{ artist.picture }}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
+							<td>{{ artist.lastname}}</td>
+							<td>{{ artist.firstname}}</td>
+							<td>{{ artist.nickname}}</td>
+							<td>{{ artist.description}}</td>
 							<td class="d-flex flex-column">
 								<a href="#" class="btn btn-primary btn-sm">Editer</a>
 								<a href="#" data-toggle="modal" data-target="#delete" data-id="" class="btn btn-primary btn-sm mt-2">Supprimer</a>
 							</td>
 						</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 			</div>

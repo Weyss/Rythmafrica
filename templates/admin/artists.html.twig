@@ -14,7 +14,7 @@
 			</form>
 		</div>
 
-		<table class="table mt-5">
+		<table class="table mt-5" id="artists">
 			<thead>
 				<tr>
 					<th scope="col" class="auto">Image</th>
@@ -26,17 +26,19 @@
 				</tr>
 			</thead>
 			<tbody>
+				{% for artist in allArtists %}
 				<tr>
-					<td><img src="" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
-					<td>Bon</td>
-					<td>Jean</td>
-					<td>Jambon</td>
-					<td>Ceci est la desciption de l'artiste</td>
+					<td><img src="{{ artist.picture}}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
+					<td>{{ artist.lastname}}</td>
+					<td>{{ artist.firstname}}</td>
+					<td>{{ artist.nickname}}</td>
+					<td>{{ artist.description}}</td>
 					<td>
 						<a href="" class="btn btn-primary">Editer</a>
 						<a href="" class="btn btn-primary mr-3">Supprimer</a>
 					</td>
 				</tr>
+				{% endfor %}
 			</tbody>
 		</table>
 		<nav aria-label="Page navigation example">
