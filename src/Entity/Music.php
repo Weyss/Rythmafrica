@@ -49,7 +49,7 @@ class Music
     private $category;
 
     /**
-     * @ORM\OneToOne(targetEntity=Artist::class, inversedBy="music", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Artist::class, inversedBy="musics")
      * @ORM\JoinColumn(nullable=false)
      */
     private $artist;
@@ -136,10 +136,11 @@ class Music
         return $this->artist;
     }
 
-    public function setArtist(Artist $artist): self
+    public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
 
         return $this;
     }
+
 }

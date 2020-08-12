@@ -13,7 +13,7 @@
 
 <body>
 	<header>
-		<!-- Barre de navgiation -->
+		<!--  Barre de navgiation  -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-primary">
 			<a class="navbar-brand" href="{{ path('index') }}" style="font-size:3em">DashBoard</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -44,6 +44,7 @@
 	</header>
 	{% block body %}{% endblock %}
 	{# Modals #}
+	{# Formulaire d'ajout #}
 	<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -54,12 +55,34 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-
-				</div>
+				<div class="modal-body"></div>
 			</div>
 		</div>
 	</div>
+	{# Formulaire de suppression #}
+	<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Confirmation de la suppression</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer cet element ?
+                </div>
+                <div class="modal-footer">
+                    <form action="#" id="formdelete" method="POST">
+                        <input type="hidden" value="" name="id" id="deleteId">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Supprimer</button>
+                    </form>
+                </div>
+			</div>
+		</div>
+	</div>
+
 
 	{% block javascripts %}
 	{% endblock %}
@@ -76,6 +99,7 @@
 
 	<script>
 		// FONCTIONS //
+		// Fonction pour la soumission du formulaire
 		function submitData(e){
 			e.preventDefault();
 			let data = new FormData(e.target);
@@ -84,41 +108,51 @@
 				if (xhr.readyState === xhr.DONE && xhr.status == 200) {
 						$('#form').modal('hide');
 
-						//recup json update data
+						//Récupération des données en JSON
 						let newData = JSON.parse(xhr.responseText);
+						console.log(newData);
 						let tableArtist = document.querySelector('table#artists tbody');
 						let tr = document.createElement('tr');
-
+						
+						// Creation des balises HTML pour afficher les données JSON reçu
+							// Pour l'image avec ces classes et attributs
 						let tdPicture = document.createElement('td');
 						let picture = document.createElement('img');
 							picture.classList.add('card-img');
 							picture.setAttribute('style', 'width:10rem; height: 10rem;');
-							picture.setAttribute('src', newData[0].picture);
+							picture.setAttribute('src', `{{ asset('upload/artistPictures/${newData.picture}') }}`);
 							tdPicture.append(picture);
 
+							// Pour le nom, prénom, la description et le pseudo
 						let tdLastname = document.createElement('td');
 						let tdFirstname = document.createElement('td');
 						let tdDescription = document.createElement('td');
 						let tdPseudo = document.createElement('td');
+
+							// Pour les boutons avec ces classes et attributs
 						let tdAction = document.createElement('td');
 							tdAction.classList.add('d-flex', 'flex-column');
+								// Pour l'édition
 						let edit = document.createElement('a');
 							edit.setAttribute('href', '#');
 							edit.classList.add('btn', 'btn-primary', 'btn-sm');
 							edit.innerText = 'Éditer';
+								// Pour la suppression
 						let supp = document.createElement('button');
 						// Ajouter les attributs plus tard quand la fonctionnalité de suppression sera mise en place
 							supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
 							supp.innerText = 'Supprimer';
 						tdAction.append(edit, supp);
 						
+						// Intégration des données dans les balises HTML correspondantes
 						tdLastname.innerText = newData[0].lastname;
 						tdFirstname.innerText = newData[0].firstname;
 						tdPseudo.innerText = newData[0].nickname;
 						tdDescription.innerText = newData[0].description;
 
+						// On ajout tous les td dans le tr
 						tr.append(tdPicture,tdLastname,tdFirstname,tdPseudo,tdDescription,tdAction);
-						
+						// On ajout le tr dans la table
 						tableArtist.prepend(tr);
 				}
 			}
@@ -126,6 +160,7 @@
 			xhr.send(data);
 		}
 
+		// Fonction pour faire apparaitre la modal et y insérer le formulaire
 		function clickAddArtist() {
 			let httpRequest = new XMLHttpRequest;
 			httpRequest.onreadystatechange = function () {
@@ -146,12 +181,33 @@
 			httpRequest.send();
 		}
 
+
 		document.addEventListener('DOMContentLoaded', function () {
+			let add = document.querySelector('button.btn');
+			let del = document.querySelectorAll('a.delete');
 
-			let btn = document.querySelector('button.btn');
-			btn.addEventListener('click', clickAddArtist);
-		});
+			add.addEventListener('click', clickAddArtist);
 
+			del.forEach(function(supp){
+				supp.addEventListener('click', function(){
+					let id = this.getAttribute('href');
+					$('#delete').modal('show');
+					let formDelete = document.querySelector('#delete form');
+					formDelete.addEventListener('submit', function(e){
+							e.preventDefault();
+							let xhr = new XMLHttpRequest();
+							xhr.onreadystatechange = function () {
+								if (xhr.readyState === xhr.DONE && xhr.status == 200) {
+									$('#delete').modal('hide');
+								}				
+							}
+							xhr.open('POST', id, true);
+							xhr.send();
+						});
+					
+				});
+			});
+		})
 	</script>
 </body>
 

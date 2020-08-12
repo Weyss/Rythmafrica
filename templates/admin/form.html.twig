@@ -6,7 +6,7 @@
 {{ form_row(formArtist.firstname, { 'label': 'Prénom', 'attrib': { 'placeholder': 'Prénom'}}) }}
 {{ form_row(formArtist.nickname, { 'label': 'Pseudonyme', 'attrib': { 'placeholder': 'Pseudonyme'}}) }}
 {{ form_row(formArtist.description) }}
-{{ form_row(formArtist.picture, { 'label': 'Image' }) }}
+{{ form_row(formArtist.picture, {'required': false }) }}
 <button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
 
 {{ form_end(formArtist) }}
