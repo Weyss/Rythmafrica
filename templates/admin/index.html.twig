@@ -40,7 +40,7 @@
 							<td>{{ artist.nickname}}</td>
 							<td>{{ artist.description}}</td>
 							<td class="d-flex flex-column">
-								<a href="#" class="btn btn-primary btn-sm">Editer</a>
+								<button data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm edit">Éditer</button>
 								<a href="{{ path('artist_delete', {id:artist.id}) }}" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm mt-2 delete">Supprimer</a>
 							</td>
 						</tr>
