@@ -11,23 +11,23 @@
 			<nav class="navbar navbar-expand-lg navbar-light justify-content-center align-items-start col-sm-2">
 				<div class="navbar-nav flex-column bg-primary rounded p-3">
 					<h4>Ajouter du contenu</h4>
-					<button class="btn btn-primary" data-toggle="modal">Ajouter un artiste</button>
-					<a class="nav-link" href="#">Ajouter une musique</a>
-					<a class="nav-link" href="#">Ajouter un événement</a>
-					<a class="nav-link" href="#">Ajouter une catégories</a>
+					<button id="js-addArtist" class="btn btn-primary js-form" data-toggle="modal">Ajouter un artiste</button>
+					<button id="js-addMusic" class="btn btn-primary js-form" data-toggle="modal">Ajouter une musique</button>
+					<button id="js-addEvent" class="btn btn-primary js-form" data-toggle="modal">Ajouter un événement</button>
+					<button id="js-addCategory" class="btn btn-primary js-form" data-toggle="modal">Ajouter une catégorie</button>
 				</div>
 			</nav>
 			{# Derniers artistes ajoutés  #}
 			<div class="col-sm-5">
 				<h4>Les derniers Artistes ajoutés</h4>
-				<table class="table" id="artists">
+				<table class="table" id="js-artists">
 					<thead>
 						<tr>
 							<th scope="col" class="auto">Image</th>
 							<th scope="col">Nom</th>
 							<th scope="col">Prénom</th>
 							<th scope="col">Pseudo</th>
-							<th scope="col">Desciption</th>
+							<th scope="col">Description</th>
 							<th scope="col">Actions</th>
 						</tr>
 					</thead>
@@ -40,8 +40,8 @@
 							<td>{{ artist.nickname}}</td>
 							<td>{{ artist.description}}</td>
 							<td class="d-flex flex-column">
-								<button data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm edit">Éditer</button>
-								<a href="{{ path('artist_delete', {id:artist.id}) }}" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm mt-2 delete">Supprimer</a>
+								<a href="{{ path('artist_edit', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
+								<a href="{{ path('artist_delete', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
 							</td>
 						</tr>
 						{% endfor %}
@@ -74,12 +74,11 @@
 				</table>
 			</div>
 		</div>
-		<div
-			class="row mt-5">
+		<div class="row mt-5">
 			{# Dernières musiques #}
 			<div class="offset-sm-2 col-10">
 				<h4>Les dernieres Musiques ajoutées</h4>
-				<table class="table">
+				<table class="table" id="musics">
 					<thead>
 						<tr>
 							<th scope="col" class="auto">Image</th>

@@ -2,22 +2,20 @@
 
 namespace App\Form;
 
-use App\Entity\Artist;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-
-class ArtistType extends AbstractType
+class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lastname')
-            ->add('firstname')
-            ->add('nickname')
+            ->add('name')
+            ->add('description')
             ->add('picture', FileType::class, [
                 'mapped' => false,
                 'required' => false,
@@ -35,14 +33,13 @@ class ArtistType extends AbstractType
                 'attr' => [
                     'accept'=>'.jpg, .jpeg, .png, .gif'
                 ]
-            ])
-            ->add('description');
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Artist::class,
+            'data_class' => Category::class,
         ]);
     }
 }

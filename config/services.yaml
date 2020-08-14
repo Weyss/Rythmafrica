@@ -32,4 +32,5 @@ services:
 
     App\Service\FileUploader:
         arguments:
-            $targetDirectory: '%kernel.project_dir%/public/upload/artistPictures'
+            $targetDirectoryArtist: '%kernel.project_dir%/public/upload/artistPictures'
+            $targetDirectoryCategory: '%kernel.project_dir%/public/upload/categoryPictures'

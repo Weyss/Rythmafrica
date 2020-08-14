@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Artist;
+use App\Entity\Category;
 use App\Form\ArtistType;
+use App\Form\CategoryType;
 use App\Service\FileUploader;
 use App\Repository\ArtistRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,9 +26,8 @@ class AdminController extends AbstractController
      */
     public function index(ArtistRepository $artistRepository)
     {
-        
         return $this->render('admin/index.html.twig', [
-            'lastArtists' => $artistRepository->findBy( array(), array('id' => 'desc'), 5, 0)
+            'lastArtists' => $artistRepository->findBy( array(), array('id' => 'desc'), 5, 0),
         ]);
     }
 
@@ -35,7 +37,7 @@ class AdminController extends AbstractController
     public function artists(ArtistRepository $artistRepository)
     {
         return $this->render('admin/artists.html.twig', [
-            'allArtists' => $artistRepository->findAll()
+            'allArtists' => $artistRepository->findBy( array(), array('id' => 'desc'))
         ]);
     }
 
@@ -58,9 +60,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/categories", name="categories")
      */
-    public function categories()
+    public function categories(CategoryRepository $categoryRepository)
     {
-        return $this->render('admin/categories.html.twig');
+        return $this->render('admin/categories.html.twig',[
+            'allCategories' => $categoryRepository->findAll()
+        ]);
     }
 
     /**
@@ -71,7 +75,7 @@ class AdminController extends AbstractController
     {
         if(!$artist)
             $artist = new Artist();
-        
+            
         $form = $this->createForm(ArtistType::class, $artist);
         $form->handleRequest($request);
         
@@ -82,11 +86,11 @@ class AdminController extends AbstractController
 
             if ($picture) {
                 if($artist->getId() == null){
-                    $pictureFileName = $fileUploader->upload($picture);
+                    $pictureFileName = $fileUploader->uploadArtist($picture);
                     $artist->setPicture($pictureFileName);
                 }else{
-                    unlink($fileUploader->getTargetDirectory().'/'.  $artist->getPicture());
-                    $pictureFileName = $fileUploader->upload($picture);
+                    unlink($fileUploader->getTargetDirectoryArtist().'/'.  $artist->getPicture());
+                    $pictureFileName = $fileUploader->uploadArtist($picture);
                     $artist->setPicture($pictureFileName);
                 }
             }
@@ -99,8 +103,8 @@ class AdminController extends AbstractController
             return $response;
         }
 
-        return $this->render('admin/form.html.twig', [
-            'formArtist' => $form->createView(), 
+        return $this->render('admin/formArtist.html.twig', [
+            'formArtist' => $form->createView(),
         ]);
     }
 
@@ -111,7 +115,7 @@ class AdminController extends AbstractController
     {
         $picture = $artist->getPicture();
         if ($picture)
-        unlink($fileUploader->getTargetDirectory().'/'. $picture);
+        unlink($fileUploader->getTargetDirectoryArtist().'/'. $picture);
 
         $entityManager->remove($artist);
         $entityManager->flush();
@@ -123,22 +127,92 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('index');  
     }
 
+    /**
+     * @Route("/admin/category/add", name="category_add")
+     * @Route("/admin/category/edit/{id}", name="category_edit")
+     */
+    public function addCategory(Category $category=null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, CategoryRepository $categoryRepository)
+    {
+        if(!$category)
+            $category = new Category();
+
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $picture = $form->get('picture')->getData();
+
+            if ($picture) {
+                if($category->getId() == null){
+                    $pictureFileName = $fileUploader->uploadCategory($picture);
+                    $category->setPicture($pictureFileName);
+                }else{
+                    unlink($fileUploader->getTargetDirectoryCategory().'/'.  $category->getPicture());
+                    $pictureFileName = $fileUploader->uploadCategory($picture);
+                    $category->setPicture($pictureFileName);
+                }
+            }
+
+            $entityManager->persist($category);
+            $entityManager->flush(); 
+
+            $response = $this->allCategory($categoryRepository);
+                
+            return $response;
+        }
+
+        return $this->render('admin/formCategory.html.twig', [
+            'formCategory' => $form->createView(),    
+        ]);
+    }
 
     /**
-     * @Route("/admin/last/artists", name="last_artists")
+     * @Route("/admin/category/delete/{id}", name="category_delete")
      */
-    public function lastFiveArtists(ArtistRepository $artistRepository){
+    public function deleteCategory(Category $category, EntityManagerInterface $entityManager, FileUploader $fileUploader, CategoryRepository $categoryRepository)
+    {
+        $picture = $category->getPicture();
+        if ($picture)
+            unlink($fileUploader->getTargetDirectoryCategory().'/'. $picture);
 
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        $response = $this->allCategory($categoryRepository);
+            
+        return $response;
+    
+        return $this->redirectToRoute('categories');  
+    }
+    
+    public function encodeJsonEntity($request){
         $encoders = array(new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
 
         $serializer = new Serializer($normalizers, $encoders);
-        $artistSerialized = $serializer->serialize($artistRepository->findBy( array(), array('id' => 'desc'), 5, 0), 'json');
+        $requestSerialized = $serializer->serialize($request, 'json');
 
         $response = new Response();
-        $response->setContent($artistSerialized);
+        $response->setContent($requestSerialized);
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
+    }
+
+    /**
+     * @Route("/admin/artist/json", name="json_artist")
+     */
+    public function lastFiveArtists(ArtistRepository $artistRepository){
+
+        return $this->encodeJsonEntity($artistRepository->findBy( array(), array('id' => 'desc'), 5, 0));
+    }
+
+    /**
+     * @Route("/admin/category/json", name="json_category")
+     */
+    public function allCategory(CategoryRepository $categoryRepository){
+
+        return $this->encodeJsonEntity($categoryRepository->findAll());
     }
 }

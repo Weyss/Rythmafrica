@@ -1,0 +1,10 @@
+{% form_theme formCategory 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(formCategory) }}
+
+{{ form_row(formCategory.name, { 'label': 'Nom', 'attrib': { 'placeholder': 'Nom'}}) }}
+{{ form_row(formCategory.description) }}
+{{ form_row(formCategory.picture, {'required': false }) }}
+<button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
+
+{{ form_end(formCategory) }}
