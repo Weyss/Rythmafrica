@@ -34,3 +34,6 @@ services:
         arguments:
             $targetDirectoryArtist: '%kernel.project_dir%/public/upload/artistPictures'
             $targetDirectoryCategory: '%kernel.project_dir%/public/upload/categoryPictures'
+            $targetDirectoryMusic: '%kernel.project_dir%/public/upload/musicPictures'
+            $targetDirectorySong: '%kernel.project_dir%/public/upload/song'
+            $targetDirectoryEvent: '%kernel.project_dir%/public/upload/eventPictures'

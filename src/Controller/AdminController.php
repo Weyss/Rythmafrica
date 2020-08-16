@@ -2,13 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
+use App\Entity\Music;
 use App\Entity\Artist;
+use App\Form\EventType;
+use App\Form\MusicType;
 use App\Entity\Category;
 use App\Form\ArtistType;
 use App\Form\CategoryType;
 use App\Service\FileUploader;
 use App\Repository\ArtistRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -24,10 +30,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="index")
      */
-    public function index(ArtistRepository $artistRepository)
+    public function index(ArtistRepository $artistRepository, EventRepository $eventRepository)
     {
         return $this->render('admin/index.html.twig', [
             'lastArtists' => $artistRepository->findBy( array(), array('id' => 'desc'), 5, 0),
+            'lastEvents' => $eventRepository->findBy( array(), array('id' => 'desc'), 5, 0),
         ]);
     }
 
@@ -52,9 +59,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/events", name="events")
      */
-    public function events()
+    public function events(EventRepository $eventRepository)
     {
-        return $this->render('admin/events.html.twig');
+        return $this->render('admin/events.html.twig', [
+            'lastEvents' => $eventRepository->findBy( array(), array('id' => 'desc'), 5, 0)
+        ]);
     }
 
     /**
@@ -186,9 +195,109 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('categories');  
     }
     
+    /**
+    * @Route("/admin/music/add", name="music_add")
+    */
+    public function addMusic(Music $music = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader)
+    {
+        
+        $music = new Music;
+
+        $form = $this->createForm(MusicType::class, $music);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $music->setCreatedAt(new \DateTime('NOW', new \DateTimeZone('Europe/Paris')));
+
+            $picture = $form->get('picture')->getData();
+            $song = $form->get('music')->getData();
+
+
+            $pictureFileName = $fileUploader->uploadMusic($picture);
+            $music->setPicture($pictureFileName);
+
+            $songFileName = $fileUploader->uploadSong($picture);
+            $song->setMusic($songFileName);
+
+            $entityManager->persist($music);
+            $entityManager->flush(); 
+            dump($music);
+        }
+
+        return $this->render('admin/formMusic.html.twig', [
+            'formMusic' => $form->createView(),    
+        ]);
+    }
+
+     /**
+    * @Route("/admin/event/add", name="event_add")
+    * @Route("/admin/event/edit/{id}", name="event_edit")
+    */
+    public function addEvent(Event $event = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, EventRepository $eventRepository)
+    {
+        if(!$event)
+            $event = new Event;
+
+        $form = $this->createForm(EventType::class, $event);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $event->setStartingAt($form->get('startingAt')->getData());
+            $event->setClosingAt($form->get('closingAt')->getData());
+
+            $picture = $form->get('picture')->getData();
+            if ($picture) {
+                if($event->getId() == null){
+                    $pictureFileName = $fileUploader->uploadEvent($picture);
+                    $event->setPicture($pictureFileName);
+                }else{
+                    unlink($fileUploader->getTargetDirectoryEvent().'/'.  $event->getPicture());
+                    $pictureFileName = $fileUploader->uploadEvent($picture);
+                    $event->setPicture($pictureFileName);
+                }
+            }
+
+            
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            $response = $this->lastFiveEvents($eventRepository);
+            return $response;
+        }
+
+        return $this->render('admin/formEvent.html.twig', [
+            'formEvent' => $form->createView(),    
+        ]);
+    }
+
+    /**
+     * @Route("/admin/event/delete/{id}", name="event_delete")
+     */
+    public function deleteEvent(Event $event, EntityManagerInterface $entityManager, FileUploader $fileUploader, EventRepository $eventRepository, CategoryRepository $categoryRepository)
+    {
+        $picture = $event->getPicture();
+        if ($picture)
+            unlink($fileUploader->getTargetDirectoryEvent().'/'. $picture);
+
+
+        $entityManager->remove($event);
+        $entityManager->flush();
+
+        $response = $this->lastFiveEvents($eventRepository);
+            
+        return $response;
+    
+        return $this->redirectToRoute('events');  
+    }
+
     public function encodeJsonEntity($request){
         $encoders = array(new JsonEncoder());
-        $normalizers = array(new ObjectNormalizer());
+        $defaultContext = [
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object) {
+                return $object;
+            },
+        ];
+        $normalizers = array(new ObjectNormalizer(null, null, null, null, null, null, $defaultContext));
 
         $serializer = new Serializer($normalizers, $encoders);
         $requestSerialized = $serializer->serialize($request, 'json');
@@ -215,4 +324,13 @@ class AdminController extends AbstractController
 
         return $this->encodeJsonEntity($categoryRepository->findAll());
     }
+
+     /**
+     * @Route("/admin/artist/json", name="json_artist")
+     */
+    public function lastFiveEvents(EventRepository $eventRepository){
+
+        return $this->encodeJsonEntity($eventRepository->findBy( array(), array('id' => 'desc'), 5, 0));
+    }
+
 }

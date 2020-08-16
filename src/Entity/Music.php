@@ -43,16 +43,16 @@ class Music
     private $createdAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=Category::class, inversedBy="music", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Artist::class, inversedBy="musics")
      * @ORM\JoinColumn(nullable=false)
      */
     private $artist;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="musics")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -119,18 +119,6 @@ class Music
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getArtist(): ?Artist
     {
         return $this->artist;
@@ -139,6 +127,18 @@ class Music
     public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

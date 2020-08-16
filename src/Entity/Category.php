@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +35,14 @@ class Category
     private $picture;
 
     /**
-     * @ORM\OneToOne(targetEntity=Music::class, mappedBy="category", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Music::class, mappedBy="category", orphanRemoval=true)
      */
-    private $music;
+    private $musics;
+
+    public function __construct()
+    {
+        $this->musics = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,18 +85,32 @@ class Category
         return $this;
     }
 
-    public function getMusic(): ?Music
+    /**
+     * @return Collection|Music[]
+     */
+    public function getMusics(): Collection
     {
-        return $this->music;
+        return $this->musics;
     }
 
-    public function setMusic(Music $music): self
+    public function addMusic(Music $music): self
     {
-        $this->music = $music;
-
-        // set the owning side of the relation if necessary
-        if ($music->getCategory() !== $this) {
+        if (!$this->musics->contains($music)) {
+            $this->musics[] = $music;
             $music->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMusic(Music $music): self
+    {
+        if ($this->musics->contains($music)) {
+            $this->musics->removeElement($music);
+            // set the owning side to null (unless already changed)
+            if ($music->getCategory() === $this) {
+                $music->setCategory(null);
+            }
         }
 
         return $this;

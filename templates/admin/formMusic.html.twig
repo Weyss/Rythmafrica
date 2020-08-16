@@ -1,0 +1,13 @@
+{% form_theme formMusic 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(formMusic) }}
+
+{{ form_row(formMusic.title, { 'label': 'Titre de la musique' }) }}
+{{ form_row(formMusic.description) }}
+{{ form_row(formMusic.picture, { 'label': 'Image' }) }}
+{{ form_row(formMusic.music, { 'label': 'Musique' }) }}
+{{ form_row(formMusic.artist, { 'label': 'Artiste' }) }}
+{{ form_row(formMusic.category, { 'label': 'Catégorie' }) }}
+<button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
+
+{{ form_end(formMusic) }}

@@ -1,0 +1,19 @@
+{% form_theme formEvent 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(formEvent) }}
+
+{{ form_row(formEvent.title, { 'label': 'Titre de l\'événement' }) }}
+{{ form_row(formEvent.description) }}
+{{ form_row(formEvent.picture, { 'label': 'Image' }) }}
+{{ form_row(formEvent.startingAt, { 'label': 'Date de début' }) }}
+{{ form_row(formEvent.closingAt, { 'label': 'Date de fin' }) }}
+{{ form_row(formEvent.artists, { 'label': 'Les artistes' }) }}
+{{ form_row(formEvent.adress, { 'label': 'Adresse' }) }}
+{{ form_row(formEvent.town, { 'label': 'Ville' }) }}
+{{ form_row(formEvent.zipCode, { 'label': 'Code Postal' }) }}
+{{ form_row(formEvent.pays, { 'label': 'Pays' }) }}
+{{ form_row(formEvent.entranceFee, { 'label': 'Prix d\'entré' }) }}
+
+<button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
+
+{{ form_end(formEvent) }}
