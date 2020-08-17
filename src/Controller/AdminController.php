@@ -61,7 +61,7 @@ class AdminController extends AbstractController
     public function musics(MusicRepository $musicRepository)
     {
         return $this->render('admin/musics.html.twig', [
-            'allMusic' => $musicRepository->findBy(array(), array('id' => 'desc'))
+            'allMusics' => $musicRepository->findBy(array(), array('id' => 'desc'))
         ]);
     }
 
@@ -70,6 +70,8 @@ class AdminController extends AbstractController
      */
     public function events(EventRepository $eventRepository)
     {
+
+        dump($eventRepository->findBy(array(), array('id' => 'desc')));
         return $this->render('admin/events.html.twig', [
             'allEvents' => $eventRepository->findBy(array(), array('id' => 'desc'))
         ]);

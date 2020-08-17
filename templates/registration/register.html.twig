@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container w-25 d-flex align-items-center" style="height:100vh;">
-    <div class="bg-light d-flex flex-column justify-content-center p-5 rounded" style="height: 85%;">
+    <div class="bg-light d-flex flex-column justify-content-center p-5 rounded h-75">
         {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}
@@ -22,7 +22,7 @@
             label: 'Confirmer Mot de Passe'}
         ) }}
 
-        <button type="submit" class="btn btn-outline-primary align-self-center">Enregsitrer</button>
+        <button type="submit" class="btn btn-outline-primary align-self-center mt-4">Enregsitrer</button>
         {{ form_end(registrationForm) }}
     </div>
 </div>

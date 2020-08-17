@@ -27,17 +27,17 @@
 			</thead>
 			<tbody>
 				{% for artist in allArtists %}
-				<tr>
-					<td><img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
-					<td>{{ artist.lastname}}</td>
-					<td>{{ artist.firstname}}</td>
-					<td>{{ artist.nickname}}</td>
-					<td>{{ artist.description}}</td>
-					<td class="d-flex flex-column">
-						<a href="{{ path('artist_edit', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
-						<a href="{{ path('artist_delete', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
-					</td>
-				</tr>
+					<tr>
+						<td><img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
+						<td>{{ artist.lastname}}</td>
+						<td>{{ artist.firstname}}</td>
+						<td>{{ artist.nickname}}</td>
+						<td>{{ artist.description}}</td>
+						<td class="d-flex flex-column">
+							<a href="{{ path('artist_edit', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
+							<a href="{{ path('artist_delete', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
+						</td>
+					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
