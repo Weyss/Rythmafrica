@@ -15,7 +15,7 @@
 	<header>
 		<!--  Barre de navgiation  -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-			<a class="navbar-brand" href="{{ path('index') }}" style="font-size:3em">DashBoard</a>
+			<a class="navbar-brand" href="{{ path('admin') }}" style="font-size:3em">DashBoard</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@
 			</div>
 			<div class="collapse navbar-collapse py-1 justify-content-end" id="navbarText">
 				<p class="m-0">Bienvenue Admin -</p>
-				<a href="#" class="btn btn-sm btn-light ml-1" type="button">Log Out</a>
+				<a href="{{ path('app_logout') }}" class="btn btn-sm btn-light ml-1" type="button">Log Out</a>
 			</div>
 		</nav>
 	</header>
@@ -64,21 +64,21 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Confirmation de la suppression</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Confirmation de la suppression</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-                    Êtes-vous sûr de vouloir supprimer cet element ?
-                </div>
-                <div class="modal-footer">
-                    <form action="#" id="formdelete" method="POST">
-                        <input type="hidden" value="" name="id" id="deleteId">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Supprimer</button>
-                    </form>
-                </div>
+					Êtes-vous sûr de vouloir supprimer cet element ?
+				</div>
+				<div class="modal-footer">
+					<form action="#" id="formdelete" method="POST">
+						<input type="hidden" value="" name="id" id="deleteId">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Supprimer</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -104,7 +104,7 @@
 			let httpRequest = new XMLHttpRequest;
 			httpRequest.onreadystatechange = function () {
 				if (httpRequest.readyState === httpRequest.DONE && httpRequest.status == 200) {
-					 
+
 					$('#form').modal('show');
 
 					let form = document.querySelector('#form .modal-body');
@@ -112,7 +112,7 @@
 					form.innerHTML = httpRequest.responseText;
 
 					let formAdd = document.querySelector('#form form');
-					
+
 					formAdd.addEventListener('submit', submitData);
 				}
 			}
@@ -120,17 +120,17 @@
 			httpRequest.send();
 		}
 
-		
+
 		//Fonction pour supprimer un artist
-		function remove(e){
+		function remove(e) {
 			e.preventDefault();
 			let url = this.getAttribute('href');
 			let entity = this.dataset.entity; //ton entité mise à jour !
 
 			$('#delete').modal('show');
 			let formDelete = document.querySelector('#delete form');
-			formDelete.addEventListener('submit', function(e){
-				
+			formDelete.addEventListener('submit', function (e) {
+
 				e.preventDefault();
 				let xhr = new XMLHttpRequest();
 				xhr.onreadystatechange = function () {
@@ -138,29 +138,32 @@
 						$('#delete').modal('hide');
 						// Récupération des données JSON
 						let newData = JSON.parse(xhr.responseText);
-						switch (entity){
-							case "artist" :
+						switch (entity) {
+							case "artist":
 								updateDataArtist(newData);
-							break;
+								break;
 							case "category":
 								updateDataCategory(newData);
-							break;
+								break;
+							case "music":
+								updateDataMusic(newData);
+								break;
 							case "event":
 								updateDataEvent(newData);
-							break;
+								break;
 						}
-					}				
+					}
 				}
 				xhr.open('POST', url, true);
 				xhr.send();
 			});
 		}
 		//Fonction pour éditer un artist
-		function modify(e){
+		function modify(e) {
 			e.preventDefault();
 			let url = this.getAttribute('href');
 			let entity = this.dataset.entity;
-			let httpRequest = new XMLHttpRequest; 
+			let httpRequest = new XMLHttpRequest;
 			httpRequest.onreadystatechange = function () {
 				if (httpRequest.readyState === httpRequest.DONE && httpRequest.status == 200) {
 					$('#form').modal('show');
@@ -170,8 +173,8 @@
 					form.innerHTML = httpRequest.responseText;
 
 					let formAdd = document.querySelector('#form form');
-			
-					formAdd.addEventListener('submit', function(e){
+
+					formAdd.addEventListener('submit', function (e) {
 						e.preventDefault();
 						let data = new FormData(e.target);
 						let xhr = new XMLHttpRequest();
@@ -181,16 +184,19 @@
 
 								//Récupération des données en JSON
 								let newData = JSON.parse(xhr.responseText);
-								switch (entity){
-									case "artist" :
+								switch (entity) {
+									case "artist":
 										updateDataArtist(newData);
-									break;
+										break;
 									case "category":
 										updateDataCategory(newData);
-									break;
+										break;
+									case "music":
+										updateDataMusic(newData);
+										break;
 									case "event":
 										updateDataEvent(newData);
-									break;
+										break;
 								}
 							}
 						}
@@ -203,7 +209,7 @@
 			httpRequest.send();
 		}
 		// Fonction pour la soumission du formulaire
-		function submitData(e){
+		function submitData(e) {
 			e.preventDefault();
 			let data = new FormData(e.target);
 			let xhr = new XMLHttpRequest();
@@ -212,14 +218,17 @@
 					$('#form').modal('hide');
 					//Récupération des données en JSON
 					let newData = JSON.parse(xhr.responseText);
-					switch (url){
-						case "{{ path('artist_add') }}" :
+					switch (url) {
+						case "{{ path('artist_add') }}":
 							updateDataArtist(newData);
 							break;
-						case "{{ path('category_add') }}" :
+						case "{{ path('category_add') }}":
 							updateDataCategory(newData);
 							break;
-						case "{{ path('event_add') }}" :
+						case "{{ path('music_add') }}":
+							updateDataMusic(newData);
+							break;
+						case "{{ path('event_add') }}":
 							updateDataEvent(newData);
 							break;
 					}
@@ -229,51 +238,51 @@
 			xhr.send(data);
 		}
 		//Fonction pour mettre à jour les données des artistes
-		function updateDataArtist(newData){
+		function updateDataArtist(newData) {
 			let tableArtist = document.querySelector('table#js-artists tbody');
 			let tr = document.createElement('tr');
 			tableArtist.innerHTML = '';
-			newData.forEach(function(data){
+			newData.forEach(function (data) {
 				console.log(data);
 				let tr = document.createElement('tr');
 				let id = data.id;
 
 				let tdPicture = document.createElement('td');
 				let picture = document.createElement('img');
-					picture.classList.add('card-img');
-					picture.setAttribute('style', 'width:10rem; height: 10rem;');
-					picture.setAttribute('src', `{{ asset('upload/artistPictures/${data.picture}') }}`);
-					tdPicture.append(picture);
+				picture.classList.add('card-img');
+				picture.setAttribute('style', 'width:10rem; height: 10rem;');
+				picture.setAttribute('src', `{{ asset('upload/artistPictures/${data.picture}') }}`);
+				tdPicture.append(picture);
 
-					// Pour le nom, prénom, la description et le pseudo
+				// Pour le nom, prénom, la description et le pseudo
 				let tdLastname = document.createElement('td');
 				let tdFirstname = document.createElement('td');
 				let tdDescription = document.createElement('td');
 				let tdPseudo = document.createElement('td');
 
-					// Pour les boutons avec ces classes et attributs
+				// Pour les boutons avec ces classes et attributs
 				let tdAction = document.createElement('td');
-					tdAction.classList.add('d-flex', 'flex-column');
-						// Pour l'édition
+				tdAction.classList.add('d-flex', 'flex-column');
+				// Pour l'édition
 				let edit = document.createElement('a');
-				let urlEdit = "{{ path('artist_edit', {'id': 'id'}) }}"; 
-					urlEdit = urlEdit.replace('id', id);
-					edit.setAttribute('href', urlEdit);
-					edit.setAttribute('data-entity', 'artist');
-					edit.classList.add('btn', 'btn-primary', 'btn-sm');
-					edit.innerText = 'Éditer';
-					edit.addEventListener('click', modify)
-						// Pour la suppression
+				let urlEdit = "{{ path('artist_edit', {'id': 'id'}) }}";
+				urlEdit = urlEdit.replace('id', id);
+				edit.setAttribute('href', urlEdit);
+				edit.setAttribute('data-entity', 'artist');
+				edit.classList.add('btn', 'btn-primary', 'btn-sm');
+				edit.innerText = 'Éditer';
+				edit.addEventListener('click', modify)
+				// Pour la suppression
 				let supp = document.createElement('a');
-				let urlDel = "{{ path('artist_delete', {'id': 'id'}) }}"; 
-					urlDel = urlDel.replace('id', id);
-					supp.setAttribute('href', urlDel);
-					supp.setAttribute('data-entity', 'artist');
-					supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
-					supp.innerText = 'Supprimer';
-					supp.addEventListener('click',remove);
+				let urlDel = "{{ path('artist_delete', {'id': 'id'}) }}";
+				urlDel = urlDel.replace('id', id);
+				supp.setAttribute('href', urlDel);
+				supp.setAttribute('data-entity', 'artist');
+				supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
+				supp.innerText = 'Supprimer';
+				supp.addEventListener('click', remove);
 				tdAction.append(edit, supp);
-				
+
 				// Intégration des données dans les balises HTML correspondantes
 				tdLastname.innerText = data.lastname;
 				tdFirstname.innerText = data.firstname;
@@ -281,118 +290,183 @@
 				tdDescription.innerText = data.description;
 
 				// On ajout tous les td dans le tr
-				tr.append(tdPicture,tdLastname,tdFirstname,tdPseudo,tdDescription,tdAction);
+				tr.append(tdPicture, tdLastname, tdFirstname, tdPseudo, tdDescription, tdAction);
 				// On ajout le tr dans la table
 				tableArtist.append(tr);
 			})
 		}
 
 		//Fonction pour mettre à jour les données des categories
-		function updateDataCategory(newData){
+		function updateDataCategory(newData) {
 			let tableCategory = document.querySelector('table#js-categories tbody');
 			let tr = document.createElement('tr');
-			
+
 			tableCategory.innerHTML = '';
-			newData.forEach(function(data){
+			newData.forEach(function (data) {
 				console.log(data);
 				let tr = document.createElement('tr');
 				let id = data.id
 				let tdPicture = document.createElement('td');
 				let picture = document.createElement('img');
-					picture.classList.add('card-img');
-					picture.setAttribute('style', 'width:10rem; height: 10rem;');
-					picture.setAttribute('src', `{{ asset('upload/categoryPictures/${data.picture}') }}`);
-					tdPicture.append(picture);
+				picture.classList.add('card-img');
+				picture.setAttribute('style', 'width:10rem; height: 10rem;');
+				picture.setAttribute('src', `{{ asset('upload/categoryPictures/${data.picture}') }}`);
+				tdPicture.append(picture);
 
-					// Pour le nom, prénom, la description et le pseudo
+				// Pour le nom, prénom, la description et le pseudo
 				let tdName = document.createElement('td');
 				let tdDescription = document.createElement('td');
 
 				// Pour les boutons avec ces classes et attributs
 				let tdAction = document.createElement('td');
-					tdAction.classList.add('d-flex', 'flex-column');
-						// Pour l'édition
+				tdAction.classList.add('d-flex', 'flex-column');
+				// Pour l'édition
 				let edit = document.createElement('a');
-				let urlEdit = "{{ path('category_edit', {'id': 'id'}) }}"; 
-					urlEdit = urlEdit.replace('id', id);
-					edit.setAttribute('href', urlEdit);
-					edit.setAttribute('data-entity', 'category');
-					edit.classList.add('btn', 'btn-primary', 'btn-sm');
-					edit.innerText = 'Éditer';
-					edit.addEventListener('click', modify)
-						// Pour la suppression
+				let urlEdit = "{{ path('category_edit', {'id': 'id'}) }}";
+				urlEdit = urlEdit.replace('id', id);
+				edit.setAttribute('href', urlEdit);
+				edit.setAttribute('data-entity', 'category');
+				edit.classList.add('btn', 'btn-primary', 'btn-sm');
+				edit.innerText = 'Éditer';
+				edit.addEventListener('click', modify)
+				// Pour la suppression
 				let supp = document.createElement('a');
-				let urlDel = "{{ path('category_delete', {'id': 'id'}) }}"; 
-					urlDel = urlDel.replace('id', id);
-					supp.setAttribute('href', urlDel);
-					supp.setAttribute('data-entity', 'category');
-					supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
-					supp.innerText = 'Supprimer';
-					supp.addEventListener('click',remove);
+				let urlDel = "{{ path('category_delete', {'id': 'id'}) }}";
+				urlDel = urlDel.replace('id', id);
+				supp.setAttribute('href', urlDel);
+				supp.setAttribute('data-entity', 'category');
+				supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
+				supp.innerText = 'Supprimer';
+				supp.addEventListener('click', remove);
 				tdAction.append(edit, supp);
-				
+
 				// Intégration des données dans les balises HTML correspondantes
 				tdName.innerText = data.name;
 				tdDescription.innerText = data.description;
 
 				// On ajout tous les td dans le tr
-				tr.append(tdPicture,tdName,tdDescription,tdAction);
+				tr.append(tdPicture, tdName, tdDescription, tdAction);
 				// On ajout le tr dans la table
 				tableCategory.append(tr);
 			})
 		}
 
 		//Fonction pour mettre à jour les données des événements
-		function updateDataEvent(newData){
+		function updateDataEvent(newData) {
 			let tableEvent = document.querySelector('table#js-events tbody');
 			let tr = document.createElement('tr');
-			
+
 			tableEvent.innerHTML = '';
-			newData.forEach(function(data){
+			newData.forEach(function (data) {
 				let tr = document.createElement('tr');
 				let id = data.id
 				let tdPicture = document.createElement('td');
 				let picture = document.createElement('img');
-					picture.classList.add('card-img');
-					picture.setAttribute('style', 'width:10rem; height: 10rem;');
-					picture.setAttribute('src', `{{ asset('upload/eventPictures/${data.picture}') }}`);
-					tdPicture.append(picture);
+				picture.classList.add('card-img');
+				picture.setAttribute('style', 'width:10rem; height: 10rem;');
+				picture.setAttribute('src', `{{ asset('upload/eventPictures/${data.picture}') }}`);
+				tdPicture.append(picture);
 
-					// Pour le nom, prénom, la description et le pseudo
+				// Pour le nom, prénom, la description et le pseudo
 				let tdTitle = document.createElement('td');
 				let tdDescription = document.createElement('td');
 
 				// Pour les boutons avec ces classes et attributs
 				let tdAction = document.createElement('td');
-					tdAction.classList.add('d-flex', 'flex-column');
-						// Pour l'édition
+				tdAction.classList.add('d-flex', 'flex-column');
+				// Pour l'édition
 				let edit = document.createElement('a');
-				let urlEdit = "{{ path('event_edit', {'id': 'id'}) }}"; 
-					urlEdit = urlEdit.replace('id', id);
-					edit.setAttribute('href', urlEdit);
-					edit.setAttribute('data-entity', 'event');
-					edit.classList.add('btn', 'btn-primary', 'btn-sm');
-					edit.innerText = 'Éditer';
-					edit.addEventListener('click', modify)
-						// Pour la suppression
+				let urlEdit = "{{ path('event_edit', {'id': 'id'}) }}";
+				urlEdit = urlEdit.replace('id', id);
+				edit.setAttribute('href', urlEdit);
+				edit.setAttribute('data-entity', 'event');
+				edit.classList.add('btn', 'btn-primary', 'btn-sm');
+				edit.innerText = 'Éditer';
+				edit.addEventListener('click', modify)
+				// Pour la suppression
 				let supp = document.createElement('a');
-				let urlDel = "{{ path('event_delete', {'id': 'id'}) }}"; 
-					urlDel = urlDel.replace('id', id);
-					supp.setAttribute('href', urlDel);
-					supp.setAttribute('data-entity', 'event');
-					supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
-					supp.innerText = 'Supprimer';
-					supp.addEventListener('click',remove);
+				let urlDel = "{{ path('event_delete', {'id': 'id'}) }}";
+				urlDel = urlDel.replace('id', id);
+				supp.setAttribute('href', urlDel);
+				supp.setAttribute('data-entity', 'event');
+				supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
+				supp.innerText = 'Supprimer';
+				supp.addEventListener('click', remove);
 				tdAction.append(edit, supp);
-				
+
 				// Intégration des données dans les balises HTML correspondantes
 				tdTitle.innerText = data.title;
 				tdDescription.innerText = data.description;
 
 				// On ajout tous les td dans le tr
-				tr.append(tdPicture,tdTitle,tdDescription,tdAction);
+				tr.append(tdPicture, tdTitle, tdDescription, tdAction);
 				// On ajout le tr dans la table
 				tableEvent.append(tr);
+			})
+		}
+
+		//Fonction pour mettre à jour les données des musiques
+		function updateDataMusic(newData) {
+			let tableMusic = document.querySelector('table#js-musics tbody');
+			let tr = document.createElement('tr');
+
+			tableMusic.innerHTML = '';
+			newData.forEach(function (data) {
+				console.log(data);
+				let tr = document.createElement('tr');
+				let id = data.id
+				let tdPicture = document.createElement('td');
+				let picture = document.createElement('img');
+				picture.classList.add('card-img');
+				picture.setAttribute('style', 'width:10rem; height: 10rem;');
+				picture.setAttribute('src', `{{ asset('upload/musicPictures/${data.picture}') }}`);
+				tdPicture.append(picture);
+
+				// Pour le titre, la description, le pseudo, la variété
+				let tdTitle = document.createElement('td');
+				let tdDescription = document.createElement('td');
+				let tdArtist = document.createElement('td');
+				let tdVariety = document.createElement('td');
+
+				// Pour la balise audio
+				let tdSong = document.createElement('td');
+				let audio = document.createElement('audio');
+				audio.setAttribute('src', `{{ asset('upload/songs/${data.music}') }}`);
+				audio.setAttribute('style', 'border-radius:20px');
+				audio.setAttribute('controls', '');
+				tdSong.append(audio);
+				// Pour les boutons avec ces classes et attributs
+				let tdAction = document.createElement('td');
+				tdAction.classList.add('d-flex', 'flex-column');
+				// Pour l'édition
+				let edit = document.createElement('a');
+				let urlEdit = "{{ path('music_edit', {'id': 'id'}) }}";
+				urlEdit = urlEdit.replace('id', id);
+				edit.setAttribute('href', urlEdit);
+				edit.setAttribute('data-entity', 'music');
+				edit.classList.add('btn', 'btn-primary', 'btn-sm');
+				edit.innerText = 'Éditer';
+				edit.addEventListener('click', modify)
+				// Pour la suppression
+				let supp = document.createElement('a');
+				let urlDel = "{{ path('music_delete', {'id': 'id'}) }}";
+				urlDel = urlDel.replace('id', id);
+				supp.setAttribute('href', urlDel);
+				supp.setAttribute('data-entity', 'music');
+				supp.classList.add('btn', 'btn-primary', 'btn-sm', 'mt-2');
+				supp.innerText = 'Supprimer';
+				supp.addEventListener('click', remove);
+				tdAction.append(edit, supp);
+
+				// Intégration des données dans les balises HTML correspondantes
+				tdTitle.innerText = data.title;
+				tdDescription.innerText = data.description;
+				tdArtist.innerText = data.artist.nickname;
+				tdVariety.innerText = data.category.name;
+				// On ajout tous les td dans le tr
+				tr.append(tdPicture, tdTitle, tdSong, tdVariety, tdArtist, tdDescription, tdAction);
+				// On ajout le tr dans la table
+				tableMusic.append(tr);
 			})
 		}
 
@@ -402,32 +476,32 @@
 			let edition = document.querySelectorAll('a.js-edit')
 
 			// Pour faire apparaître la modale d'ajout et afficher les nouvelles données
-			getForm.forEach(function(form){
-				form.addEventListener('click', function(){
-					switch (this.id){
-						case 'js-addArtist' :
+			getForm.forEach(function (form) {
+				form.addEventListener('click', function () {
+					switch (this.id) {
+						case 'js-addArtist':
 							url = "{{ path('artist_add') }}";
-						break;
+							break;
 						case 'js-addCategory':
 							url = "{{ path('category_add') }}";
-						break;
+							break;
 						case 'js-addEvent':
 							url = "{{ path('event_add') }}";
-						break;
+							break;
 						case 'js-addMusic':
 							url = "{{ path('music_add') }}";
-						break;
+							break;
 					}
 					insertForm(url);
 				})
 			})
 
 			// Pour faire apparaitre la modale de suppression et afficher les nouvelles données
-			del.forEach(function(supp){
+			del.forEach(function (supp) {
 				supp.addEventListener('click', remove);
 			});
 			// Pour faire apparaitre la modale d'édition et afficher les nouvelles données
-			edition.forEach(function(edit){
+			edition.forEach(function (edit) {
 				edit.addEventListener('click', modify);
 			})
 		})

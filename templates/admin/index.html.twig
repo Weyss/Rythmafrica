@@ -4,112 +4,128 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container-fluid mt-5">
-		<div
-			class="row">
-			{# Action rapides #}
-			<nav class="navbar navbar-expand-lg navbar-light justify-content-center align-items-start col-sm-2">
-				<div class="navbar-nav flex-column bg-primary rounded p-3">
-					<h4>Ajouter du contenu</h4>
-					<button id="js-addArtist" class="btn btn-primary js-form" data-toggle="modal">Ajouter un artiste</button>
-					<button id="js-addMusic" class="btn btn-primary js-form" data-toggle="modal">Ajouter une musique</button>
-					<button id="js-addEvent" class="btn btn-primary js-form" data-toggle="modal">Ajouter un événement</button>
-					<button id="js-addCategory" class="btn btn-primary js-form" data-toggle="modal">Ajouter une catégorie</button>
-				</div>
-			</nav>
-			{# Derniers artistes ajoutés  #}
-			<div class="col-sm-5">
-				<h4>Les derniers Artistes ajoutés</h4>
-				<table class="table" id="js-artists">
-					<thead>
-						<tr>
-							<th scope="col" class="auto">Image</th>
-							<th scope="col">Nom</th>
-							<th scope="col">Prénom</th>
-							<th scope="col">Pseudo</th>
-							<th scope="col">Description</th>
-							<th scope="col">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for artist in lastArtists %}
-						<tr>
-							<td><img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
-							<td>{{ artist.lastname}}</td>
-							<td>{{ artist.firstname}}</td>
-							<td>{{ artist.nickname}}</td>
-							<td>{{ artist.description}}</td>
-							<td class="d-flex flex-column">
-								<a href="{{ path('artist_edit', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
-								<a href="{{ path('artist_delete', {id:artist.id}) }}" data-entity="artist" data-toggle="modal" data-id="{{ artist.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+<main class="container-fluid mt-5">
+	<div class="row">
+		{# Action rapides #}
+		<nav class="navbar navbar-expand-lg navbar-light justify-content-center align-items-start col-sm-2">
+			<div class="navbar-nav flex-column bg-primary rounded p-3">
+				<h4>Ajouter du contenu</h4>
+				<button id="js-addArtist" class="btn btn-primary js-form" data-toggle="modal">Ajouter un
+					artiste</button>
+				<button id="js-addMusic" class="btn btn-primary js-form" data-toggle="modal">Ajouter une
+					musique</button>
+				<button id="js-addEvent" class="btn btn-primary js-form" data-toggle="modal">Ajouter un
+					événement</button>
+				<button id="js-addCategory" class="btn btn-primary js-form" data-toggle="modal">Ajouter une
+					catégorie</button>
 			</div>
-			{# Derniers events ajoutés #}
-			<div class="col-sm-5">
-				<h4>Les derniers Evènements ajoutés</h4>
-				<table class="table" id='js-events'>
-					<thead>
-						<tr>
-							<th scope="col" class="auto">Image</th>
-							<th scope="col">Titre</th>
-							<th scope="col">Description</th>
-							<th scope="col">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for event in lastEvents %}
-						<tr>
-							<td><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
-							<td>{{ event.title}}</td>
-							<td>{{ event.description}}</td>
-							<td class="d-flex flex-column">
-								<a href="{{ path('event_edit', {id:event.id}) }}" data-entity="event" data-toggle="modal" data-id="{{ event.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
-								<a href="{{ path('event_delete', {id:event.id}) }}" data-entity="event" data-toggle="modal" data-id="{{ event.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
+		</nav>
+		{# Derniers artistes ajoutés  #}
+		<div class="col-sm-5">
+			<h4>Les derniers Artistes ajoutés</h4>
+			<table class="table" id="js-artists">
+				<thead>
+					<tr>
+						<th scope="col" class="auto">Image</th>
+						<th scope="col">Nom</th>
+						<th scope="col">Prénom</th>
+						<th scope="col">Pseudo</th>
+						<th scope="col">Description</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for artist in lastArtists %}
+					<tr>
+						<td><img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="card-img"
+								style="width:10rem; height: 10rem;"></td>
+						<td>{{ artist.lastname}}</td>
+						<td>{{ artist.firstname}}</td>
+						<td>{{ artist.nickname}}</td>
+						<td>{{ artist.description}}</td>
+						<td class="d-flex flex-column">
+							<a href="{{ path('artist_edit', {id:artist.id}) }}" data-entity="artist" data-toggle="modal"
+								data-id="{{ artist.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
+							<a href="{{ path('artist_delete', {id:artist.id}) }}" data-entity="artist"
+								data-toggle="modal" data-id="{{ artist.id }}"
+								class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
-		<div class="row mt-5">
-			{# Dernières musiques #}
-			<div class="offset-sm-2 col-10">
-				<h4>Les dernieres Musiques ajoutées</h4>
-				<table class="table" id="musics">
-					<thead>
-						<tr>
-							<th scope="col" class="auto">Image</th>
-							<th scope="col">Titre</th>
-							<th scope="col">La Chanson</th>
-							<th scope="col">Variété</th>
-							<th scope="col">Artiste</th>
-							<th scope="col">Description</th>
-							<th scope="col">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><img src="" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
-							<td>Invicible</td>
-							<td>
-								<audio controls src="" style="border-radius:20px"></audio>
-							</td>
-							<td>Zouk</td>
-							<td>JamBon</td>
-							<td>Quoi de mieux que d'écouter cette musique pour nous rappeller le bon vieux temps sur notre MMO favori ! Replonger vous dans la conquête...</td>
-							<td class="d-flex flex-column">
-								<a href="" class="btn btn-primary btn-sm">Supprimer</a>
-								<a href="" class="btn btn-primary btn-sm mt-2">Editer</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+		{# Derniers events ajoutés #}
+		<div class="col-sm-5">
+			<h4>Les derniers Evènements ajoutés</h4>
+			<table class="table" id='js-events'>
+				<thead>
+					<tr>
+						<th scope="col" class="auto">Image</th>
+						<th scope="col">Titre</th>
+						<th scope="col">Description</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for event in lastEvents %}
+					<tr>
+						<td><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="" class="card-img"
+								style="width:10rem; height: 10rem;"></td>
+						<td>{{ event.title}}</td>
+						<td>{{ event.description}}</td>
+						<td class="d-flex flex-column">
+							<a href="{{ path('event_edit', {id:event.id}) }}" data-entity="event" data-toggle="modal"
+								data-id="{{ event.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
+							<a href="{{ path('event_delete', {id:event.id}) }}" data-entity="event" data-toggle="modal"
+								data-id="{{ event.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
-	</main>
+	</div>
+	<div class="row mt-5">
+		{# Dernières musiques #}
+		<div class="offset-sm-2 col-10">
+			<h4>Les dernieres Musiques ajoutées</h4>
+			<table class="table" id="js-musics">
+				<thead>
+					<tr>
+						<th scope="col" class="auto">Image</th>
+						<th scope="col">Titre</th>
+						<th scope="col">La Chanson</th>
+						<th scope="col">Variété</th>
+						<th scope="col">Artiste</th>
+						<th scope="col">Description</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for music in lastMusics %}
+					<tr>
+						<td><img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="" class="card-img"
+								style="width:10rem; height: 10rem;"></td>
+						<td>{{ music.title}}</td>
+						<td>
+							<audio controls src="{{ asset('upload/songs/'~ music.music) }}"
+								style="border-radius:20px"></audio>
+						</td>
+						<td>{{ music.category.name}}</td>
+						<td>{{ music.artist.nickname}}</td>
+						<td>{{ music.description}}</td>
+						<td class="d-flex flex-column">
+							<a href="{{ path('music_edit', {id:music.id}) }}" data-entity="music" data-toggle="modal"
+								data-id="{{ music.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
+							<a href="{{ path('music_delete', {id:music.id}) }}" data-entity="music" data-toggle="modal"
+								data-id="{{ music.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</main>
 {% endblock %}

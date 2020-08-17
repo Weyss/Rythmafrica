@@ -44,9 +44,9 @@ class MusicType extends AbstractType
                         'maxSize' => '16M',
                         'mimeTypes' => [
                             'application/octet-stream',
-                            'audio/mpeg',
-                            'audio/mp3'
+                            'audio/mpeg'
                         ],
+                        
                         'mimeTypesMessage' => 'Veuillez mettre une musique',
                     ])
                 ]

@@ -1,0 +1,7 @@
+{
+    "twig-language.tabSize": 4,
+    "twig-language.spaceClose": true,
+    "twig-language.indentLevel": 4,
+    "twig-language.forceIndent": true,
+    "twig-language.formatting": false
+}

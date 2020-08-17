@@ -3,7 +3,6 @@
 namespace App\Form;
 
 
-use DateTimeZone;
 use App\Entity\Pays;
 use App\Entity\Event;
 use App\Entity\Artist;
@@ -11,7 +10,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\Timezone;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -42,12 +40,16 @@ class EventType extends AbstractType
                 ]
             ])
             ->add('startingAt', DateTimeType::class, [
-                'mapped' => false,
                 'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'model_timezone' => 'Europe/Paris',
+                'view_timezone' => 'Europe/Paris'
             ])
             ->add('closingAt',  DateTimeType::class, [
-                'mapped' => false,
-                'date_widget' => 'single_text'
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'model_timezone' => 'Europe/Paris',
+                'view_timezone' => 'Europe/Paris'
             ])
             ->add('adress')
             ->add('town')

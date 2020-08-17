@@ -35,7 +35,7 @@ class Category
     private $picture;
 
     /**
-     * @ORM\OneToMany(targetEntity=Music::class, mappedBy="category", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Music::class, mappedBy="category")
      */
     private $musics;
 
