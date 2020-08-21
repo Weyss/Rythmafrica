@@ -1,0 +1,119 @@
+@import "style-base";
+
+// SECTION
+section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    @media screen and(min-width: 768px) {
+        grid-row: 6;
+    }
+    @media screen and(min-width: 1025px) {
+        grid-column: 4/29;
+    }
+    h2 {
+        grid-column: 1/-1;
+        font-size: 2rem;
+    }
+}
+
+// ARTICLE
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media screen and(max-width: 767px) and (orientation: landscape) {
+        display: grid;
+        grid-template-columns: 30px auto 1fr 30px;
+    }
+    @media screen and (min-width: 768px) {
+        display: grid;
+        grid-template-columns: 30px auto 1fr 30px;
+        grid-column: 1/-1;
+    }
+    @media screen and(min-width: 1025px) {
+        grid-template-columns: 10rem auto 1fr 10rem;
+    }
+    img {
+        width: 15rem;
+        height: 15rem;
+        @media screen and(max-width: 767px) and (orientation: landscape) {
+            grid-column: 2;
+            grid-row: 1/2;
+            align-self: baseline;
+        }
+        @media screen and(min-width: 768px) {
+            grid-column: 2;
+            grid-row: 1/2;
+            align-self: baseline;
+        }
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @media screen and(max-width: 767px) and (orientation: landscape) {
+            align-items: initial;
+            grid-column: 3;
+        }
+        @media screen and(min-width: 768px) {
+            align-items: start;
+            grid-column: 3;
+        }
+        h2 {
+            padding: 10px 25px;
+            font-size: 1.5rem;
+
+            @media screen and(min-width: 768px) {
+                grid-column: 2;
+                grid-row: 1/2;
+                align-self: baseline;
+                text-align: start;
+            }
+        }
+        p {
+            padding: 20px 30px;
+            text-align: justify;
+            font-size: 0.9rem;
+        }
+        span {
+            padding: 10px 25px;
+            font-size: 1.3rem;
+        }
+    }
+}
+
+// ASIDE
+aside {
+    display: grid;
+    align-items: center;
+    gap: 30px;
+    @media screen and(max-width: 767px) and (orientation: landscape) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column: 1/-1;
+    }
+    @media screen and(min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        align-self: baseline;
+    }
+    @media screen and(min-width: 1025px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    div {
+        justify-self: center;
+
+        img {
+            width: 10rem;
+            height: 10rem;
+        }
+
+        h3 {
+            text-align: center;
+            padding: 20px 5px;
+            font-size: 1.3rem;
+        }
+    }
+    iframe{
+        grid-column : 1/-1;
+    }
+}
