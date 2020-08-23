@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Détail Artiste{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset ('css/style-detail.css') }}">
+{% endblock %}
+
+{% block main %}
+<section>
+    <article>
+        <img src="{{ asset('images/burna_boy.jpg') }}" alt="" class="artist-picture">
+        <div>
+        <h2>Maître Gims</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam reiciendis harum soluta eum a ad
+            neque? Veritatis, esse. Saepe accusamus fuga a dolor, ullam nam. Obcaecati minus quasi quibusdam
+            modi.
+            Aperiam id incidunt aut cumque eaque sint nesciunt reprehenderit adipisci ullam illo labore, alias
+            ratione illum cupiditate et ea odio earum sed porro saepe assumenda! Fugiat dolorum nostrum deserunt
+            aliquid.
+            Distinctio eius assumenda rerum veritatis quia corporis magni magnam sed cupiditate quae laboriosam,
+            voluptatum vero labore inventore impedit perspiciatis. Impedit ut consectetur itaque ratione. Saepe
+            esse architecto commodi tempore id.
+            Enim delectus ullam quibusdam aspernatur eveniet itaque praesentium veritatis nihil dicta possimus
+            provident cupiditate hic, tenetur temporibus quae libero qui voluptates ipsum laudantium eos
+            reprehenderit. Ipsa eveniet autem natus tenetur?
+            Minima mollitia incidunt eius enim ducimus, vitae accusantium quam accusamus cumque, consectetur
+            dicta? Eveniet ipsam laborum architecto quo voluptate neque accusantium eaque veritatis provident,
+            ad dignissimos? Corporis sequi impedit molestiae!</p>
+        </div>
+    </article>
+    <aside>
+        <h2>Autres titre de l'artiste</h2>
+        <div>
+            <img src="{{ asset('images/mario.jpg') }}" alt="">
+            <h3><a href="{{ path('detail_music') }}">Latata</a></h3>
+        </div>
+        <div>
+            <img src="{{ asset('images/mario.jpg') }}" alt="">
+            <h3><a href="">Boca</a></h3>
+        </div>
+        <div>
+            <img src="{{ asset('images/mario.jpg') }}" alt="">
+            <h3><a href="">Piri Piri</a></h3>
+        </div>
+    </aside>
+</section>
+</section>
+{% endblock %}

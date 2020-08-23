@@ -1,0 +1,63 @@
+@import "style-base";
+
+
+// SECTION
+section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    grid-row: 6;
+    @media screen and(max-width: 767px) and (orientation: landscape) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and(min-width: 768px) {
+        grid-row: 8;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and(min-width: 1024px) and (orientation: landscape) {
+        grid-row: 6;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 1025px) {
+        grid-column: 4/29;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row: 6;
+    }
+}
+
+// ARTICLE
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    h3 {
+        padding: 10px;
+    }
+    .js-picture{
+        width: 15rem;
+        height: 15rem;
+        &:hover{
+            opacity: 0.5;
+        }
+    }
+    .player-audio{
+        position: absolute;
+        top: 76px;
+        right: 134px;
+    }
+}
+
+
+// PLAYER AUDIO
+.controls{
+    img{
+        width: 5rem;
+        height: 5rem;
+        visibility: hidden;
+        &.visible{
+            visibility: visible;
+        }
+    }
+    
+}

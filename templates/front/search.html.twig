@@ -1,0 +1,100 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/style-search.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style-carousel.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+{% endblock %}
+{% block js %}
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+{% endblock %}
+
+
+{% block main %}
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
+      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+ <section>
+            <!--  La boucle se fera ici pour le resultat concernant les musiques-->
+            <article id="result-music">
+                <h3>Résultat pour les musiques</h3>
+                <div>
+                    <img src="images/background.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Titre de la chanson</a></span>
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+            </article>
+            <!--  La boucle se fera ici pour le resultat concernant les artistes-->
+            <article id="result-artist">
+                <h3>Résultat pour les artistes</h3>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+                <div>
+                    <img src="images/mario.jpg" alt="">
+                    <span><a href="">Nom de l'artist</a></span>
+                </div>
+            </article>
+        </section>
+{% endblock %}

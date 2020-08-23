@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='fr'>
+    <head>
+        <meta charset="UTF-8">
+        <title>RythmAfrica - {% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Acceuil - RythmAfrica</title>
+        <script src="{{ asset('js/effects.js') }}"></script>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/style-base.css') }}">
+        {% endblock %}
+        {% block js %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <div id="logo">
+                <a href="{{ path('index') }}">
+                    <img src=" {{ asset('images/logo.png') }}" alt="">
+                    <h2>RythmAfrica</h2>
+                </a>
+            </div>
+            <nav>
+                <div id="hamburger">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul>
+                    <a href="{{ path('musics') }}">
+                        <li>Nos Musiques</li>
+                    </a>
+                    <a href="{{ path('artists') }}">
+                        <li>Nos Artistes</li>
+                    </a>
+                    <a href="{{ path('events') }}">
+                        <li>Nos Événements</li>
+                    </a>
+                    <a href="#">
+                        <li>Contact</li>
+                    </a>
+                </ul>
+            </nav>
+            
+        </header>
+        <main>
+            <!-- BARRE DE RECHERCHE -->
+            <div id="searchBar">
+                <input type="search" name="search" id="search">
+                <input type="submit" value="Rechercher" id="submit">
+            </div>
+            <div class="pub" id="pub1">PUB</div>
+            {% block main %}{% endblock %}
+            <div class="pub" id="pub2">PUB</div>
+        </main>
+        <footer>
+            <ul>
+                <a href="#">
+                    <li>Mentions Légales</li>
+                </a>
+                <a href="#">
+                    <li>Mentions sur les cookies et validation RGPD</li>
+                </a>
+            </ul>
+        </footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

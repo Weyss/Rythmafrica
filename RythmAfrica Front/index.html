@@ -37,13 +37,13 @@
                 </a>
             </ul>
         </nav>
-    </header>
-    <main style="height: 100vh;">
         <!-- BARRE DE RECHERCHE -->
         <div id="searchBar">
             <input type="search" name="search" id="search">
             <input type="submit" value="Rechercher" id="submit">
         </div>
+    </header>
+    <main style="height: 100vh;">
         <!--  On y intégration le contenu de nos différentes vu grâce 
         au bloc {% block main %} {% endblock %} -->
         <div class="pub" id="pub1">PUB</div>
@@ -60,25 +60,5 @@
         </ul>
     </footer>
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('#hamburger').addEventListener('click', function () {
-            let nav = document.querySelector('nav');
-            let ul = nav.querySelector('ul');
-            if (ul.className == 'animationIn') {
-                ul.classList.replace('animationIn', 'animationOut');
-                nav.setAttribute('style', '');
-                ul.addEventListener('animationend', function () {
-                    this.classList.remove('animationOut');
-                })
-            }
-            else{
-                ul.classList.add('animationIn');
-                nav.setAttribute('style', 'z-index:100');
-            }
-                
-        })
-    })
-</script>
 
 </html>

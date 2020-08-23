@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Nos Artistes{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset ('css/style-list.css') }}">
+{% endblock %}
+
+{% block main %}
+<section>
+    <article>
+        <img src=" images/mario.jpg" alt="" class="artist-picture">
+        <h3><a href="{{ path('detail_artist') }}">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+    <article>
+        <img src="images/mario.jpg" alt="">
+        <h3><a href="">Nom de l'artist</a></h3>
+    </article>
+</section>
+{% endblock %}
