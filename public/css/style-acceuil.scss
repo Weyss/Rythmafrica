@@ -1,6 +1,5 @@
 @import "style-base";
 
-
 // SECTION
 section {
     display: grid;
@@ -30,34 +29,26 @@ article {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
     h3 {
         padding: 10px;
     }
-    .js-picture{
+    .js-picture {
         width: 15rem;
         height: 15rem;
-        &:hover{
-            opacity: 0.5;
-        }
     }
-    .player-audio{
-        position: absolute;
-        top: 76px;
-        right: 134px;
+    .player-audio {
+        position: relative;
     }
 }
 
-
 // PLAYER AUDIO
-.controls{
-    img{
+.controls {
+    position: absolute;
+    top: 78px;
+    right: 76px;
+    .js-play {
         width: 5rem;
         height: 5rem;
-        visibility: hidden;
-        &.visible{
-            visibility: visible;
-        }
+        opacity: 0;
     }
-    
 }

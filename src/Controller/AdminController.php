@@ -36,7 +36,7 @@ class AdminController extends AbstractController
      */
     public function index(ArtistRepository $artistRepository, EventRepository $eventRepository, MusicRepository $musicRepository)
     {
-        dump($musicRepository->findBy(array(), array('id' => 'desc'), 5, 0));
+        dump($artistRepository->findBy(array(), array('id' => 'desc'), 5, 0));
 
         return $this->render('admin/index.html.twig', [
             'lastArtists' => $artistRepository->findBy(array(), array('id' => 'desc'), 5, 0),
