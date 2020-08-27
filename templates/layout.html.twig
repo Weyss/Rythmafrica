@@ -4,8 +4,9 @@
         <meta charset="UTF-8">
         <title>RythmAfrica - {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Acceuil - RythmAfrica</title>
+        <title>RythmAfrica</title>
         <script src="{{ asset('js/effects.js') }}"></script>
+        <script src="{{ asset('js/contact.js') }}"></script>
         {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style-base.css') }}">
         {% endblock %}
@@ -36,7 +37,7 @@
                     <a href="{{ path('events') }}">
                         <li>Nos Événements</li>
                     </a>
-                    <a href="#">
+                    <a href="{{ path('contact') }}" id="js-contact">
                         <li>Contact</li>
                     </a>
                 </ul>
@@ -63,6 +64,17 @@
                 </a>
             </ul>
         </footer>
+        {# Modal de Contact #}
+        <div id="contact" class="modal" aria-hidden="true" role="dialog">
+            <div class="js-modal-stop">
+                <span class="js-modal-close">&times;</span>
+                <div class="modal-body">
+                    <!--Insertion du forulaire lorsqu'on clique sur le lien "Contact"  -->
+                </div>
+            </div>
+        </div> 
         {% block javascripts %}{% endblock %}
+        
     </body>
+    
 </html>

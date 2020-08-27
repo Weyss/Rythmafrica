@@ -7,55 +7,24 @@
 
 {% block main %}
 <section>
-    <article>
-        <img src="{{ asset('images/mario.jpg') }}" alt="">
-        <div>
-        <h2><a href="">Titre l'événement</a></h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam reiciendis harum soluta eum a ad
-            neque? Veritatis, esse. Saepe accusamus fuga a dolor, ullam nam. Obcaecati minus quasi quibusdam
-            modi.
-            Aperiam id incidunt aut cumque eaque sint nesciunt reprehenderit adipisci ullam illo labore, alias
-            ratione illum cupiditate et ea odio earum sed porro saepe assumenda! Fugiat dolorum nostrum deserunt
-            aliquid.
-            Distinctio eius assumenda rerum veritatis quia corporis magni magnam sed cupiditate quae laboriosam,
-            voluptatum vero labore inventore impedit perspiciatis. Impedit ut consectetur itaque ratione. Saepe
-            esse architecto commodi tempore id.
-            Enim delectus ullam quibusdam aspernatur eveniet itaque praesentium veritatis nihil dicta possimus
-            provident cupiditate hic, tenetur temporibus quae libero qui voluptates ipsum laudantium eos
-            reprehenderit. Ipsa eveniet autem natus tenetur?
-            Minima mollitia incidunt eius enim ducimus, vitae accusantium quam accusamus cumque, consectetur
-            dicta? Eveniet ipsam laborum architecto quo voluptate neque accusantium eaque veritatis provident,
-            ad dignissimos? Corporis sequi impedit molestiae!</p>
+    <article id="detailEvent">
+        <img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="">
+        <p>{{ event.description }}</p>
+        <div id="schedule">
+            <p>Date de début : {{ event.startingAt | date("d/m/Y H:i") }}</p>
+            <p>Date de fin : {{ event.closingAt | date("d/m/Y H:i") }}</p>
         </div>
     </article>
     <aside>
-        <span>Adresse de l'événement</span> 
-        <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=CCI%20Digne-les-bains%20Bouvelard%20Gassendi+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="600" frameborder="0"></iframe>
         <h2>Artistes présents</h2>
+        {% for artist in allArtists %}
         <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
+            <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="">
+            <h3><a href="{{ path('detail_artist', {id:artist.id}) }}">{{ artist.nickname }}</a></h3>
         </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
+        {% endfor %}
+        <p id="adress">{{ event.adress }}, {{ event.zipCode }} {{ event.town }}</p>
+        <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{ event.iframe }}"></iframe>
     </aside>
 </section>
 {% endblock %}

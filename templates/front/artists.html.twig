@@ -7,41 +7,11 @@
 
 {% block main %}
 <section>
+    {% for artist in allArtists %}
     <article>
-        <img src=" images/mario.jpg" alt="" class="artist-picture">
-        <h3><a href="{{ path('detail_artist') }}">Nom de l'artist</a></h3>
+        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="artist-picture">
+        <h3><a href="{{ path('detail_artist', {id:artist.id}) }}">{{ artist.nickname }}</a></h3>
     </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Nom de l'artist</a></h3>
-    </article>
+    {% endfor %}
 </section>
 {% endblock %}

@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class EventType extends AbstractType
 {
@@ -51,6 +52,7 @@ class EventType extends AbstractType
                 'model_timezone' => 'Europe/Paris',
                 'view_timezone' => 'Europe/Paris'
             ])
+            ->add('iframe', UrlType::class)
             ->add('adress')
             ->add('town')
             ->add('zipCode')

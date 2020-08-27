@@ -1,47 +1,36 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}Nos Musiques{% endblock %}
+
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset ('css/style-list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style-list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/audio.css') }}">
+{% endblock %}
+
+{% block js %}
+<script src="{{ asset('js/audio.js') }}"></script>
 {% endblock %}
 
 {% block main %}
 <section>
+    {% for music in allMusics %}
     <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
+        <!-- Player audio personnalisable CSS -->
+        <div class="player-audio">
+            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="" class="js-picture">
+            <audio src="{{ asset('upload/songs/'~ music.music) }}" class="js-audio"></audio>
+            <img src="{{ asset('images/volume-up.ico') }}" alt="" class="volumeUp">
+            <input class="custom-slider" type="range" value="10">
+            <div class="progress">
+                <div class="timeline"></div>
+            </div>
+            <div class="controls">
+                <img src="images/play.png" alt="" class="js-play">
+                <img src="images/pause.png" alt="" class="js-pause">
+            </div>
+        </div>
+        <h3><a href="{{ path('detail_music', { id:music.id}) }}">{{ music.title }}</a></h3>
     </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la musique</a></h3>
-    </article>
+    {% endfor %}
 </section>
 {% endblock %}

@@ -4,9 +4,11 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('css/style-acceuil.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style-carousel.css') }}">
+<link rel="stylesheet" href="{{ asset('css/audio.css') }}">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 {% endblock %}
+
 {% block js %}
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -28,52 +30,26 @@
     <div class="swiper-pagination"></div>
 </div>
 <section>
-    <!--  La boucle se fera ici -->
+    <h2>News</h2>
+    {% for music in musics %}
     <article>
-        
         <!-- Player audio personnalisable CSS -->
         <div class="player-audio">
-            <img src="images/mario.jpg" alt="" class="js-picture">
-            <audio src="images/319-Soprano - En feu.mp3" class="js-audio"></audio>
+            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="" class="js-picture">
+            <audio src="{{ asset('upload/songs/'~ music.music) }}" class="js-audio"></audio>
+            <img src="{{ asset('images/volume-up.ico') }}" alt="" class="volumeUp">
+            <input class="custom-slider" type="range" value="10">
+            <div class="progress">
+                <div class="timeline"></div>
+            </div>
             <div class="controls">
                 <img src="images/play.png" alt="" class="js-play">
                 <img src="images/pause.png" alt="" class="js-pause">
             </div>
         </div>
-        <h3><a href="{{ path('detail_music') }}">Titre de la chanson</a></h3>
-        <span><a href="{{ path('detail_artist') }}">Nom de l'artist</a></span>
+        <h3><a href="{{ path('detail_music', {id:music.id}) }}">{{ music.title }}</a></h3>
+        <span><a href="{{ path('detail_artist', {id:music.artist.id}) }}">{{ music.artist.nickname }}</a></span>
     </article>
-    <article>
-        <!-- Player audio personnalisable CSS -->
-        <div class="player-audio info_song">
-            <img src="images/mario.jpg" alt="" class="js-picture">
-            <audio src="images/319-Soprano - En feu.mp3" class="js-audio"></audio>
-            <div class="controls">
-                <img src="images/play.png" alt="" class="js-play">
-            </div>
-        </div>
-        <h3><a href="{{ path('detail_music') }}">Titre de la chanson</a></h3>
-        <span><a href="{{ path('detail_artist') }}">Nom de l'artist</a></span>
-    </article>
-    <!-- <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la chanson</a></h3>
-        <span><a href="">Nom de l'artist</a></span>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la chanson</a></h3>
-        <span><a href="">Nom de l'artist</a></span>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la chanson</a></h3>
-        <span><a href="">Nom de l'artist</a></span>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de la chanson</a></h3>
-        <span><a href="">Nom de l'artist</a></span>
-    </article> -->
+    {% endfor %}
 </section>
 {% endblock %}

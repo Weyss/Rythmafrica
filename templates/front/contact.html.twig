@@ -1,0 +1,19 @@
+
+{{ form_start(formContact) }}
+
+<p>Veuillez remplir ce formulaire en entier</p>
+<div class="form-error">
+    {{ form_errors(formContact.lastname) }}
+</div>
+<div class="form-group">
+    {{ form_label(formContact.lastname, 'Nom') }}
+    {{ form_widget(formContact.lastname) }}
+</div>
+{{ form_row(formContact.firstname, { 'label': 'Prénom' }) }}
+{{ form_row(formContact.mail, { 'label': 'Votre mail' }) }}
+{{ form_row(formContact.sujet, { 'label': 'Sujet' }) }}
+{{ form_row(formContact.message, { 'label': 'Votre message' }) }}
+
+<button type="submit" id="js-save" class="btn btn-primary">Envoyer</button>
+
+{{ form_end(formContact) }}

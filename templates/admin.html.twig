@@ -23,16 +23,16 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav" style="font-size:1.3rem">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('artists') }}">Artistes</a>
+						<a class="nav-link" href="{{ path('admin_artists') }}">Artistes</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('musics') }}">Musiques</a>
+						<a class="nav-link" href="{{ path('admin_musics') }}">Musiques</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('events') }}">Événements</a>
+						<a class="nav-link" href="{{ path('admin_events') }}">Événements</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('categories') }}">Catégories</a>
+						<a class="nav-link" href="{{ path('admin_categories') }}">Catégories</a>
 					</li>
 				</ul>
 			</div>
@@ -219,16 +219,16 @@
 					//Récupération des données en JSON
 					let newData = JSON.parse(xhr.responseText);
 					switch (url) {
-						case "{{ path('artist_add') }}":
+						case "{{ path('admin_artist_add') }}":
 							updateDataArtist(newData);
 							break;
-						case "{{ path('category_add') }}":
+						case "{{ path('admin_category_add') }}":
 							updateDataCategory(newData);
 							break;
-						case "{{ path('music_add') }}":
+						case "{{ path('admin_music_add') }}":
 							updateDataMusic(newData);
 							break;
-						case "{{ path('event_add') }}":
+						case "{{ path('admin_event_add') }}":
 							updateDataEvent(newData);
 							break;
 					}
@@ -265,7 +265,7 @@
 				tdAction.classList.add('d-flex', 'flex-column');
 				// Pour l'édition
 				let edit = document.createElement('a');
-				let urlEdit = "{{ path('artist_edit', {'id': 'id'}) }}";
+				let urlEdit = "{{ path('admin_artist_edit', {'id': 'id'}) }}";
 				urlEdit = urlEdit.replace('id', id);
 				edit.setAttribute('href', urlEdit);
 				edit.setAttribute('data-entity', 'artist');
@@ -274,7 +274,7 @@
 				edit.addEventListener('click', modify)
 				// Pour la suppression
 				let supp = document.createElement('a');
-				let urlDel = "{{ path('artist_delete', {'id': 'id'}) }}";
+				let urlDel = "{{ path('admin_artist_delete', {'id': 'id'}) }}";
 				urlDel = urlDel.replace('id', id);
 				supp.setAttribute('href', urlDel);
 				supp.setAttribute('data-entity', 'artist');
@@ -322,7 +322,7 @@
 				tdAction.classList.add('d-flex', 'flex-column');
 				// Pour l'édition
 				let edit = document.createElement('a');
-				let urlEdit = "{{ path('category_edit', {'id': 'id'}) }}";
+				let urlEdit = "{{ path('admin_category_edit', {'id': 'id'}) }}";
 				urlEdit = urlEdit.replace('id', id);
 				edit.setAttribute('href', urlEdit);
 				edit.setAttribute('data-entity', 'category');
@@ -331,7 +331,7 @@
 				edit.addEventListener('click', modify)
 				// Pour la suppression
 				let supp = document.createElement('a');
-				let urlDel = "{{ path('category_delete', {'id': 'id'}) }}";
+				let urlDel = "{{ path('admin_category_delete', {'id': 'id'}) }}";
 				urlDel = urlDel.replace('id', id);
 				supp.setAttribute('href', urlDel);
 				supp.setAttribute('data-entity', 'category');
@@ -376,7 +376,7 @@
 				tdAction.classList.add('d-flex', 'flex-column');
 				// Pour l'édition
 				let edit = document.createElement('a');
-				let urlEdit = "{{ path('event_edit', {'id': 'id'}) }}";
+				let urlEdit = "{{ path('admin_event_edit', {'id': 'id'}) }}";
 				urlEdit = urlEdit.replace('id', id);
 				edit.setAttribute('href', urlEdit);
 				edit.setAttribute('data-entity', 'event');
@@ -385,7 +385,7 @@
 				edit.addEventListener('click', modify)
 				// Pour la suppression
 				let supp = document.createElement('a');
-				let urlDel = "{{ path('event_delete', {'id': 'id'}) }}";
+				let urlDel = "{{ path('admin_event_delete', {'id': 'id'}) }}";
 				urlDel = urlDel.replace('id', id);
 				supp.setAttribute('href', urlDel);
 				supp.setAttribute('data-entity', 'event');
@@ -440,7 +440,7 @@
 				tdAction.classList.add('d-flex', 'flex-column');
 				// Pour l'édition
 				let edit = document.createElement('a');
-				let urlEdit = "{{ path('music_edit', {'id': 'id'}) }}";
+				let urlEdit = "{{ path('admin_music_edit', {'id': 'id'}) }}";
 				urlEdit = urlEdit.replace('id', id);
 				edit.setAttribute('href', urlEdit);
 				edit.setAttribute('data-entity', 'music');
@@ -449,7 +449,7 @@
 				edit.addEventListener('click', modify)
 				// Pour la suppression
 				let supp = document.createElement('a');
-				let urlDel = "{{ path('music_delete', {'id': 'id'}) }}";
+				let urlDel = "{{ path('admin_music_delete', {'id': 'id'}) }}";
 				urlDel = urlDel.replace('id', id);
 				supp.setAttribute('href', urlDel);
 				supp.setAttribute('data-entity', 'music');
@@ -480,16 +480,16 @@
 				form.addEventListener('click', function () {
 					switch (this.id) {
 						case 'js-addArtist':
-							url = "{{ path('artist_add') }}";
+							url = "{{ path('admin_artist_add') }}";
 							break;
 						case 'js-addCategory':
-							url = "{{ path('category_add') }}";
+							url = "{{ path('admin_category_add') }}";
 							break;
 						case 'js-addEvent':
-							url = "{{ path('event_add') }}";
+							url = "{{ path('admin_event_add') }}";
 							break;
 						case 'js-addMusic':
-							url = "{{ path('music_add') }}";
+							url = "{{ path('admin_music_add') }}";
 							break;
 					}
 					insertForm(url);

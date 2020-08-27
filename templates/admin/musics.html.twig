@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}- Liste des artistes
+{% block title %}- Liste des musiques
 {% endblock %}
 
 {% block body %}
@@ -38,8 +38,8 @@
 						<td>{{ music.artist.nickname}}</td>
 						<td>{{ music.description}}</td>
 						<td class="d-flex flex-column">
-							<a href="{{ path('music_edit', {id:music.id}) }}" data-entity="music" data-toggle="modal" data-id="{{ music.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
-							<a href="{{ path('music_delete', {id:music.id}) }}" data-entity="music" data-toggle="modal" data-id="{{ music.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
+							<a href="{{ path('admin_music_edit', {id:music.id}) }}" data-entity="music" data-toggle="modal" data-id="{{ music.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
+							<a href="{{ path('admin_music_delete', {id:music.id}) }}" data-entity="music" data-toggle="modal" data-id="{{ music.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
 						</td>
 					</tr>
 				{% endfor %}

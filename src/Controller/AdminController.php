@@ -46,7 +46,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/artists", name="artists")
+     * @Route("/admin/artists", name="admin_artists")
      */
     public function artists(ArtistRepository $artistRepository)
     {
@@ -56,7 +56,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/musics", name="musics")
+     * @Route("/admin/musics", name="admin_musics")
      */
     public function musics(MusicRepository $musicRepository)
     {
@@ -66,7 +66,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/events", name="events")
+     * @Route("/admin/events", name="admin_events")
      */
     public function events(EventRepository $eventRepository)
     {
@@ -78,7 +78,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/categories", name="categories")
+     * @Route("/admin/categories", name="admin_categories")
      */
     public function categories(CategoryRepository $categoryRepository)
     {
@@ -88,8 +88,8 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/artist/add", name="artist_add")
-     * @Route("/admin/artist/edit/{id}", name="artist_edit")
+     * @Route("/admin/artist/add", name="admin_artist_add")
+     * @Route("/admin/artist/edit/{id}", name="admin_artist_edit")
      */
     public function addArtist(Artist $artist = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, ArtistRepository $artistRepository)
     {
@@ -129,7 +129,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/artist/delete/{id}", name="artist_delete")
+     * @Route("/admin/artist/delete/{id}", name="admin_artist_delete")
      */
     public function deleteArtist(Artist $artist, EntityManagerInterface $entityManager, FileUploader $fileUploader, ArtistRepository $artistRepository)
     {
@@ -148,8 +148,8 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/add", name="category_add")
-     * @Route("/admin/category/edit/{id}", name="category_edit")
+     * @Route("/admin/category/add", name="admin_category_add")
+     * @Route("/admin/category/edit/{id}", name="admin_category_edit")
      */
     public function addCategory(Category $category = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, CategoryRepository $categoryRepository)
     {
@@ -188,7 +188,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/delete/{id}", name="category_delete")
+     * @Route("/admin/category/delete/{id}", name="admin_category_delete")
      */
     public function deleteCategory(Category $category, EntityManagerInterface $entityManager, FileUploader $fileUploader, CategoryRepository $categoryRepository)
     {
@@ -207,8 +207,8 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/music/add", name="music_add")
-     * @Route("/admin/music/edit/{id}", name="music_edit")
+     * @Route("/admin/music/add", name="admin_music_add")
+     * @Route("/admin/music/edit/{id}", name="admin_music_edit")
      */
     public function addMusic(Music $music = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, MusicRepository $musicRepository)
     {
@@ -261,9 +261,9 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/music/delete/{id}", name="music_delete")
+     * @Route("/admin/music/delete/{id}", name="admin_music_delete")
      */
-    public function deleteMusic(Music $music, EntityManagerInterface $entityManager, FileUploader $fileUploader, EventRepository $eventRepository, MusicRepository $musicRepository)
+    public function deleteMusic(Music $music, EntityManagerInterface $entityManager, FileUploader $fileUploader,  MusicRepository $musicRepository)
     {
         $picture = $music->getPicture();
         if ($picture)
@@ -283,8 +283,8 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/event/add", name="event_add")
-     * @Route("/admin/event/edit/{id}", name="event_edit")
+     * @Route("/admin/event/add", name="admin_event_add")
+     * @Route("/admin/event/edit/{id}", name="admin_event_edit")
      */
     public function addEvent(Event $event = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, EventRepository $eventRepository)
     {
@@ -323,7 +323,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/event/delete/{id}", name="event_delete")
+     * @Route("/admin/event/delete/{id}", name="admin_event_delete")
      */
     public function deleteEvent(Event $event, EntityManagerInterface $entityManager, FileUploader $fileUploader, EventRepository $eventRepository, CategoryRepository $categoryRepository)
     {

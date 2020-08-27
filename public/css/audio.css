@@ -1,0 +1,227 @@
+@charset "UTF-8";
+.player-audio {
+  position: relative;
+}
+
+.volumeUp, .volumeDown {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.volumeUp {
+  position: absolute;
+  visibility: hidden;
+}
+
+.volumeUp.js-visible {
+  visibility: visible;
+  opacity: 1;
+  top: 0;
+  right: 0;
+}
+
+.volumeDown {
+  position: absolute;
+  visibility: hidden;
+}
+
+.volumeDown.js-visible {
+  visibility: visible;
+}
+
+.progress {
+  height: 8px;
+  width: 100%;
+  background-color: #b3b3b3;
+  position: absolute;
+  bottom: 2px;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.progress.js-visible {
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+}
+
+.progress .timeline {
+  background-color: #5757ff;
+}
+
+.controls {
+  position: absolute;
+  top: 78px;
+  right: 76px;
+}
+
+.controls .js-play {
+  width: 5rem;
+  height: 5rem;
+  visibility: visible;
+  position: absolute;
+  opacity: 0.7;
+}
+
+.controls .js-play.js-hidden {
+  visibility: hidden;
+}
+
+.controls .js-pause {
+  width: 5rem;
+  height: 5rem;
+  visibility: hidden;
+  right: 0;
+}
+
+.controls .js-pause.js-visible {
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+}
+
+input[type=range].custom-slider {
+  width: 50%;
+  height: 1em;
+  -webkit-appearance: none;
+  /*nécessaire pour Chrome */
+  padding: 0;
+  /* nécessaire pour IE */
+  margin: 0;
+  font: inherit;
+  /* même rendu suivant font document */
+  outline: none;
+  color: #069;
+  /* sert pour couleur de référence, via currentColor, pour le curseur */
+  opacity: .8;
+  background: #CCC;
+  /* sert pour couleur de fond de la zone de déplacement */
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* même modèle de boîte pour tous */
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  cursor: pointer;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  position: absolute;
+  top: 77px;
+  right: -52px;
+  visibility: hidden;
+}
+
+input[type=range].custom-slider.js-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+input[type=range].custom-slider:hover {
+  opacity: 1;
+}
+
+/*==============================*/
+/* IE-Edge                      */
+/*==============================*/
+/* la zone de déplacement */
+input[type=range].custom-slider::-ms-track {
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  color: transparent;
+  /* supprime les graduations pour IE */
+  background-color: transparent;
+  /* supprimé définie sur l'input */
+}
+
+/* le curseur */
+input[type=range].custom-slider::-ms-thumb {
+  width: 1em;
+  height: inherit;
+  /* s'adapte à la hauteur de l'input */
+  border: none;
+  /* supprimer la bordure */
+  border-radius: 0;
+  /* supprimer le rayon */
+  background: currentColor;
+  box-sizing: border-box;
+  /* même modèle de boîte pour tous */
+}
+
+/* la tooltip de la valeur */
+input[type=range].custom-slider::-ms-tooltip {
+  display: none;
+  /* supprime l'affichage de la valeur au survol */
+}
+
+/* barre progression avant */
+input[type=range].custom-slider::-ms-fill-lower {
+  background: transparent;
+}
+
+/* barre progression après */
+input[type=range].custom-slider::-ms-fill-upper {
+  background: transparent;
+}
+
+/*==============================*/
+/* Blink-WebKit                 */
+/*==============================*/
+/* la zone de déplacement */
+input[type=range].custom-slider::-webkit-slider-runnable-track {
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  /* supprimé définie sur l'input */
+}
+
+/* le curseur */
+input[type=range].custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* également nécessaire sur le curseur */
+  width: 1em;
+  /* pris en compte par Webkit et Edge */
+  height: inherit;
+  /* s'adapte à la hauteur de l'input */
+  border: none;
+  border-radius: 0;
+  background: currentColor;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* même modèle de boîte pour tous */
+}
+
+/*==============================*/
+/* FireFox                      */
+/*==============================*/
+/* la zone de déplacement */
+input[type=range].custom-slider::-moz-range-track {
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  /* supprimé définie sur l'input */
+}
+
+/* le curseur */
+input[type=range].custom-slider::-moz-range-thumb {
+  width: 1em;
+  height: inherit;
+  /* s'adapte à la hauteur de l'input */
+  border: none;
+  /* supprimer la bordure */
+  border-radius: 0;
+  /* supprimer le rayon */
+  background: currentColor;
+  box-sizing: border-box;
+  /* même modèle de boîte pour tous */
+}
+
+/* barre progression avant */
+input[type=range].custom-slider::-moz-range-progress {
+  height: 0;
+  background: transparent;
+  /* supprime barre progression avant */
+}
+/*# sourceMappingURL=audio.css.map */

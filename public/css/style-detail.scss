@@ -1,6 +1,27 @@
 @import "style-base";
 
 
+
+main {
+    display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(10, auto);
+    gap: 20px;
+    
+	@media screen and (min-width: 1025px) {
+        display: grid;
+        grid-template-columns: 5px 300px repeat(27, 1fr) 300px 5px;
+		grid-template-rows: repeat(8, auto);
+	}
+}
+
+p {
+    padding: 20px 30px;
+    text-align: justify;
+    line-height: 20px;
+}
+
+
 // SECTION
 section {
     display: grid;
@@ -8,7 +29,7 @@ section {
     gap: 140px;
     grid-row: 6;
     @media screen and(min-width: 768px) {
-        grid-row: 6;
+        grid-row: 7;
     }
     @media screen and(min-width: 1025px) {
         grid-column: 4/29;
@@ -74,15 +95,15 @@ article {
                 text-align: start;
             }
         }
-        p {
-            padding: 20px 30px;
-            text-align: justify;
-            font-size: 0.9rem;
-            font-family: $font4;
-        }
         span {
             padding: 10px 25px;
             font-size: 1.1rem;
+            a{
+                text-decoration: none;
+                &::before{
+                    color: black;
+                }
+            }
         }
     }
 }
@@ -107,7 +128,6 @@ aside {
         text-align: center;
     }
     div {
-        justify-self: center;
         display: flex;
         img {
             width: 5rem;
@@ -124,3 +144,34 @@ aside {
         grid-column : 1/-1;
     }
 }
+#schedule{
+    grid-column: 2/4;
+    grid-row: 5;
+}
+#adress{
+    grid-column: 1/-1;
+}
+
+// SPECIFIQUE A EVENT
+#detailEvent{
+        grid-template-columns: 10rem repeat(2,1fr) 10rem;
+        grid-auto-rows: auto;
+        gap: 40px 0;
+        @media screen and(max-width: 767px) and (orientation: landscape) {
+            gap: 15px 0;
+        }
+    img{
+        width: 100%;
+        height: initial;
+        grid-column: 2/4;
+    }
+    p{
+        padding: 20px 25px;
+        grid-column: 2/4;
+        grid-row: 4;
+        @media screen and(max-width: 767px) and (orientation: landscape) {
+            padding: initial;
+        }
+    }
+}
+

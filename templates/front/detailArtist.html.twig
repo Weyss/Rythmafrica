@@ -8,40 +8,20 @@
 {% block main %}
 <section>
     <article>
-        <img src="{{ asset('images/burna_boy.jpg') }}" alt="" class="artist-picture">
+        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="artist-picture">
         <div>
-        <h2>Maître Gims</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam reiciendis harum soluta eum a ad
-            neque? Veritatis, esse. Saepe accusamus fuga a dolor, ullam nam. Obcaecati minus quasi quibusdam
-            modi.
-            Aperiam id incidunt aut cumque eaque sint nesciunt reprehenderit adipisci ullam illo labore, alias
-            ratione illum cupiditate et ea odio earum sed porro saepe assumenda! Fugiat dolorum nostrum deserunt
-            aliquid.
-            Distinctio eius assumenda rerum veritatis quia corporis magni magnam sed cupiditate quae laboriosam,
-            voluptatum vero labore inventore impedit perspiciatis. Impedit ut consectetur itaque ratione. Saepe
-            esse architecto commodi tempore id.
-            Enim delectus ullam quibusdam aspernatur eveniet itaque praesentium veritatis nihil dicta possimus
-            provident cupiditate hic, tenetur temporibus quae libero qui voluptates ipsum laudantium eos
-            reprehenderit. Ipsa eveniet autem natus tenetur?
-            Minima mollitia incidunt eius enim ducimus, vitae accusantium quam accusamus cumque, consectetur
-            dicta? Eveniet ipsam laborum architecto quo voluptate neque accusantium eaque veritatis provident,
-            ad dignissimos? Corporis sequi impedit molestiae!</p>
+        <h2>{{ artist.nickname }}</h2>
+        <p>{{ artist.description }}</p>
         </div>
     </article>
     <aside>
-        <h2>Autres titre de l'artiste</h2>
+        <h2>Titres de l'artiste</h2>
+        {% for music in allMusics %}
         <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="{{ path('detail_music') }}">Latata</a></h3>
+            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
+            <h3><a href="{{ path('detail_music', {id:music.id}) }}">{{ music.title }}</a></h3>
         </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Boca</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Piri Piri</a></h3>
-        </div>
+        {% endfor %}
     </aside>
 </section>
 </section>

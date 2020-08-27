@@ -7,41 +7,11 @@
 
 {% block main %}
 <section>
+    {% for event in allEvents %}
     <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
+        <img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="">
+        <h3><a href="{{ path('detail_event', {id:event.id}) }}">{{ event.title }}</a></h3>
     </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
-    <article>
-        <img src="images/mario.jpg" alt="">
-        <h3><a href="">Titre de l'événements'</a></h3>
-    </article>
+    {% endfor %}
 </section>
 {% endblock %}

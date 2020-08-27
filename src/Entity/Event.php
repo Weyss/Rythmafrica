@@ -26,7 +26,7 @@ class Event
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -75,6 +75,11 @@ class Event
      * @ORM\JoinColumn(nullable=false)
      */
     private $pays;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $iframe;
 
     public function __construct()
     {
@@ -228,6 +233,18 @@ class Event
     public function setPays(?Pays $pays): self
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getIframe(): ?string
+    {
+        return $this->iframe;
+    }
+
+    public function setIframe(string $iframe): self
+    {
+        $this->iframe = $iframe;
 
         return $this;
     }

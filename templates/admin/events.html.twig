@@ -20,7 +20,6 @@
 					<th scope="col" class="auto">Image</th>
 					<th scope="col">Titre</th>
 					<th scope="col">Desciption</th>
-					<th scope="col">Artistes présents</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -30,10 +29,9 @@
 						<td><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
 						<td>{{ event.title}}</td>
 						<td>{{ event.description}}</td>
-						<td></td>
 						<td class="d-flex flex-column">
-							<a href="{{ path('event_edit', {id:event.id}) }}" data-entity="event" data-toggle="modal" data-id="{{ event.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
-							<a href="{{ path('event_delete', {id:event.id}) }}" data-entity="event" data-toggle="modal" data-id="{{ event.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
+							<a href="{{ path('admin_event_edit', {id:event.id}) }}" data-entity="event" data-toggle="modal" data-id="{{ event.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
+							<a href="{{ path('admin_event_delete', {id:event.id}) }}" data-entity="event" data-toggle="modal" data-id="{{ event.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
 						</td>
 					</tr>
 				{% endfor %}

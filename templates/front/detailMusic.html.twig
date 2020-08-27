@@ -8,42 +8,23 @@
 {% block main %}
 <section>
     <article>
-        <img src="{{ asset('images/mario.jpg') }}" alt="">
+        <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
         <div>
-        <h2>Nom de la musique</h2>
-        <span>Artiste</span>
-        <span>Genre</span>
-        <span>Date de sortie</span>
-        <span>Language</span>
+            <h2>{{ music.title }}</h2>
+            <span><a href="{{ path('detail_artist', {id:music.artist.id}) }}">Artiste : {{ music.artist.nickname }}</a></span>
+            <span>Vatiété : {{ music.category.name }}</span>
+            <span>Sortie le : {{ music.createdAt | date("d/m/Y") }}</span>
         </div>
     </article>
     <aside>
-        <h2>Musique lié à l'artiste</h2>
+        <h2>Autres musiques de l'artiste</h2>
+        {% for music in musicsArtist %}
         <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="{{ path('detail_music') }}">Nom de la musique</a></h3>
+            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
+            <h3><a href="{{ path('detail_music', {id:music.id}) }}">{{ music.title }}</a></h3>
         </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="{{ path('detail_music') }}">Nom de la musique</a></h3>
-        </div>
-        <h2>Musique de même variété</h2>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="{{ path('detail_music') }}">Nom de la musique</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
-        <div>
-            <img src="{{ asset('images/mario.jpg') }}" alt="">
-            <h3><a href="">Nom de la musique</a></h3>
-        </div>
+        {% endfor %}
     </aside>
+
 </section>
 {% endblock %}
