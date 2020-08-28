@@ -17,14 +17,14 @@
     </article>
     <aside>
         <h2>Artistes présents</h2>
-        {% for artist in allArtists %}
+        {% for artist in event.artists %}
         <div>
             <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="">
             <h3><a href="{{ path('detail_artist', {id:artist.id}) }}">{{ artist.nickname }}</a></h3>
         </div>
         {% endfor %}
         <p id="adress">{{ event.adress }}, {{ event.zipCode }} {{ event.town }}</p>
-        <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{ event.iframe }}"></iframe>
+        <iframe scrolling="no" marginheight="0" marginwidth="0" src="{{ event.iframe }}" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </aside>
 </section>
 {% endblock %}

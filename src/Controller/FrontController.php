@@ -75,7 +75,6 @@ class FrontController extends AbstractController
 
         return $this->render('front/detailArtist.html.twig', [
             'artist'=> $artist,
-            'allMusics' => $artist->getMusics()
         ]);
     }
 
@@ -97,7 +96,6 @@ class FrontController extends AbstractController
     {
         return $this->render('front/detailEvent.html.twig', [
             'event'=> $event,
-            'allArtists' => $event->getArtists()
         ]);
     }
 

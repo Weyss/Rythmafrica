@@ -16,7 +16,7 @@
     </article>
     <aside>
         <h2>Titres de l'artiste</h2>
-        {% for music in allMusics %}
+        {% for music in artist.musics %}
         <div>
             <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
             <h3><a href="{{ path('detail_music', {id:music.id}) }}">{{ music.title }}</a></h3>

@@ -42,7 +42,7 @@
 						<td>{{ artist.lastname}}</td>
 						<td>{{ artist.firstname}}</td>
 						<td>{{ artist.nickname}}</td>
-						<td>{{ artist.description}}</td>
+						<td>{{ artist.description | u.truncate(50, '...') }}</td>
 						<td class="d-flex flex-column">
 							<a href="{{ path('admin_artist_edit', {id:artist.id}) }}" data-entity="artist" data-toggle="modal"
 								data-id="{{ artist.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
@@ -73,7 +73,7 @@
 						<td><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="" class="card-img"
 								style="width:10rem; height: 10rem;"></td>
 						<td>{{ event.title}}</td>
-						<td>{{ event.description}}</td>
+						<td>{{ event.description | u.truncate(50, '...')}}</td>
 						<td class="d-flex flex-column">
 							<a href="{{ path('admin_event_edit', {id:event.id}) }}" data-entity="event" data-toggle="modal"
 								data-id="{{ event.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>
@@ -114,7 +114,7 @@
 						</td>
 						<td>{{ music.category.name}}</td>
 						<td>{{ music.artist.nickname}}</td>
-						<td>{{ music.description}}</td>
+						<td>{{ music.description | u.truncate(50, '...') }}</td>
 						<td class="d-flex flex-column">
 							<a href="{{ path('admin_music_edit', {id:music.id}) }}" data-entity="music" data-toggle="modal"
 								data-id="{{ music.id }}" class="btn btn-primary btn-sm js-edit">Éditer</a>

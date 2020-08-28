@@ -96,7 +96,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
 	<script>
 		// FONCTIONS //
 		// Fonction pour faire apparaitre la modal et y insérer le formulaire
@@ -111,6 +111,8 @@
 
 					form.innerHTML = httpRequest.responseText;
 
+					bsCustomFileInput.init()
+					
 					let formAdd = document.querySelector('#form form');
 
 					formAdd.addEventListener('submit', submitData);
@@ -119,8 +121,6 @@
 			httpRequest.open('POST', url, true);
 			httpRequest.send();
 		}
-
-
 		//Fonction pour supprimer un artist
 		function remove(e) {
 			e.preventDefault();
@@ -295,7 +295,6 @@
 				tableArtist.append(tr);
 			})
 		}
-
 		//Fonction pour mettre à jour les données des categories
 		function updateDataCategory(newData) {
 			let tableCategory = document.querySelector('table#js-categories tbody');
@@ -350,7 +349,6 @@
 				tableCategory.append(tr);
 			})
 		}
-
 		//Fonction pour mettre à jour les données des événements
 		function updateDataEvent(newData) {
 			let tableEvent = document.querySelector('table#js-events tbody');
@@ -404,7 +402,6 @@
 				tableEvent.append(tr);
 			})
 		}
-
 		//Fonction pour mettre à jour les données des musiques
 		function updateDataMusic(newData) {
 			let tableMusic = document.querySelector('table#js-musics tbody');
@@ -475,7 +472,7 @@
 			let del = document.querySelectorAll('a.js-delete');
 			let edition = document.querySelectorAll('a.js-edit')
 
-			// Pour faire apparaître la modale d'ajout et afficher les nouvelles données
+			// Pour faire apparaître la modale d'ajout
 			getForm.forEach(function (form) {
 				form.addEventListener('click', function () {
 					switch (this.id) {
