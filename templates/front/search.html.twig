@@ -30,71 +30,30 @@
             <!--  La boucle se fera ici pour le resultat concernant les musiques-->
             <article id="result-music">
                 <h3>Résultat pour les musiques</h3>
-                <div>
-                    <img src="images/background.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Titre de la chanson</a></span>
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
+                {% if musics %}
+                    {% for music in musics %}
+                        <div>
+                            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
+                            <span><a href="{{ path('detail_music', { id:music.id}) }}">{{ music.title }}</a></span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Aucuns résultats </p>
+                {% endif %}
             </article>
             <!--  La boucle se fera ici pour le resultat concernant les artistes-->
             <article id="result-artist">
                 <h3>Résultat pour les artistes</h3>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
-                <div>
-                    <img src="images/mario.jpg" alt="">
-                    <span><a href="">Nom de l'artist</a></span>
-                </div>
+                {% if artists %}
+                    {% for artist in artists %}
+                        <div>
+                            <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="">
+                            <span><a href="{{ path('detail_artist', { id:artist.id}) }}">{{ artist.nickname }}</a></span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Aucuns résultats </p>
+                {% endif %}
             </article>
         </section>
 {% endblock %}

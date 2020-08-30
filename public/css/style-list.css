@@ -446,13 +446,19 @@ nav ul li {
   }
 }
 
-#searchBar #search {
+#searchBar form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#searchBar form #form_query {
   width: 70%;
   border-radius: 10px;
   height: 28px;
 }
 
-#searchBar #submit {
+#searchBar form #submit {
   border-radius: 7px;
   padding: 5px;
   color: white;

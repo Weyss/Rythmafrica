@@ -23,19 +23,17 @@ class ArtistRepository extends ServiceEntityRepository
     // /**
     //  * @return Artist[] Returns an array of Artist objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findNicknames($value)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
+            ->andWhere('a.nickname LIKE :val')
+            ->setParameter('val', '%'. $value .'%')
+            ->orderBy('a.nickname', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Artist

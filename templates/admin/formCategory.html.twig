@@ -5,6 +5,13 @@
 {{ form_row(formCategory.name, { 'label': 'Nom', 'attrib': { 'placeholder': 'Nom'}}) }}
 {{ form_row(formCategory.description) }}
 {{ form_row(formCategory.picture, {'required': false }) }}
-<button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
+
+<button type="submit" id="js-save" class="btn btn-primary">
+    {% if editMode %}
+        Modifier
+    {% else %}
+        Ajouter
+    {% endif %}
+</button>
 
 {{ form_end(formCategory) }}

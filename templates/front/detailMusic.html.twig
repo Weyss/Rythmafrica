@@ -13,7 +13,7 @@
             <h2>{{ music.title }}</h2>
             <span><a href="{{ path('detail_artist', {id:music.artist.id}) }}">Artiste : {{ music.artist.nickname }}</a></span>
             <span>Vatiété : {{ music.category.name }}</span>
-            <span>Sortie le : {{ music.createdAt | date("d/m/Y") }}</span>
+            <span>Ajouté le : {{ music.createdAt | date("d/m/Y") }}</span>
         </div>
     </article>
     <aside>

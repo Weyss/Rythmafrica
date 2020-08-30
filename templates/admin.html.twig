@@ -172,6 +172,8 @@
 
 					form.innerHTML = httpRequest.responseText;
 
+					bsCustomFileInput.init()
+					
 					let formAdd = document.querySelector('#form form');
 
 					formAdd.addEventListener('submit', function (e) {

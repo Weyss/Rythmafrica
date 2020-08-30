@@ -91,7 +91,7 @@ class AdminController extends AbstractController
      * @Route("/admin/artist/add", name="admin_artist_add")
      * @Route("/admin/artist/edit/{id}", name="admin_artist_edit")
      */
-    public function addArtist(Artist $artist = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, ArtistRepository $artistRepository)
+    public function formArtist(Artist $artist = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, ArtistRepository $artistRepository)
     {
         if (!$artist)
             $artist = new Artist();
@@ -100,7 +100,8 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $artist->setCreatedAt(new \DateTime('NOW', new \DateTimeZone('Europe/Paris')));
+            if(!$artist->getId())
+                $artist->setCreatedAt(new \DateTime('NOW', new \DateTimeZone('Europe/Paris')));
 
             $picture = $form->get('picture')->getData();
 
@@ -125,6 +126,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formArtist.html.twig', [
             'formArtist' => $form->createView(),
+            'editMode' => $artist->getId() !== null
         ]);
     }
 
@@ -151,7 +153,7 @@ class AdminController extends AbstractController
      * @Route("/admin/category/add", name="admin_category_add")
      * @Route("/admin/category/edit/{id}", name="admin_category_edit")
      */
-    public function addCategory(Category $category = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, CategoryRepository $categoryRepository)
+    public function formCategory(Category $category = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, CategoryRepository $categoryRepository)
     {
         if (!$category)
             $category = new Category();
@@ -173,10 +175,10 @@ class AdminController extends AbstractController
                     $category->setPicture($pictureFileName);
                 }
             }
-
+            dump($category);
             $entityManager->persist($category);
             $entityManager->flush();
-            dump($category);
+           
             $response = $this->allCategory($categoryRepository);
 
             return $response;
@@ -184,6 +186,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formCategory.html.twig', [
             'formCategory' => $form->createView(),
+            'editMode' => $category->getId() !== null
         ]);
     }
 
@@ -210,7 +213,7 @@ class AdminController extends AbstractController
      * @Route("/admin/music/add", name="admin_music_add")
      * @Route("/admin/music/edit/{id}", name="admin_music_edit")
      */
-    public function addMusic(Music $music = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, MusicRepository $musicRepository)
+    public function formMusic(Music $music = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, MusicRepository $musicRepository)
     {
         if (!$music)
             $music = new Music();
@@ -219,7 +222,8 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $music->setCreatedAt(new \DateTime('NOW', new \DateTimeZone('Europe/Paris')));
+            if(!$music->getId())
+                $music->setCreatedAt(new \DateTime('NOW', new \DateTimeZone('Europe/Paris')));
 
             $picture = $form->get('picture')->getData();
             $song = $form->get('music')->getData();
@@ -257,6 +261,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formMusic.html.twig', [
             'formMusic' => $form->createView(),
+            'editMode' => $music->getId() !== null
         ]);
     }
 
@@ -286,7 +291,7 @@ class AdminController extends AbstractController
      * @Route("/admin/event/add", name="admin_event_add")
      * @Route("/admin/event/edit/{id}", name="admin_event_edit")
      */
-    public function addEvent(Event $event = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, EventRepository $eventRepository)
+    public function formEvent(Event $event = null, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader, EventRepository $eventRepository)
     {
         if (!$event)
             $event = new Event;
@@ -319,6 +324,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formEvent.html.twig', [
             'formEvent' => $form->createView(),
+            'editMode' => $event->getId() !== null
         ]);
     }
 

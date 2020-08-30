@@ -15,6 +15,12 @@
 {{ form_row(formEvent.pays, { 'label': 'Pays' }) }}
 {{ form_row(formEvent.entranceFee, { 'label': 'Prix d\'entré' }) }}
 
-<button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
+<button type="submit" id="js-save" class="btn btn-primary">
+    {% if editMode %}
+        Modifier
+    {% else %}
+        Ajouter
+    {% endif %}
+</button>
 
 {{ form_end(formEvent) }}

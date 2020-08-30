@@ -29,9 +29,9 @@
 					<td><img src="{{ asset('upload/categoryPictures/'~ category.picture) }}" alt="" class="card-img" style="width:10rem; height: 10rem;"></td>
 					<td>{{ category.name }}</td>
 					<td>{{ category.description }}</td>
-					<td>
-						<a href="{{ path('admin_category_edit', {id:category.id}) }}" data-entity="category" data-toggle="modal" data-id="{{ category.id }}" class="btn btn-primary js-edit">Editer</a>
-						<a href="{{ path('admin_category_delete', {id:category.id}) }}" data-entity="category" data-toggle="modal" data-id="{{ category.id }}" class="btn btn-primary mr-3 js-delete">Supprimer</a>
+					<td class="d-flex flex-column">
+						<a href="{{ path('admin_category_edit', {id:category.id}) }}" data-entity="category" data-toggle="modal" data-id="{{ category.id }}" class="btn btn-primary btn-sm js-edit">Editer</a>
+						<a href="{{ path('admin_category_delete', {id:category.id}) }}" data-entity="category" data-toggle="modal" data-id="{{ category.id }}" class="btn btn-primary btn-sm mt-2 js-delete">Supprimer</a>
 					</td>
 				   </tr>
 				{% endfor %}

@@ -2,17 +2,18 @@
 
 namespace App\Controller;
 
-use App\Entity\Artist;
-use App\Entity\Music;
-use App\Entity\Contact;
 use App\Entity\Event;
+use App\Entity\Music;
+use App\Entity\Artist;
+use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Repository\MusicRepository;
-use App\Notification\ContactNotification;
-use App\Repository\ArtistRepository;
 use App\Repository\EventRepository;
+use App\Repository\MusicRepository;
+use App\Repository\ArtistRepository;
+use App\Notification\ContactNotification;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FrontController extends AbstractController
@@ -23,18 +24,32 @@ class FrontController extends AbstractController
     public function index(MusicRepository $musicRepository)
     {
         return $this->render('front/acceuil.html.twig', [
-           'musics' => $musicRepository->findBy(array(), array('id' => 'desc'), 6, 0)
+           'musics' => $musicRepository->findBy(array(), array('id' => 'desc'), 6, 0),
+           'searchBar' => $this->formSearch()
         ]);
     }
 
     /**
      * @Route("/search", name="search")
      */
-    public function search()
-    {
+    public function search(Request $request, ArtistRepository $artist, MusicRepository $music)
+    {   
+        $query = $request->request->get('form')['query'];
+
         return $this->render('front/search.html.twig', [
-           
+            'searchBar' => $this->formSearch(),
+            'musics' => $music->findMusics($query) !== null,
+            'artists' => $artist->findNicknames($query) !== null
         ]);
+    }
+
+    public function formSearch(){
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('search'))
+            ->add('query', TextType::class)
+            ->getForm();
+
+            return $form->createView();
     }
 
     /**
@@ -43,7 +58,8 @@ class FrontController extends AbstractController
     public function listArtists(ArtistRepository $artistRepository)
     {
         return $this->render('front/artists.html.twig', [
-            'allArtists' => $artistRepository->findBy(array(), array('id' => 'desc'))
+            'allArtists' => $artistRepository->findBy(array(), array('id' => 'desc')),
+            'searchBar' => $this->formSearch()
         ]);
     }
 
@@ -53,7 +69,8 @@ class FrontController extends AbstractController
     public function listMusics(MusicRepository $musicRepository)
     {
         return $this->render('front/musics.html.twig', [
-            'allMusics' => $musicRepository->findBy(array(), array('id' => 'desc'))
+            'allMusics' => $musicRepository->findBy(array(), array('id' => 'desc')),
+            'searchBar' => $this->formSearch()
         ]);
     }
 
@@ -63,7 +80,8 @@ class FrontController extends AbstractController
     public function listEvents(EventRepository $eventRepository)
     {
         return $this->render('front/events.html.twig', [
-            'allEvents' => $eventRepository->findBy(array(), array('id' => 'desc'))
+            'allEvents' => $eventRepository->findBy(array(), array('id' => 'desc')),
+            'searchBar' => $this->formSearch()
         ]);
     }
 
@@ -75,6 +93,7 @@ class FrontController extends AbstractController
 
         return $this->render('front/detailArtist.html.twig', [
             'artist'=> $artist,
+            'searchBar' => $this->formSearch()
         ]);
     }
 
@@ -85,7 +104,8 @@ class FrontController extends AbstractController
     {
         return $this->render('front/detailMusic.html.twig', [
            'music'=> $music,
-           'musicsArtist' => $music->getArtist()->getMusics()
+           'musicsArtist' => $music->getArtist()->getMusics(),
+           'searchBar' => $this->formSearch()
         ]);
     }
 
@@ -96,6 +116,7 @@ class FrontController extends AbstractController
     {
         return $this->render('front/detailEvent.html.twig', [
             'event'=> $event,
+            'searchBar' => $this->formSearch()
         ]);
     }
 

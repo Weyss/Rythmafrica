@@ -2,11 +2,18 @@
 
 {{ form_start(formArtist) }}
 
-{{ form_row(formArtist.lastname, { 'label': 'Nom', 'attrib': { 'placeholder': 'Nom'}}) }}
-{{ form_row(formArtist.firstname, { 'label': 'Prénom', 'attrib': { 'placeholder': 'Prénom'}}) }}
-{{ form_row(formArtist.nickname, { 'label': 'Pseudonyme', 'attrib': { 'placeholder': 'Pseudonyme'}}) }}
+{{ form_row(formArtist.lastname, { 'label': 'Nom', 'attr': { 'placeholder': 'Nom'}}) }}
+{{ form_row(formArtist.firstname, { 'label': 'Prénom', 'attr': { 'placeholder': 'Prénom'}}) }}
+{{ form_row(formArtist.nickname, { 'label': 'Pseudonyme', 'attr': { 'placeholder': 'Pseudonyme'}}) }}
 {{ form_row(formArtist.description) }}
 {{ form_row(formArtist.picture, {'required': false }) }}
-<button type="submit" id="js-save" class="btn btn-primary">Ajouter</button>
+
+<button type="submit" id="js-save" class="btn btn-primary">
+    {% if editMode %}
+        Modifier
+    {% else %}
+        Ajouter
+    {% endif %}
+</button>
 
 {{ form_end(formArtist) }}

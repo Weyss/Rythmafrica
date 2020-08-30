@@ -22,19 +22,17 @@ class MusicRepository extends ServiceEntityRepository
     // /**
     //  * @return Music[] Returns an array of Music objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findMusics($value)
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('m.title LIKE :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->orderBy('m.title', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Music

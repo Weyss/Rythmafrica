@@ -354,17 +354,22 @@ nav {
 		grid-column: 1/-1;
 		width: 30%;
 	}
-	#search {
-		width: 70%;
-		border-radius: 10px;
-		height: 28px;
+	form{
+		display: flex;
+
+		.search {
+			width: 70%;
+			border-radius: 10px;
+			height: 28px;
+		}
+		#submit {
+			border-radius: 7px;
+			padding: 5px;
+			color: white;
+			background-color: #00000057;
+		}
 	}
-	#submit {
-		border-radius: 7px;
-		padding: 5px;
-		color: white;
-		background-color: #00000057;
-	}
+	
 }
 // PUB
 .pub {
