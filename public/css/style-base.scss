@@ -356,7 +356,8 @@ nav {
 	}
 	form{
 		display: flex;
-
+		width: 100%;
+		justify-content: inherit;
 		.search {
 			width: 70%;
 			border-radius: 10px;

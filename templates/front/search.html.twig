@@ -26,34 +26,34 @@
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
 </div>
- <section>
-            <!--  La boucle se fera ici pour le resultat concernant les musiques-->
-            <article id="result-music">
-                <h3>Résultat pour les musiques</h3>
-                {% if musics %}
-                    {% for music in musics %}
-                        <div>
-                            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
-                            <span><a href="{{ path('detail_music', { id:music.id}) }}">{{ music.title }}</a></span>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>Aucuns résultats </p>
-                {% endif %}
-            </article>
-            <!--  La boucle se fera ici pour le resultat concernant les artistes-->
-            <article id="result-artist">
-                <h3>Résultat pour les artistes</h3>
-                {% if artists %}
-                    {% for artist in artists %}
-                        <div>
-                            <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="">
-                            <span><a href="{{ path('detail_artist', { id:artist.id}) }}">{{ artist.nickname }}</a></span>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>Aucuns résultats </p>
-                {% endif %}
-            </article>
-        </section>
+    <section>
+        <!--  La boucle se fera ici pour le resultat concernant les musiques-->
+        <article id="result-music">
+            <h3>Résultat pour les musiques</h3>
+            {% if musics != null %}
+                {% for music in musics %}
+                    <div>
+                        <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
+                        <span><a href="{{ path('detail_music', { id:music.id}) }}">{{ music.title }}</a></span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucuns résultats </p>
+            {% endif %}
+        </article>
+        <!--  La boucle se fera ici pour le resultat concernant les artistes-->
+        <article id="result-artist">
+            <h3>Résultat pour les artistes</h3>
+            {% if artists != null %}
+                {% for artist in artists %}
+                    <div>
+                        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="">
+                        <span><a href="{{ path('detail_artist', { id:artist.id}) }}">{{ artist.nickname }}</a></span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucuns résultats </p>
+            {% endif %}
+        </article>
+    </section>
 {% endblock %}

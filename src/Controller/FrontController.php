@@ -38,8 +38,8 @@ class FrontController extends AbstractController
 
         return $this->render('front/search.html.twig', [
             'searchBar' => $this->formSearch(),
-            'musics' => $music->findMusics($query) !== null,
-            'artists' => $artist->findNicknames($query) !== null
+            'musics' => $music->findMusics($query),
+            'artists' => $artist->findNicknames($query) 
         ]);
     }
 
@@ -132,8 +132,6 @@ class FrontController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             $contactNotification->notify($contact);
-            $this->addFlash('succes', 'Votre mail abien été envoyer');
-            
         }
 
         return $this->render('front/contact.html.twig', [

@@ -450,9 +450,13 @@ nav ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  -webkit-box-pack: inherit;
+      -ms-flex-pack: inherit;
+          justify-content: inherit;
 }
 
-#searchBar form #form_query {
+#searchBar form .search {
   width: 70%;
   border-radius: 10px;
   height: 28px;

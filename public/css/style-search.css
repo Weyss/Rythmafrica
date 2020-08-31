@@ -452,7 +452,7 @@ nav ul li {
   display: flex;
 }
 
-#searchBar form #form_query {
+#searchBar form .search {
   width: 70%;
   border-radius: 10px;
   height: 28px;

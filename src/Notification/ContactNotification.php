@@ -26,12 +26,13 @@ class ContactNotification {
 
     public function notify(Contact $contact){
         $message = (new \Swift_Message ($contact->getSujet()))
-            ->setFrom($contact->getMail())
-            ->setTo('nakzorh@gmail.com')
+            ->setFrom('nakzorh@gmail.com')
+            ->setTo($contact->getMail())
             ->setBody($this->renderer->render('email/contact.html.twig', [
                 'contact' => $contact
-            ]), 'text/html');
-
-        $this->mailer->send($message);
+            ]), 
+            'text/html');
+        
+        return $this->mailer->send($message);
     }
 }
