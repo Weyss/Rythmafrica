@@ -2,12 +2,12 @@
 
 {% block title %}Détail Musique{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset ('css/style-detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style-detail.css') }}">
 {% endblock %}
 
 {% block main %}
 <section>
-    <article>
+    <article id="detailMusic">
         <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
         <div>
             <h2>{{ music.title }}</h2>
@@ -15,6 +15,7 @@
             <span>Vatiété : {{ music.category.name }}</span>
             <span>Ajouté le : {{ music.createdAt | date("d/m/Y") }}</span>
         </div>
+        <audio src="{{ asset('upload/songs/'~ music.music) }}" controls></audio>
     </article>
     <aside>
         <h2>Autres musiques de l'artiste</h2>

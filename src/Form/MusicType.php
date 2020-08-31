@@ -39,6 +39,7 @@ class MusicType extends AbstractType
             ])
             ->add('music', FileType::class, [
                 'mapped' => false,
+                'required' => false,
                 'constraints' => [
                     new File([
                         'maxSize' => '16M',

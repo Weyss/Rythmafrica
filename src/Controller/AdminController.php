@@ -126,7 +126,8 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formArtist.html.twig', [
             'formArtist' => $form->createView(),
-            'editMode' => $artist->getId() !== null
+            'editMode' => $artist->getId(),
+            'picture' => $artist->getPicture()
         ]);
     }
 
@@ -186,7 +187,8 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formCategory.html.twig', [
             'formCategory' => $form->createView(),
-            'editMode' => $category->getId() !== null
+            'editMode' => $category->getId(),
+            'picture' => $category->getPicture()
         ]);
     }
 
@@ -261,7 +263,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formMusic.html.twig', [
             'formMusic' => $form->createView(),
-            'editMode' => $music->getId() !== null
+            'editMode' => $music
         ]);
     }
 
@@ -324,7 +326,8 @@ class AdminController extends AbstractController
 
         return $this->render('admin/formEvent.html.twig', [
             'formEvent' => $form->createView(),
-            'editMode' => $event->getId() !== null
+            'editMode' => $event->getId(),
+            'picture' => $event->getPicture()
         ]);
     }
 

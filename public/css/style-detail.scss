@@ -174,4 +174,23 @@ aside {
         }
     }
 }
-
+#mapid { 
+    grid-column: 1/4;
+    height: 400px; 
+}
+// SPECIFIQUE MUSIQUE
+#detailMusic{
+    gap: 10px;
+    img{
+        justify-self: center;
+    }
+    audio{
+        grid-row: 2;
+        grid-column: 2;
+        border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        -ms-border-radius: 25px;
+        -o-border-radius: 25px;
+    }
+}

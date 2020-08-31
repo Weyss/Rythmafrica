@@ -4,8 +4,11 @@
 
 {{ form_row(formCategory.name, { 'label': 'Nom', 'attrib': { 'placeholder': 'Nom'}}) }}
 {{ form_row(formCategory.description) }}
+{% if editMode %}
+    <img src="{{ asset('upload/categoryPictures/'~ picture) }}" alt="" style="width:10rem">
+    <p>{{ picture }}</p>
+{% endif %}
 {{ form_row(formCategory.picture, {'required': false }) }}
-
 <button type="submit" id="js-save" class="btn btn-primary">
     {% if editMode %}
         Modifier

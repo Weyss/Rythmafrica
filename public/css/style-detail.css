@@ -1082,4 +1082,32 @@ aside iframe {
     padding: initial;
   }
 }
+
+#mapid {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+  height: 400px;
+}
+
+#detailMusic {
+  gap: 10px;
+}
+
+#detailMusic img {
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+#detailMusic audio {
+  -ms-grid-row: 2;
+  grid-row: 2;
+  -ms-grid-column: 2;
+  grid-column: 2;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
 /*# sourceMappingURL=style-detail.css.map */
