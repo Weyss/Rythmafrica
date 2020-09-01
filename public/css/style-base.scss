@@ -332,6 +332,9 @@ nav {
 			text-decoration: none;
 			background: initial;
 			color: initial;
+			&:hover{
+				background-color: rgba(0,0,0,0.3);
+			}
 		}
 		li {
 			padding: 20px;
@@ -374,12 +377,13 @@ nav {
 }
 // PUB
 .pub {
-	border: 2px solid black;
 	@media screen and (min-width: 1025px) {
 		position: fixed;
-		width: 300px;
-		height: 65vh;
 		top: 248px;
+		img{
+			width: 300px;
+			height: 65vh;
+		}
 	}
 }
 #pub1 {

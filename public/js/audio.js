@@ -148,7 +148,7 @@ function playerAudio(){
                 timeline.style.width = timelinePos * 100 + '%';
 
             if (audio.ended) {
-                play.classList.add('js-visible');
+                play.classList.replace('js-hidden','js-visible');
                 pause.classList.remove('js-visible');
             }
         })

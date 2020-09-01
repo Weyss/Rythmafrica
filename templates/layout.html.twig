@@ -5,11 +5,11 @@
         <title>RythmAfrica - {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>RythmAfrica</title>
-        <script src="{{ asset('js/effects.js') }}"></script>
-        <script src="{{ asset('js/contact.js') }}"></script>
         {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style-base.css') }}">
         {% endblock %}
+        <script src="{{ asset('js/effects.js') }}"></script>
+        <script src="{{ asset('js/contact.js') }}"></script>
         {% block js %}{% endblock %}
     </head>
     <body>
@@ -28,7 +28,7 @@
                     <span></span>
                 </div>
                 <ul>
-                    <a href="{{ path('musics') }}">
+                    <a  href="{{ path('musics') }}">
                         <li>Nos Musiques</li>
                     </a>
                     <a href="{{ path('artists') }}">
@@ -52,9 +52,13 @@
                     <button type="submit" id="submit">Recherche</button>
                 {{ form_end(searchBar) }}
             </div>
-            <div class="pub" id="pub1">PUB</div>
+            <div class="pub" id="pub1">
+                <img src="{{ asset('images/pub1.jpg')}}" alt="">
+            </div>
             {% block main %}{% endblock %}
-            <div class="pub" id="pub2">PUB</div>
+            <div class="pub" id="pub2">
+                <img src="{{ asset('images/pub2.jpg')}}" alt="">
+            </div>
         </main>
         <footer>
             <ul>

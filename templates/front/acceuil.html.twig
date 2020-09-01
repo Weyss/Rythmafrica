@@ -20,11 +20,9 @@
 <!-- Swiper -->
 <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
-      <div class="swiper-slide"><img src="" alt=""></div>
-      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
-      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
-      <div class="swiper-slide"><img src="images\background.jpg" alt=""></div>
+        {% for event in events %}
+            <div class="swiper-slide"><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt=""></div>
+        {% endfor %}
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>

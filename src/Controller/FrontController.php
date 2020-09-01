@@ -21,25 +21,27 @@ class FrontController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(MusicRepository $musicRepository)
+    public function index(MusicRepository $musicRepository, EventRepository $event)
     {
         return $this->render('front/acceuil.html.twig', [
            'musics' => $musicRepository->findBy(array(), array('id' => 'desc'), 6, 0),
-           'searchBar' => $this->formSearch()
+           'searchBar' => $this->formSearch(),
+           'events' => $event ->findAll()
         ]);
     }
 
     /**
      * @Route("/search", name="search")
      */
-    public function search(Request $request, ArtistRepository $artist, MusicRepository $music)
+    public function search(Request $request, ArtistRepository $artist, MusicRepository $music, EventRepository $event)
     {   
         $query = $request->request->get('form')['query'];
 
         return $this->render('front/search.html.twig', [
             'searchBar' => $this->formSearch(),
             'musics' => $music->findMusics($query),
-            'artists' => $artist->findNicknames($query) 
+            'artists' => $artist->findNicknames($query),
+            'events' => $event ->findAll() 
         ]);
     }
 
