@@ -77,9 +77,14 @@ class Event
     private $pays;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="float")
      */
-    private $iframe;
+    private $longitude;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $latitude;
 
     public function __construct()
     {
@@ -237,15 +242,28 @@ class Event
         return $this;
     }
 
-    public function getIframe(): ?string
+    public function getLongitude(): ?float
     {
-        return $this->iframe;
+        return $this->longitude;
     }
 
-    public function setIframe(string $iframe): self
+    public function setLongitude(float $longitude): self
     {
-        $this->iframe = $iframe;
+        $this->longitude = $longitude;
 
         return $this;
     }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
 }

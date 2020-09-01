@@ -52,7 +52,8 @@ class EventType extends AbstractType
                 'model_timezone' => 'Europe/Paris',
                 'view_timezone' => 'Europe/Paris'
             ])
-            ->add('iframe', UrlType::class)
+            ->add('longitude')
+            ->add('latitude')
             ->add('adress')
             ->add('town')
             ->add('zipCode')

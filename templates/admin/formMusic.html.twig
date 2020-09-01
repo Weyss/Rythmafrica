@@ -3,21 +3,27 @@
 {{ form_start(formMusic) }}
 
 {{ form_row(formMusic.title, { 'label': 'Titre de la musique' }) }}
+
 {{ form_row(formMusic.description) }}
-{% if editMode %}
+{% if editMode != null %}
     <img src="{{ asset('upload/musicPictures/'~ editMode.picture) }}" alt="" style="width:10rem">
     <p>{{ editMode.picture }}</p>
 {% endif %}
 {{ form_row(formMusic.picture, { 'label': 'Image' }) }}
-{% if editMode %}
+
+{% if editMode != null %}
     <p>{{ editMode.music }}</p>
-{% endif %}
-{{ form_row(formMusic.music, { 'label': 'Musique'}) }}
+    {{ form_row(formMusic.music, { 'label': 'Musique'} ) }}
+{% else %}
+    {{ form_row(formMusic.music, { 'label': 'Musique', 'attr': { 'required' : true}}) }}
+{% endif %} 
+
+
 {{ form_row(formMusic.artist, { 'label': 'Artiste' }) }}
 {{ form_row(formMusic.category, { 'label': 'Catégorie' }) }}
 
 <button type="submit" id="js-save" class="btn btn-primary">
-    {% if editMode %}
+    {% if editMode != null %}
         Modifier
     {% else %}
         Ajouter

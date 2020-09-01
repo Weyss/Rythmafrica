@@ -4,7 +4,7 @@
 
 {{ form_row(formEvent.title, { 'label': 'Titre de l\'événement' }) }}
 {{ form_row(formEvent.description) }}
-{% if editMode %}
+{% if editMode != null %}
     <img src="{{ asset('upload/eventPictures/'~ picture) }}" alt="" style="width:10rem">
     <p>{{ picture }}</p>
 {% endif %}
@@ -12,7 +12,12 @@
 {{ form_row(formEvent.startingAt, { 'label': 'Date de début' }) }}
 {{ form_row(formEvent.closingAt, { 'label': 'Date de fin' }) }}
 {{ form_row(formEvent.artists, { 'label': 'Les artistes' }) }}
-{{ form_row(formEvent.iframe, { 'label': 'Lien pour la Google Map' }) }}
+
+<div style="display: flex;">
+    {{ form_row(formEvent.longitude, { 'label': 'Longitude', 'attr':{'style' : 'width:90%'} }) }}
+    {{ form_row(formEvent.latitude, { 'label': 'Latitude', 'attr':{'style' : 'width:90%'}} ) }}
+</div>
+
 {{ form_row(formEvent.adress, { 'label': 'Adresse' }) }}
 {{ form_row(formEvent.town, { 'label': 'Ville' }) }}
 {{ form_row(formEvent.zipCode, { 'label': 'Code Postal' }) }}
@@ -20,7 +25,7 @@
 {{ form_row(formEvent.entranceFee, { 'label': 'Prix d\'entré' }) }}
 
 <button type="submit" id="js-save" class="btn btn-primary">
-    {% if editMode %}
+    {% if editMode != null %}
         Modifier
     {% else %}
         Ajouter
