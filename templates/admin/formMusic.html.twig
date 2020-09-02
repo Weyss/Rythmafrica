@@ -5,6 +5,7 @@
 {{ form_row(formMusic.title, { 'label': 'Titre de la musique' }) }}
 
 {{ form_row(formMusic.description) }}
+
 {% if editMode != null %}
     <img src="{{ asset('upload/musicPictures/'~ editMode.picture) }}" alt="" style="width:10rem">
     <p>{{ editMode.picture }}</p>
@@ -17,7 +18,6 @@
 {% else %}
     {{ form_row(formMusic.music, { 'label': 'Musique', 'attr': { 'required' : true}}) }}
 {% endif %} 
-
 
 {{ form_row(formMusic.artist, { 'label': 'Artiste' }) }}
 {{ form_row(formMusic.category, { 'label': 'Catégorie' }) }}

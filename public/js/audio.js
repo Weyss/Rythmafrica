@@ -23,6 +23,7 @@ function playerAudio(){
             audio.volume = volume.value / 100;
         });
 
+        /** Fonction pour faire apparaitre des éléments lorsque la souris est sur l'image **/
         playAudio.addEventListener('mouseenter', function () {
             if(audio.paused == true){
                 if(audio.currentTime == 0){
@@ -70,11 +71,12 @@ function playerAudio(){
             
         })
 
+        /** Fonction pour changer le volume **/
         volumeUp.addEventListener('click', function(){
             volume.classList.toggle('js-visible')
         })
 
-
+        /** Fonction pour changer le volume **/
         playAudio.addEventListener('mouseleave', function () {
             play.animate([
                 // keyframes
@@ -134,9 +136,21 @@ function playerAudio(){
                 play.classList.remove('js-hidden');
                 pause.classList.remove('js-visible');
                 audio.pause();
-            }else{ 
+            } else{ 
                 play.classList.add('js-hidden');
                 pause.classList.add('js-visible');
+                audio.play();
+            }
+            // On chercher à savoir si une musique est déja en lecture
+            // Si c'est le cas on stop la musique en cours pour mettre en lecture
+            // la musique sur laquelle le clic vient de se produire
+            
+            let audios = Array.from(document.querySelectorAll('audio'));
+            let isPlaying = audios.find(item => !item.paused)
+            console.log(isPlaying)
+            console.log(audio)
+            if (isPlaying){
+                isPlaying.pause();
                 audio.play();
             }
         })
@@ -163,10 +177,10 @@ function playerAudio(){
 
             audio.currentTime = currentTimeTrue
         })
-
-        
     })
 }
 
 
-document.addEventListener('DOMContentLoaded', playerAudio)
+document.addEventListener('DOMContentLoaded', function(){
+    playerAudio()
+});
