@@ -29,7 +29,7 @@
         <h2>Artistes présents</h2>
         {% for artist in event.artists %}
         <div>
-            <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="">
+            <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="{{ artist.picture }}">
             <h3><a href="{{ path('detail_artist', {id:artist.id}) }}">{{ artist.nickname }}</a></h3>
         </div>
         {% endfor %}

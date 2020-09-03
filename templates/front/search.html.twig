@@ -18,7 +18,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         {% for event in events %}
-            <div class="swiper-slide"><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt=""></div>
+            <div class="swiper-slide"><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="{{ event.picture }}"></div>
         {% endfor %}
     </div>
     <!-- Add Pagination -->
@@ -31,7 +31,7 @@
             {% if musics != null %}
                 {% for music in musics %}
                     <div>
-                        <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
+                        <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="{{ music.picture }}">
                         <span><a href="{{ path('detail_music', { id:music.id}) }}">{{ music.title }}</a></span>
                     </div>
                 {% endfor %}
@@ -45,7 +45,7 @@
             {% if artists != null %}
                 {% for artist in artists %}
                     <div>
-                        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="">
+                        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="{{ artist.picture }}">
                         <span><a href="{{ path('detail_artist', { id:artist.id}) }}">{{ artist.nickname }}</a></span>
                     </div>
                 {% endfor %}

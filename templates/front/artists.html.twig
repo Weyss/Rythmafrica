@@ -9,7 +9,7 @@
 <section>
     {% for artist in allArtists %}
     <article>
-        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="artist-picture">
+        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="{{ artist.picture }}" class="artist-picture">
         <h3><a href="{{ path('detail_artist', {id:artist.id}) }}">{{ artist.nickname }}</a></h3>
     </article>
     {% endfor %}

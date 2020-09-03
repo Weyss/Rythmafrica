@@ -8,7 +8,7 @@
 {% block main %}
 <section>
     <article>
-        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="" class="artist-picture">
+        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="{{ artist.picture }} " class="artist-picture">
         <div>
         <h2>{{ artist.nickname }}</h2>
         <p>{{ artist.description }}</p>
@@ -18,7 +18,7 @@
         <h2>Titres de l'artiste</h2>
         {% for music in artist.musics %}
         <div>
-            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="">
+            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="{{ music.picture }}">
             <h3><a href="{{ path('detail_music', {id:music.id}) }}">{{ music.title }}</a></h3>
         </div>
         {% endfor %}

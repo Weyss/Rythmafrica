@@ -9,7 +9,7 @@
 <section>
     {% for event in allEvents %}
     <article>
-        <img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="">
+        <img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="{{ event.picture }}">
         <h3><a href="{{ path('detail_event', {id:event.id}) }}">{{ event.title }}</a></h3>
     </article>
     {% endfor %}

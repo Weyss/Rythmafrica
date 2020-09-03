@@ -17,7 +17,7 @@
     <article>
         <!-- Player audio personnalisable CSS -->
         <div class="player-audio">
-            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="" class="js-picture">
+            <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="{{ music.picture }}" class="js-picture">
             <audio src="{{ asset('upload/songs/'~ music.music) }}" class="js-audio"></audio>
             <img src="{{ asset('images/volume-up.ico') }}" alt="" class="volumeUp">
             <input class="custom-slider" type="range" value="10">
