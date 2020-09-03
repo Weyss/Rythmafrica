@@ -137,13 +137,13 @@ table {
   border-spacing: 0;
 }
 
-main a, footer a {
+main section a, footer a {
   position: relative;
   background: #FFF;
   color: #000;
 }
 
-main a::before, footer a::before {
+main section a::before, footer a::before {
   position: absolute;
   top: 0;
   right: 0;
@@ -200,6 +200,17 @@ header {
   header {
     top: -101px;
   }
+}
+
+header #sociaux {
+  position: absolute;
+  top: 116px;
+  right: 37px;
+}
+
+header #sociaux img {
+  width: 2rem;
+  height: 2rem;
 }
 
 #logo {
@@ -478,6 +489,13 @@ nav ul li {
     position: fixed;
     top: 248px;
   }
+}
+
+.pub img {
+  width: 50%;
+}
+
+@media screen and (min-width: 1025px) {
   .pub img {
     width: 300px;
     height: 65vh;
@@ -649,19 +667,6 @@ footer ul a {
 .modal[aria-hidden="true"] {
   -webkit-animation-name: fadeOut;
           animation-name: fadeOut;
-}
-
-#mentions {
-  max-width: 90%;
-}
-
-@media screen and (min-width: 1025px) {
-  #mentions {
-    max-width: 55%;
-    margin: auto;
-    margin-top: auto;
-    margin-top: 5rem;
-  }
 }
 
 @-webkit-keyframes hamburgerIn {

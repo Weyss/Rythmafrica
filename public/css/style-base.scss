@@ -169,7 +169,7 @@ $bannerColor : linear-gradient(to left, #f4f407, #046604cc, #b00);
 a{
 	font-family: $fontLink;
 }
-main  a, footer  a{
+main section a, footer  a{
 	@extend %fontColor;
 }
 p{
@@ -198,13 +198,47 @@ header {
 	@media screen and (min-width: 1025px) {
 		top: -101px;
 	}
+	// RESEAU SOCIAUX
 	#sociaux{
 		position: absolute;
-		top: 116px;
-		right: 37px;
+		display: flex;
+		flex-direction: column;
+		top: 5px;
+		right: 100px;
+		@media screen and(min-width: 736px) and (orientation: landscape) {
+			flex-direction: row;
+			width: 15%;
+			justify-content: space-between;
+			top: 40px;
+			right: 145px;
+		}
+		@media screen and (min-width: 768px) {
+			flex-direction: row;
+			width: 13%;
+			justify-content: space-around;
+			top: 100px;
+			right: 12px;
+		}
+		@media screen and (min-width: 1024px) {
+			width: 6%;
+			top: 116px;
+			right: 80px;
+		}
 		img{
-			width: 2rem;
-			height: 2rem;
+			width: 1.3rem;
+			height: 1.3rem;
+			@media screen and(min-width: 736px) and (orientation: landscape) {
+				width: 2rem;
+				height: 2rem;
+			}
+			@media screen and (min-width: 768px) {
+				width: 1.5rem;
+				height: 1.5rem;
+			}
+			@media screen and (min-width: 1024px) {
+				width: 2rem;
+				height: 2rem;
+			}
 		}
 	}
 }
@@ -326,6 +360,13 @@ nav {
 			visibility: initial;
 			display: flex;
 			justify-content: center;
+			width: 90%;
+		}
+		@media screen and (min-width: 1025px) {
+			visibility: initial;
+			display: flex;
+			justify-content: center;
+			width: 100%;
 		}
 		&.animationIn {
 			animation: hamburgerIn 0.5s alternate;
@@ -385,10 +426,15 @@ nav {
 }
 // PUB
 .pub {
+	display: flex;
+	justify-content: center;
 	@media screen and (min-width: 1025px) {
 		position: fixed;
 		top: 248px;
-		img{
+	}
+	img{
+		width:50%;
+		@media screen and (min-width: 1025px){
 			width: 300px;
 			height: 65vh;
 		}
@@ -507,7 +553,6 @@ footer {
 .modal[aria-hidden="true"]{
 	animation-name: fadeOut;
 }
-// MENTIONS LEGALES
 
 // KEYFRAMES
 @keyframes hamburgerIn {
