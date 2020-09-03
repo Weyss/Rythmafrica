@@ -2,7 +2,7 @@
 
 function playerAudio(){
     let articles = document.querySelectorAll('article');
-
+    let actuallyPlayed = null;
     articles.forEach(function (article) {
         /** Variables **/
         let playAudio = article.querySelector('.player-audio')
@@ -137,6 +137,16 @@ function playerAudio(){
                 pause.classList.remove('js-visible');
                 audio.pause();
             } else{ 
+                if (actuallyPlayed != audio)
+                {
+                    if (actuallyPlayed != null) {
+                        actuallyPlayed.pause();
+                        actuallyPlayed.currentTime = 0;
+                        actuallyPlayed.parentNode.querySelector('.js-play').classList.remove('js-hidden');
+                        actuallyPlayed.parentNode.querySelector('.js-pause').classList.remove('js-visible');
+                    }
+                    actuallyPlayed = audio;
+                }
                 play.classList.add('js-hidden');
                 pause.classList.add('js-visible');
                 audio.play();
@@ -144,15 +154,6 @@ function playerAudio(){
             // On chercher à savoir si une musique est déja en lecture
             // Si c'est le cas on stop la musique en cours pour mettre en lecture
             // la musique sur laquelle le clic vient de se produire
-            
-            let audios = Array.from(document.querySelectorAll('audio'));
-            let isPlaying = audios.find(item => !item.paused)
-            console.log(isPlaying)
-            console.log(audio)
-            if (isPlaying){
-                isPlaying.pause();
-                audio.play();
-            }
         })
 
         /** Fonction pour la barre de progression  **/
