@@ -3,7 +3,7 @@ let modalContact = null;
 const focusableSelectors = 'input[type=text], input[type=email], button[type=submit], textarea';
 let focusables = [];
 
-
+/* Fonction pour récupérer le lien du formulaire **/
 function contact(){
     let contact = document.querySelector('#js-contact');
 
@@ -14,6 +14,7 @@ function contact(){
     })
 }
 
+/* Fonction pour insérer le formulaire **/
 function insertForm(url) {
     let httpRequest = new XMLHttpRequest;
     httpRequest.onreadystatechange = function () {
@@ -29,7 +30,7 @@ function insertForm(url) {
     httpRequest.send();
 }
 
-// Fonction pour la soumission du formulaire
+/* Fonction pour soumettre le formulaire **/
 function submitData(e) {
     e.preventDefault();
     let data = new FormData(e.target);
@@ -43,6 +44,7 @@ function submitData(e) {
     xhr.send(data);
 }
 
+/* Fonction pour ouvrir la modal **/
 function openModal(){
     modalContact = document.querySelector('.modal');
     modalContact.removeAttribute('aria-hidden');
@@ -54,6 +56,7 @@ function openModal(){
 
 }
 
+/* Fonction pour fermer le formulaire **/
 function closeModal(){
     modalContact.setAttribute('aria-hidden', 'true');
     modalContact.removeAttribute('aria-modal');

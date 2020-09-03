@@ -651,6 +651,19 @@ footer ul a {
           animation-name: fadeOut;
 }
 
+#mentions {
+  max-width: 90%;
+}
+
+@media screen and (min-width: 1025px) {
+  #mentions {
+    max-width: 55%;
+    margin: auto;
+    margin-top: auto;
+    margin-top: 5rem;
+  }
+}
+
 @-webkit-keyframes hamburgerIn {
   from {
     transform: translateX(300px);

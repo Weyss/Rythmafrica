@@ -198,6 +198,15 @@ header {
 	@media screen and (min-width: 1025px) {
 		top: -101px;
 	}
+	#sociaux{
+		position: absolute;
+		top: 116px;
+		right: 37px;
+		img{
+			width: 2rem;
+			height: 2rem;
+		}
+	}
 }
 #logo {
 	position: relative;
@@ -341,7 +350,6 @@ nav {
 		}
 	}
 }
-
 // BARRE DE RECHERCHE
 #searchBar {
 	display: flex;
@@ -426,9 +434,7 @@ footer {
 		}
 	}
 }
-
 // MODAL CONTACT
-
 .modal {
 	position: fixed;
 	display: none;
@@ -501,6 +507,7 @@ footer {
 .modal[aria-hidden="true"]{
 	animation-name: fadeOut;
 }
+// MENTIONS LEGALES
 
 // KEYFRAMES
 @keyframes hamburgerIn {
@@ -519,7 +526,6 @@ footer {
 		-o-transform: translateX(0px);
 	}
 }
-
 @keyframes hamburgerOut {
 	from {
 		transform: translateX(0);
@@ -536,7 +542,6 @@ footer {
 		-o-transform: translateX(300px);
 	}
 }
-
 @keyframes fadeIn{
 	from{
 		opacity: 0;
@@ -545,7 +550,6 @@ footer {
 		opacity: 1;
 	}
 }
-
 @keyframes slideFromTop{
 	from{
 		transform: translateY(-50px);
@@ -562,7 +566,6 @@ footer {
 		-o-transform: translateY(0);
 	}
 }
-
 @keyframes fadeOut{
 	from{
 		opacity: 1;

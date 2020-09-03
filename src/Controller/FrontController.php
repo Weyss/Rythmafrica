@@ -140,4 +140,14 @@ class FrontController extends AbstractController
             'formContact' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/mentions", name="mentions")
+     */
+    public function showMentions()
+    {
+        return $this->render('front/mentions.html.twig', [
+
+        ]);
+    }
 }

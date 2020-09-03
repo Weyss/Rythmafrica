@@ -202,17 +202,6 @@ header {
   }
 }
 
-header #sociaux {
-  position: absolute;
-  top: 116px;
-  right: 37px;
-}
-
-header #sociaux img {
-  width: 2rem;
-  height: 2rem;
-}
-
 #logo {
   position: relative;
   grid-column: 1/-1;
@@ -799,4 +788,31 @@ footer ul a {
     opacity: 0;
   }
 }
-/*# sourceMappingURL=style-base.css.map */
+
+#mentions {
+  max-width: 90%;
+}
+
+@media screen and (min-width: 1025px) {
+  #mentions {
+    max-width: 55%;
+    margin: auto;
+    margin-top: auto;
+    margin-top: 5rem;
+  }
+}
+
+#mentions h2 {
+  font-size: 1.5rem;
+}
+
+#mentions h3 {
+  font-size: 1.3rem;
+}
+
+#mentions p {
+  margin: 10px 0;
+  padding: 5px;
+  line-height: 25px;
+}
+/*# sourceMappingURL=style-mentions.css.map */

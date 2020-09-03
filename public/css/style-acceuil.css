@@ -202,6 +202,17 @@ header {
   }
 }
 
+header #sociaux {
+  position: absolute;
+  top: 116px;
+  right: 37px;
+}
+
+header #sociaux img {
+  width: 2rem;
+  height: 2rem;
+}
+
 #logo {
   position: relative;
   grid-column: 1/-1;

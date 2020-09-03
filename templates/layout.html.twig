@@ -5,9 +5,12 @@
         <title>RythmAfrica - {% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>RythmAfrica</title>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
         {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style-base.css') }}">
         {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+        <script src="{{ asset('js/cookies.js') }}"></script>
         <script src="{{ asset('js/effects.js') }}"></script>
         <script src="{{ asset('js/contact.js') }}"></script>
         {% block js %}{% endblock %}
@@ -42,6 +45,10 @@
                     </a>
                 </ul>
             </nav>
+            <div id="sociaux">
+                <a href="https://fr-fr.facebook.com/"><img src="{{ asset('images/facebook.ico') }}" alt=""></a>
+                <a href="https://twitter.com/?lang=fr"><img src="{{ asset('images/twitter.ico') }}" alt=""></a>
+            </div>
             
         </header>
         <main>
@@ -57,30 +64,25 @@
             </div>
             {% block main %}{% endblock %}
             <div class="pub" id="pub2">
-                <img src="{{ asset('images/pub2.jpg')}}" alt="">
+               <img src="{{ asset('images/pub2.jpg')}}" alt="">
             </div>
         </main>
         <footer>
             <ul>
-                <a href="#">
+                <a href="{{ path('mentions') }}" target="_blank">
                     <li>Mentions Légales</li>
-                </a>
-                <a href="#">
-                    <li>Mentions sur les cookies et validation RGPD</li>
                 </a>
             </ul>
         </footer>
         {# Modal de Contact #}
-        <div id="contact" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal" aria-hidden="true" role="dialog">
             <div class="js-modal-stop">
                 <span class="js-modal-close">&times;</span>
                 <div class="modal-body">
                     <!--Insertion du forulaire lorsqu'on clique sur le lien "Contact"  -->
                 </div>
             </div>
-        </div> 
+        </div>  
         {% block javascripts %}{% endblock %}
-        
-    </body>
-    
+    </body>   
 </html>
