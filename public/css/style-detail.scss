@@ -113,7 +113,7 @@ aside {
     display: grid;
     align-items: center;
     gap: 35px;
-    
+    margin: 0 0.5rem;
     @media screen and(max-width: 767px) and (orientation: landscape) {
         grid-template-columns: repeat(2, 1fr);
         grid-column: 1/-1;
@@ -127,14 +127,27 @@ aside {
     }
     h2{
         text-align: center;
+        grid-column: 1/-1;
     }
     div {
+        grid-column: 1/-1;
         display: flex;
+        @media screen and(max-width: 767px) and (orientation: landscape) {
+            grid-column: initial;
+        }
+        @media screen and(min-width: 767px) {
+            grid-column: initial;
+            align-items: center;
+            flex-direction: column;
+        }
         img {
             width: 5rem;
             height: 5rem;
+            @media screen and(min-width: 767px) {
+                width: 8rem;
+                height: 8rem;
+            }
         }
-
         h3 {
             text-align: center;
             padding: 20px 5px;
@@ -161,10 +174,18 @@ aside {
         @media screen and(max-width: 767px) and (orientation: landscape) {
             gap: 15px 0;
         }
+        @media screen and(min-width: 1025px){
+            gap: 10px 0;
+        }
+    
     img{
         width: 100%;
         height: initial;
-        grid-column: 2/4;
+        @media screen and (min-width:768px){
+            grid-column: 2/4;
+            width: 40rem;
+            justify-self: center;
+        }
     }
     p{
         padding: 20px 25px;
@@ -175,9 +196,21 @@ aside {
         }
     }
 }
+.leaflet-control{
+    display: initial;
+    a::before{
+        background: initial;
+    }
+    p{
+        padding: initial;
+    }
+}
 #mapid { 
-    grid-column: 1/4;
-    height: 400px; 
+    height: 400px;
+    grid-column: 1/-1;
+    @media screen  and (min-width: 1025px) {
+        grid-column: 1/4;
+    }
 }
 // SPECIFIQUE MUSIQUE
 #detailMusic{

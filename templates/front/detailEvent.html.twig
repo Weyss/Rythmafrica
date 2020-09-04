@@ -25,7 +25,7 @@
             <p>Date de fin : {{ event.closingAt | date("d/m/Y H:i") }}</p>
         </div>
     </article>
-    <aside>
+    <aside id="asideEvent">
         <h2>Artistes présents</h2>
         {% for artist in event.artists %}
         <div>
@@ -45,7 +45,7 @@
 
         marker.bindPopup('<p id="adress">{{ event.adress }}, {{ event.zipCode }} {{ event.town }}</p>').openPopup();
 
-        L.tileLayer(' https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox/streets-v11',

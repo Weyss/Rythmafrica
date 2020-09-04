@@ -18,7 +18,7 @@
 <div class="swiper-container">
     <div class="swiper-wrapper">
         {% for event in events %}
-            <div class="swiper-slide"><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="{{ event.picture }}"></div>
+            <div class="swiper-slide"><a href="{{ path('detail_event', {id:event.id}) }}"><img src="{{ asset('upload/eventPictures/'~ event.picture) }}" alt="{{ event.picture }}"></a></div>
         {% endfor %}
     </div>
     <!-- Add Pagination -->
