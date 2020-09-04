@@ -36,12 +36,12 @@
       visibility: hidden;
       cursor: pointer;
       &.js-visible{
-          visibility: visible;
-          opacity: 1;
-          position: absolute;
+        visibility: visible;
+        opacity: 1;
+        position: absolute;
       }
       .timeline{
-          background-color: rgb(87, 87, 255);
+        background-color: rgb(87, 87, 255);
       }
   }
   

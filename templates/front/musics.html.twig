@@ -19,14 +19,14 @@
         <div class="player-audio">
             <img src="{{ asset('upload/musicPictures/'~ music.picture) }}" alt="{{ music.picture }}" class="js-picture">
             <audio src="{{ asset('upload/songs/'~ music.music) }}" class="js-audio"></audio>
-            <img src="{{ asset('images/volume-up.ico') }}" alt="" class="volumeUp">
+            <img src="{{ asset('images/volume-up.ico') }}" class="volumeUp">
             <input class="custom-slider" type="range" value="10">
             <div class="progress">
                 <div class="timeline"></div>
             </div>
             <div class="controls">
-                <img src="images/play.png" alt="" class="js-play">
-                <img src="images/pause.png" alt="" class="js-pause">
+                <img src="images/play.png"  class="js-play">
+                <img src="images/pause.png"  class="js-pause">
             </div>
         </div>
         <h3><a href="{{ path('detail_music', { id:music.id}) }}">{{ music.title }}</a></h3>

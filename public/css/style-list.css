@@ -1000,7 +1000,7 @@ article h3 {
   font-size: 1.3rem;
 }
 
-article div, article img {
+article .artist-picture, article img {
   width: 12rem;
   height: 12rem;
 }
