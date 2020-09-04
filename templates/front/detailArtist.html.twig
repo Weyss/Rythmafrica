@@ -8,7 +8,7 @@
 {% block main %}
 <section>
     <article>
-        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="{{ artist.picture }} " class="artist-picture">
+        <div class="artist-picture" style="background: url({{ asset('upload/artistPictures/'~ artist.picture) }}) center/cover"></div>
         <div>
         <h2>{{ artist.nickname }}</h2>
         <p>{{ artist.description }}</p>

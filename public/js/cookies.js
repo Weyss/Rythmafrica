@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 "border": "#14a7d0"
             }
         },
-        "type": "opt-in"
     });
 })
 

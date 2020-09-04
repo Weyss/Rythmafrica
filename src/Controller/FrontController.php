@@ -23,7 +23,7 @@ class FrontController extends AbstractController
      */
     public function index(MusicRepository $musicRepository, EventRepository $event)
     {
-        dump($musicRepository->findBy(array(), array('id' => 'desc'), 6, 0));
+        
         return $this->render('front/acceuil.html.twig', [
            'musics' => $musicRepository->findBy(array(), array('id' => 'desc'), 6, 0),
            'searchBar' => $this->formSearch(),

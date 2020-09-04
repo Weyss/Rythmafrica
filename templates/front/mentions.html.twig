@@ -10,9 +10,36 @@
     <header>
         <div id="logo">
             <a href="{{ path('index') }}">
-                <img src=" {{ asset('images/logo.png') }}" alt="">
+                <img src=" {{ asset('images/logo.png') }}" alt="Logo du site">
                 <h2>RythmAfrica</h2>
             </a>
+        </div>
+        <nav>
+            <div id="hamburger">
+                <input type="checkbox">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <a  href="{{ path('musics') }}">
+                    <li>Nos Musiques</li>
+                </a>
+                <a href="{{ path('artists') }}">
+                    <li>Nos Artistes</li>
+                </a>
+                <a href="{{ path('events') }}">
+                    <li>Nos Événements</li>
+                </a>
+                <a href="{{ path('contact') }}" id="js-contact">
+                    <li>Contact</li>
+                </a>
+            </ul>
+        </nav>
+        <div id="sociaux">
+            <a href="https://fr-fr.facebook.com/"><img src="{{ asset('images/facebook.ico') }}" alt="Publicité"></a>
+            <a href="https://twitter.com/?lang=fr"><img src="{{ asset('images/twitter.ico') }}" alt="Publicité"></a>
+            <a href="https://twitter.com/?lang=fr"><img src="{{ asset('images/instagram.ico') }}" alt="Publicité"></a>
         </div>
     </header>
     <main id="mentions">

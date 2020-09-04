@@ -1,169 +1,5 @@
-// Reset CSS
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol,
-ul {
-	list-style: none;
-}
-blockquote,
-q {
-	quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: "";
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-// FONT
-@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-
-$fontTitleSite: 'Monoton';
-$fontLink: 'Russo One';
-$font3: 'Roboto Slab';
-$fontP: 'Playfair Display';
-
-
-// COLOR
-$color : linear-gradient(to left, #dfdf00,#046604, #b00);
-$bannerColor : linear-gradient(to left, #f4f407, #046604cc, #b00);
-
-
-// PLACE HOLDER
-%fontColor{
-	position: relative;
-	background: #FFF;
-	color: #000;
-	&::before{
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		background: $bannerColor;
-		content: '';
-		display: block;
-		mix-blend-mode: screen;
-	}
-}
+@import 'reset';
+@import 'utiles';
 
 /**** MON CODE ****/
 a{
@@ -219,7 +55,12 @@ header {
 			top: 100px;
 			right: 12px;
 		}
-		@media screen and (min-width: 1024px) {
+		@media screen and(min-width: 1024px) and (orientation: landscape) {
+			width: 12%;
+			top: 120px;
+			right: 30px;
+		}
+		@media screen and (min-width: 1025px) {
 			width: 6%;
 			top: 116px;
 			right: 80px;
@@ -366,7 +207,7 @@ nav {
 			visibility: initial;
 			display: flex;
 			justify-content: center;
-			width: 100%;
+			width: initial;
 		}
 		&.animationIn {
 			animation: hamburgerIn 0.5s alternate;
@@ -428,39 +269,46 @@ nav {
 .pub {
 	display: flex;
 	justify-content: center;
+	height: 200px;
 	@media screen and (min-width: 1025px) {
 		position: fixed;
-		top: 248px;
+		top: 400px;
+		width: 340px;
+		height: 65vh;
 	}
-	img{
-		width:50%;
-		@media screen and (min-width: 1025px){
-			width: 300px;
-			height: 65vh;
-		}
-	}
+	
 }
 #pub1 {
 	grid-row: 4;
+	@include pub(no-repeat url('../images/pub1mobiletablette.jpg'), cover);
 	@media screen and (min-width: 768px) {
 		grid-row: 4;
+		background-position-y: -20px;
 	}
 	@media screen and(min-width: 1024px) and (orientation: landscape) {
 		grid-row: 5;
+		background-position-x: center;
+		background-position-y: -23px;
+		background-size: 80%;
 	}
 	@media screen and (min-width: 1025px) {
+		@include pub(no-repeat url('../images/pub1desktop.jpg'), contain);
 		left: 23px;
 	}
 }
 #pub2 {
 	grid-row: 8;
+	@include pub(no-repeat url('../images/pub2mobiletablette.jpg'), cover);
+	background-position: center;
 	@media screen and (min-width: 768px) {
 		grid-row: -2;
 	}
 	@media screen and(min-width: 1024px) and (orientation: landscape) {
 		grid-row: -2;
+		background-size: 80%;
 	}
 	@media screen and (min-width: 1025px) {	
+		@include pub(no-repeat url('../images/pub2desktop.jpg'), contain);
 		right: 23px;
 	}
 }
@@ -554,68 +402,3 @@ footer {
 	animation-name: fadeOut;
 }
 
-// KEYFRAMES
-@keyframes hamburgerIn {
-	from {
-		transform: translateX(300px);
-		-webkit-transform: translateX(300px);
-		-moz-transform: translateX(300px);
-		-ms-transform: translateX(300px);
-		-o-transform: translateX(300px);
-	}
-	to {
-		transform: translateX(0px);
-		-webkit-transform: translateX(0px);
-		-moz-transform: translateX(0px);
-		-ms-transform: translateX(0px);
-		-o-transform: translateX(0px);
-	}
-}
-@keyframes hamburgerOut {
-	from {
-		transform: translateX(0);
-		-webkit-transform: translateX(0);
-		-moz-transform: translateX(0);
-		-ms-transform: translateX(0);
-		-o-transform: translateX(0);
-	}
-	to {
-		transform: translateX(300px);
-		-webkit-transform: translateX(300px);
-		-moz-transform: translateX(300px);
-		-ms-transform: translateX(300px);
-		-o-transform: translateX(300px);
-	}
-}
-@keyframes fadeIn{
-	from{
-		opacity: 0;
-	}
-	to{
-		opacity: 1;
-	}
-}
-@keyframes slideFromTop{
-	from{
-		transform: translateY(-50px);
-		-webkit-transform: translateY(-50px);
-		-moz-transform: translateY(-50px);
-		-ms-transform: translateY(-50px);
-		-o-transform: translateY(-50px);
-	}
-	to{
-		transform: translateY(0);
-		-webkit-transform: translateY(0);
-		-moz-transform: translateY(0);
-		-ms-transform: translateY(0);
-		-o-transform: translateY(0);
-	}
-}
-@keyframes fadeOut{
-	from{
-		opacity: 1;
-	}
-	to{
-		opacity: 0;
-	}
-}

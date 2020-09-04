@@ -19,7 +19,7 @@
         <header>
             <div id="logo">
                 <a href="{{ path('index') }}">
-                    <img src=" {{ asset('images/logo.png') }}" alt="Logo du site">
+                    <img src=" {{ asset('images/logo.png') }}" alt="Logo du site" >
                     <h2>RythmAfrica</h2>
                 </a>
             </div>
@@ -59,22 +59,20 @@
                     <button type="submit" id="submit">Recherche</button>
                 {{ form_end(searchBar) }}
             </div>
-            <div class="pub" id="pub1">
-                <img src="{{ asset('images/pub1.jpg')}}">
-            </div>
+            <!-- PUB 1 -->
+            <div class="pub" id="pub1"></div>
             {% block main %}{% endblock %}
-            <div class="pub" id="pub2">
-               <img src="{{ asset('images/pub2.jpg')}}">
-            </div>
+            <!-- PUB 2 -->
+            <div class="pub" id="pub2"></div>
         </main>
         <footer>
             <ul>
-                <a href="{{ path('mentions') }}" target="_blank">
+                <a href="{{ path('mentions') }}">
                     <li>Mentions Légales</li>
                 </a>
             </ul>
         </footer>
-        {# Modal de Contact #}
+        <!--  Modal de Contact  -->
         <div class="modal" aria-hidden="true" role="dialog">
             <div class="js-modal-stop">
                 <span class="js-modal-close">&times;</span>

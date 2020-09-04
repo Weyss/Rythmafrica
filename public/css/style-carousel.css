@@ -37,4 +37,8 @@
   -ms-flex-align: center;
   align-items: center;
 }
+
+.swiper-slide img {
+  width: 22rem;
+}
 /*# sourceMappingURL=style-carousel.css.map */

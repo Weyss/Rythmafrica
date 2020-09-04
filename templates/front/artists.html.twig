@@ -2,14 +2,14 @@
 
 {% block title %}Nos Artistes{% endblock %}
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset ('css/style-list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/style-list.css') }}">
 {% endblock %}
 
 {% block main %}
 <section>
     {% for artist in allArtists %}
     <article>
-        <img src="{{ asset('upload/artistPictures/'~ artist.picture) }}" alt="{{ artist.picture }}" class="artist-picture">
+        <div class="artist-picture" style="background: url({{ asset('upload/artistPictures/'~ artist.picture) }}) center/cover"></div>
         <h3><a href="{{ path('detail_artist', {id:artist.id}) }}">{{ artist.nickname }}</a></h3>
     </article>
     {% endfor %}

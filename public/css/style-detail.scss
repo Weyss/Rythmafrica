@@ -57,7 +57,7 @@ article {
     @media screen and(min-width: 1025px) {
         grid-template-columns: 10rem auto 1fr 10rem;
     }
-    img {
+    .artist-picture, img {
         width: 15rem;
         height: 15rem;
         @media screen and(max-width: 767px) and (orientation: landscape) {
