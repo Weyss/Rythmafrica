@@ -978,6 +978,8 @@ section {
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   gap: 40px;
+  -ms-grid-row: 5;
+  grid-row: 5;
 }
 
 @media screen and (min-width: 768px) {

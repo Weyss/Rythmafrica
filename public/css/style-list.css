@@ -959,8 +959,8 @@ section {
   section {
     -ms-grid-row: 6;
     grid-row: 6;
-    -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr);
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
   }
 }
 

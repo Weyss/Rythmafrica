@@ -1202,7 +1202,7 @@ aside iframe {
   -ms-grid-columns: 10rem (1fr)[2] 10rem;
       grid-template-columns: 10rem repeat(2, 1fr) 10rem;
   grid-auto-rows: auto;
-  gap: 40px 0;
+  gap: 10px 0;
 }
 
 @media screen and (max-width: 767px) and (orientation: landscape) {
@@ -1220,13 +1220,13 @@ aside iframe {
 #detailEvent img {
   width: 100%;
   height: initial;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-column: 2/4;
 }
 
 @media screen and (min-width: 768px) {
   #detailEvent img {
-    -ms-grid-column: 2;
-    -ms-grid-column-span: 2;
-    grid-column: 2/4;
     width: 40rem;
     -ms-grid-column-align: center;
         justify-self: center;

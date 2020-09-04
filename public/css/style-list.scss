@@ -28,7 +28,7 @@ section {
     }
     @media screen and(min-width: 1024px) and (orientation: landscape) {
         grid-row: 6;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
     @media screen and (min-width: 1025px) {
         grid-column: 4/29;
