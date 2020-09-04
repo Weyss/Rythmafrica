@@ -32,7 +32,7 @@ header {
 		top: -110px;
 	}
 	@media screen and (min-width: 1025px) {
-		top: -101px;
+		top: -95px;
 	}
 	// RESEAU SOCIAUX
 	#sociaux{
@@ -61,8 +61,8 @@ header {
 			right: 30px;
 		}
 		@media screen and (min-width: 1025px) {
-			width: 6%;
-			top: 116px;
+			width: 8%;
+			top: 100px;
 			right: 80px;
 		}
 		img{
@@ -272,7 +272,7 @@ nav {
 	height: 200px;
 	@media screen and (min-width: 1025px) {
 		position: fixed;
-		top: 400px;
+		top: 290px;
 		width: 340px;
 		height: 65vh;
 	}
@@ -293,7 +293,7 @@ nav {
 	}
 	@media screen and (min-width: 1025px) {
 		@include pub(no-repeat url('../images/pub1desktop.jpg'), contain);
-		left: 23px;
+		left: 5px;
 	}
 }
 #pub2 {
@@ -309,7 +309,7 @@ nav {
 	}
 	@media screen and (min-width: 1025px) {	
 		@include pub(no-repeat url('../images/pub2desktop.jpg'), contain);
-		right: 23px;
+		right: 5px;
 	}
 }
 // FOOTER

@@ -112,7 +112,8 @@ article {
 aside {
     display: grid;
     align-items: center;
-    gap: 55px;
+    gap: 35px;
+    
     @media screen and(max-width: 767px) and (orientation: landscape) {
         grid-template-columns: repeat(2, 1fr);
         grid-column: 1/-1;
