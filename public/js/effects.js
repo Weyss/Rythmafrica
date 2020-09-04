@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Script pour le carrousel
     let swiper = new Swiper('.swiper-container', {
-        spaceBetween: 30,
         centeredSlides: true,
         loop: true,
         autoplay: {
@@ -29,5 +28,19 @@ document.addEventListener('DOMContentLoaded', function () {
             el: '.swiper-pagination',
             clickable: true,
         },
+        breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 50,
+            },
+        }
     });
 })
