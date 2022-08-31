@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  jeu. 27 août 2020 à 16:50
+-- Généré le :  Dim 06 sep. 2020 à 18:06
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -31,11 +31,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `artist`;
 CREATE TABLE IF NOT EXISTS `artist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lastname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nickname` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `lastname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nickname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -64,9 +64,9 @@ INSERT INTO `artist` (`id`, `lastname`, `firstname`, `nickname`, `picture`, `des
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
-  `picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -86,7 +86,7 @@ INSERT INTO `category` (`id`, `name`, `description`, `picture`) VALUES
 
 DROP TABLE IF EXISTS `doctrine_migration_versions`;
 CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
-  `version` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
+  `version` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `executed_at` datetime DEFAULT NULL,
   `execution_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`version`)
@@ -101,7 +101,8 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20200812141330', '2020-08-17 16:47:46', 9),
 ('DoctrineMigrations\\Version20200817104617', '2020-08-17 16:47:46', 9),
 ('DoctrineMigrations\\Version20200817115504', '2020-08-17 16:47:46', 33),
-('DoctrineMigrations\\Version20200825133310', '2020-08-25 13:33:25', 62);
+('DoctrineMigrations\\Version20200825133310', '2020-08-25 13:33:25', 62),
+('DoctrineMigrations\\Version20200901082916', '2020-09-02 13:31:09', 194);
 
 -- --------------------------------------------------------
 
@@ -113,26 +114,29 @@ DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pays_id` smallint(5) UNSIGNED NOT NULL,
-  `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `starting_at` datetime NOT NULL,
   `closing_at` datetime NOT NULL,
-  `adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `town` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zip_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adress` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `town` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zip_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `entrance_fee` int(11) DEFAULT NULL,
-  `iframe` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `longitude` double NOT NULL,
+  `latitude` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_3BAE0AA7A6E44244` (`pays_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `event`
 --
 
-INSERT INTO `event` (`id`, `pays_id`, `title`, `description`, `picture`, `starting_at`, `closing_at`, `adress`, `town`, `zip_code`, `entrance_fee`, `iframe`) VALUES
-(4, 201, 'Fell the Music', 'Découvrez notre toute première édition d\'un rassemble unique d\'artistes venus de toute l\'Afrique.', 'album-5f47d8f0c9446.jpeg', '2020-09-08 21:00:00', '2020-09-09 00:00:00', '301, Church Street', 'Pretoria', '0087', 10, 'https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=301%20Church%20Street%20Pretoria+(State%20Theatre)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed\" width=\"100%\" height=\"600\" frameborder=\"0\"');
+INSERT INTO `event` (`id`, `pays_id`, `title`, `description`, `picture`, `starting_at`, `closing_at`, `adress`, `town`, `zip_code`, `entrance_fee`, `longitude`, `latitude`) VALUES
+(4, 201, 'Fell the Music', 'Découvrez notre toute première édition d\'un rassemble unique d\'artistes venus de toute l\'Afrique.', 'album-5f47d8f0c9446.jpeg', '2020-09-08 21:00:00', '2020-09-09 00:00:00', '301, Church Street', 'Pretoria', '0087', 10, -25.7465, 28.194167),
+(5, 36, 'Concert Live Innoss\'B', 'Retrouvez Innoss\'B en concert live au Cameron.', 'concertinnossb1-5f5229afc94a2.jpeg', '2021-07-05 15:00:00', '2021-07-05 01:00:00', 'L\'Olympia', 'Douala', 'BP 2283', NULL, 4.09, 9.736),
+(6, 75, 'Concert African', NULL, 'concertafricain1-5f5229a492d0d.jpeg', '2020-09-08 08:30:00', '2020-09-09 12:00:00', '63 Boulevard Gassendi', 'Digne-les-bains', '04000', NULL, 44.094, 6.238);
 
 -- --------------------------------------------------------
 
@@ -160,7 +164,17 @@ INSERT INTO `event_artist` (`event_id`, `artist_id`) VALUES
 (4, 10),
 (4, 13),
 (4, 14),
-(4, 15);
+(4, 15),
+(5, 9),
+(6, 7),
+(6, 8),
+(6, 9),
+(6, 10),
+(6, 11),
+(6, 12),
+(6, 13),
+(6, 14),
+(6, 15);
 
 -- --------------------------------------------------------
 
@@ -173,10 +187,10 @@ CREATE TABLE IF NOT EXISTS `music` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
   `artist_id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
-  `picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `music` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `music` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_CD52224AB7970CF8` (`artist_id`),
@@ -472,11 +486,11 @@ INSERT INTO `pays` (`id`, `code`, `alpha2`, `alpha3`, `nom_en_gb`, `nom_fr_fr`) 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(180) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `roles` json NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

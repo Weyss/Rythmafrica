@@ -218,22 +218,23 @@
 			xhr.onreadystatechange = function () {
 				if (xhr.readyState === xhr.DONE && xhr.status == 200) {
 					$('#form').modal('hide');
-					//Récupération des données en JSON
-					let newData = JSON.parse(xhr.responseText);
-					switch (url) {
-						case "{{ path('admin_artist_add') }}":
-							updateDataArtist(newData);
-							break;
-						case "{{ path('admin_category_add') }}":
-							updateDataCategory(newData);
-							break;
-						case "{{ path('admin_music_add') }}":
-							updateDataMusic(newData);
-							break;
-						case "{{ path('admin_event_add') }}":
-							updateDataEvent(newData);
-							break;
-					}
+					// //Récupération des données en JSON
+					// let newData = JSON.parse(xhr.responseText);
+					// switch (url) {
+					// 	case "{{ path('admin_artist_add') }}":
+					// 		updateDataArtist(newData);
+					// 		break;
+					// 	case "{{ path('admin_category_add') }}":
+					// 		updateDataCategory(newData);
+					// 		break;
+					// 	case "{{ path('admin_music_add') }}":
+					// 		updateDataMusic(newData);
+					// 		break;
+					// 	case "{{ path('admin_event_add') }}":
+					// 		updateDataEvent(newData);
+					// 		break;
+					// }
+					console.log(data);
 				}
 			}
 			xhr.open('POST', url, true);

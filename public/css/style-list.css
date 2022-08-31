@@ -142,16 +142,14 @@ main section a, footer a {
   background: #FFF;
   color: #000;
 }
-
 main section a::before, footer a::before {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: -webkit-gradient(linear, right top, left top, from(#f4f407), color-stop(#046604cc), to(#b00));
-  background: linear-gradient(to left, #f4f407, #046604cc, #b00);
-  content: '';
+  background: linear-gradient(to left, #f4f407, rgba(4, 102, 4, 0.8), #b00);
+  content: "";
   display: block;
   mix-blend-mode: screen;
 }
@@ -189,7 +187,6 @@ main section a::before, footer a::before {
     -o-transform: translateX(0px);
   }
 }
-
 @-webkit-keyframes hamburgerOut {
   from {
     transform: translateX(0);
@@ -206,7 +203,6 @@ main section a::before, footer a::before {
     -o-transform: translateX(300px);
   }
 }
-
 @keyframes hamburgerOut {
   from {
     transform: translateX(0);
@@ -223,7 +219,6 @@ main section a::before, footer a::before {
     -o-transform: translateX(300px);
   }
 }
-
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -232,7 +227,6 @@ main section a::before, footer a::before {
     opacity: 1;
   }
 }
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -241,7 +235,6 @@ main section a::before, footer a::before {
     opacity: 1;
   }
 }
-
 @-webkit-keyframes slideFromTop {
   from {
     transform: translateY(-50px);
@@ -258,7 +251,6 @@ main section a::before, footer a::before {
     -o-transform: translateY(0);
   }
 }
-
 @keyframes slideFromTop {
   from {
     transform: translateY(-50px);
@@ -275,7 +267,6 @@ main section a::before, footer a::before {
     -o-transform: translateY(0);
   }
 }
-
 @-webkit-keyframes fadeOut {
   from {
     opacity: 1;
@@ -284,7 +275,6 @@ main section a::before, footer a::before {
     opacity: 0;
   }
 }
-
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -293,7 +283,6 @@ main section a::before, footer a::before {
     opacity: 0;
   }
 }
-
 /**** MON CODE ****/
 a {
   font-family: "Russo One";
@@ -312,14 +301,11 @@ p {
 }
 
 header {
-  background: -webkit-gradient(linear, right top, left top, from(#f4f407), color-stop(#046604cc), to(#b00));
-  background: linear-gradient(to left, #f4f407, #046604cc, #b00);
+  background: linear-gradient(to left, #f4f407, rgba(4, 102, 4, 0.8), #b00);
 }
-
 @media screen and (min-width: 768px) {
   header {
-    -webkit-box-shadow: black 1px 1px 3px;
-            box-shadow: black 1px 1px 3px;
+    box-shadow: black 1px 1px 3px;
     z-index: 1;
     position: -webkit-sticky;
     position: sticky;
@@ -327,61 +313,41 @@ header {
     z-index: 200;
   }
 }
-
 @media screen and (min-width: 768px) and (orientation: landscape) {
   header {
     top: -110px;
   }
 }
-
 @media screen and (min-width: 1025px) {
   header {
     top: -95px;
   }
 }
-
 header #sociaux {
   position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   top: 5px;
   right: 100px;
 }
-
 @media screen and (min-width: 736px) and (orientation: landscape) {
   header #sociaux {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
     width: 15%;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
     top: 40px;
     right: 145px;
   }
 }
-
 @media screen and (min-width: 768px) {
   header #sociaux {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
     width: 13%;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
     top: 100px;
     right: 12px;
   }
 }
-
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   header #sociaux {
     width: 12%;
@@ -389,7 +355,6 @@ header #sociaux {
     right: 30px;
   }
 }
-
 @media screen and (min-width: 1025px) {
   header #sociaux {
     width: 8%;
@@ -397,26 +362,22 @@ header #sociaux {
     right: 80px;
   }
 }
-
 header #sociaux img {
   width: 1.3rem;
   height: 1.3rem;
 }
-
 @media screen and (min-width: 736px) and (orientation: landscape) {
   header #sociaux img {
     width: 2rem;
     height: 2rem;
   }
 }
-
 @media screen and (min-width: 768px) {
   header #sociaux img {
     width: 1.5rem;
     height: 1.5rem;
   }
 }
-
 @media screen and (min-width: 1024px) {
   header #sociaux img {
     width: 2rem;
@@ -428,72 +389,50 @@ header #sociaux img {
   position: relative;
   grid-column: 1/-1;
 }
-
 @media screen and (max-width: 767px) and (orientation: landscape) {
   #logo {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 }
-
 @media screen and (min-width: 768px) {
   #logo {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 }
-
 #logo a {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
+  justify-content: start;
   color: #000;
   text-decoration: none;
 }
-
 @media screen and (min-width: 768px) {
   #logo a {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 }
-
 #logo img {
   width: 17%;
 }
-
 @media screen and (max-width: 767px) and (orientation: landscape) {
   #logo img {
     width: 15%;
   }
 }
-
 @media screen and (min-width: 768px) {
   #logo img {
     width: 10%;
   }
 }
-
 @media screen and (min-width: 1025px) {
   #logo img {
     width: 5%;
   }
 }
-
 #logo h2 {
   font-size: 1.5rem;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  align-self: center;
   font-family: "Monoton";
 }
-
 @media screen and (min-width: 768px) {
   #logo h2 {
     font-size: 3rem;
@@ -505,34 +444,24 @@ nav {
   right: 13px;
   top: -11px;
   padding: 40px 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   z-index: 200;
 }
-
 @media screen and (min-width: 768px) {
   nav {
     position: initial;
     padding: 0;
   }
 }
-
 nav #hamburger {
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+  align-self: flex-end;
 }
-
 @media screen and (min-width: 768px) {
   nav #hamburger {
     display: none;
   }
 }
-
 nav #hamburger input {
   position: absolute;
   width: 30px;
@@ -542,7 +471,6 @@ nav #hamburger input {
   top: 28px;
   right: 20px;
 }
-
 nav #hamburger span {
   display: block;
   width: 33px;
@@ -552,25 +480,16 @@ nav #hamburger span {
   background: #000;
   border-radius: 3px;
   z-index: 1;
-  -webkit-transform-origin: 4px 0px;
-          transform-origin: 4px 0px;
-  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-  transition: -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  transform-origin: 4px 0px;
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), -webkit-transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   background: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
-
 nav #hamburger span:first-child {
-  -webkit-transform-origin: 0% 0%;
-          transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
 }
-
 nav #hamburger span:nth-last-child(2) {
-  -webkit-transform-origin: 0% 100%;
-          transform-origin: 0% 100%;
+  transform-origin: 0% 100%;
 }
-
 nav #hamburger input:checked ~ span {
   opacity: 1;
   transform: rotate(45deg) translate(-12px, -18px);
@@ -580,13 +499,10 @@ nav #hamburger input:checked ~ span {
   -ms-transform: rotate(45deg) translate(-12px, -18px);
   -o-transform: rotate(45deg) translate(-12px, -18px);
 }
-
 nav #hamburger input:checked ~ span:nth-last-child(3) {
   opacity: 0;
-  -webkit-transform: rotate(0deg) scale(0.2, 0.2);
-          transform: rotate(0deg) scale(0.2, 0.2);
+  transform: rotate(0deg) scale(0.2, 0.2);
 }
-
 nav #hamburger input:checked ~ span:nth-last-child(2) {
   transform: rotate(-45deg) translate(-1px, 8px);
   -webkit-transform: rotate(-45deg) translate(-1px, 8px);
@@ -594,131 +510,94 @@ nav #hamburger input:checked ~ span:nth-last-child(2) {
   -ms-transform: rotate(-45deg) translate(-1px, 8px);
   -o-transform: rotate(-45deg) translate(-1px, 8px);
 }
-
 nav ul {
   padding: 0 10px;
   visibility: hidden;
 }
-
 @media screen and (max-width: 767px) {
   nav ul {
-    background: #ffffffab;
+    background: rgba(255, 255, 255, 0.6705882353);
   }
 }
-
 @media screen and (min-width: 768px) {
   nav ul {
     visibility: initial;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
     width: 90%;
   }
 }
-
 @media screen and (min-width: 1025px) {
   nav ul {
     visibility: initial;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
     width: initial;
   }
 }
-
 nav ul.animationIn {
   animation: hamburgerIn 0.5s alternate;
   -webkit-animation: hamburgerIn 0.5s alternate;
   visibility: visible;
 }
-
 nav ul.animationOut {
   animation: hamburgerOut 0.5s alternate;
   -webkit-animation: hamburgerOut 0.5s alternate;
   visibility: visible;
 }
-
 nav ul a {
   text-decoration: none;
   background: initial;
   color: initial;
 }
-
 nav ul a:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
-
 nav ul li {
   padding: 20px;
 }
 
 #searchBar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   width: 75%;
-  -ms-grid-row: 2;
   grid-row: 2;
   margin: auto;
 }
-
 @media screen and (min-width: 767px) {
   #searchBar {
-    -ms-grid-row: 2;
     grid-row: 2;
-    -ms-grid-column-align: center;
-        justify-self: center;
+    justify-self: center;
   }
 }
-
 @media screen and (min-width: 1025px) {
   #searchBar {
     grid-column: 1/-1;
     width: 30%;
   }
 }
-
 #searchBar form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: inherit;
-      -ms-flex-pack: inherit;
-          justify-content: inherit;
+  justify-content: inherit;
 }
-
 #searchBar form .search {
   width: 70%;
   border-radius: 10px;
   height: 28px;
 }
-
 #searchBar form #submit {
   border-radius: 7px;
   padding: 5px;
   color: white;
-  background-color: #00000057;
+  background-color: rgba(0, 0, 0, 0.3411764706);
 }
 
 .pub {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   height: 200px;
 }
-
 @media screen and (min-width: 1025px) {
   .pub {
     position: fixed;
@@ -729,30 +608,24 @@ nav ul li {
 }
 
 #pub1 {
-  -ms-grid-row: 4;
   grid-row: 4;
   background: no-repeat url("../images/pub1mobiletablette.jpg");
   background-size: cover;
 }
-
 @media screen and (min-width: 768px) {
   #pub1 {
-    -ms-grid-row: 4;
     grid-row: 4;
     background-position-y: -20px;
   }
 }
-
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   #pub1 {
-    -ms-grid-row: 5;
     grid-row: 5;
     background-position-x: center;
     background-position-y: -23px;
     background-size: 80%;
   }
 }
-
 @media screen and (min-width: 1025px) {
   #pub1 {
     background: no-repeat url("../images/pub1desktop.jpg");
@@ -762,26 +635,22 @@ nav ul li {
 }
 
 #pub2 {
-  -ms-grid-row: 8;
   grid-row: 8;
   background: no-repeat url("../images/pub2mobiletablette.jpg");
   background-size: cover;
   background-position: center;
 }
-
 @media screen and (min-width: 768px) {
   #pub2 {
     grid-row: -2;
   }
 }
-
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   #pub2 {
     grid-row: -2;
     background-size: 80%;
   }
 }
-
 @media screen and (min-width: 1025px) {
   #pub2 {
     background: no-repeat url("../images/pub2desktop.jpg");
@@ -797,20 +666,11 @@ nav ul li {
     margin-top: 3rem;
   }
 }
-
 footer ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
-
 footer ul a {
   padding: 5px;
 }
@@ -818,28 +678,20 @@ footer ul a {
 .modal {
   position: fixed;
   display: none;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1000;
-  animation: fadeIn .3s both;
-  -webkit-animation: fadeIn .3s both;
+  animation: fadeIn 0.3s both;
+  -webkit-animation: fadeIn 0.3s both;
 }
-
 .modal.appear {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .modal span {
   position: absolute;
   right: 15px;
@@ -847,7 +699,6 @@ footer ul a {
   font-weight: bold;
   cursor: pointer;
 }
-
 .modal .modal-body {
   overflow: auto;
   width: 600px;
@@ -861,22 +712,14 @@ footer ul a {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-
 .modal .modal-body .form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 .modal .modal-body .form-group label {
   padding: 20px 0;
   font-family: "Roboto Slab";
 }
-
 .modal .modal-body .form-group input {
   width: 40%;
   height: 20px;
@@ -886,96 +729,69 @@ footer ul a {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-
 .modal .modal-body .form-group input:focus {
-  -webkit-box-shadow: 0 0 3px #1b72ff;
-          box-shadow: 0 0 3px #1b72ff;
+  box-shadow: 0 0 3px rgb(27, 114, 255);
 }
-
 .modal .modal-body button {
   padding: 10px;
   border-radius: 5px;
   margin-top: 2rem;
   font-size: 0.75rem;
 }
-
 .modal .js-modal-stop {
-  animation: slideFromTop .5s both;
-  -webkit-animation: slideFromTop .5s both;
+  animation: slideFromTop 0.5s both;
+  -webkit-animation: slideFromTop 0.5s both;
 }
 
-.modal[aria-hidden="true"] {
+.modal[aria-hidden=true] {
   -webkit-animation-name: fadeOut;
           animation-name: fadeOut;
 }
 
 main {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-  -ms-grid-rows: (auto)[10];
-      grid-template-rows: repeat(10, auto);
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(10, auto);
   gap: 20px;
 }
-
 @media screen and (min-width: 1025px) {
   main {
-    -ms-grid-columns: 5px 300px (1fr)[27] 300px 5px;
-        grid-template-columns: 5px 300px repeat(27, 1fr) 300px 5px;
-    -ms-grid-rows: (auto)[8];
-        grid-template-rows: repeat(8, auto);
+    grid-template-columns: 5px 300px repeat(27, 1fr) 300px 5px;
+    grid-template-rows: repeat(8, auto);
   }
 }
 
 section {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
-  -ms-grid-row: 5;
   grid-row: 5;
   position: relative;
 }
-
 @media screen and (max-width: 767px) and (orientation: landscape) {
   section {
-    -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media screen and (min-width: 768px) {
   section {
-    -ms-grid-row: 6;
     grid-row: 6;
-    -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media screen and (min-width: 1024px) and (orientation: landscape) {
   section {
-    -ms-grid-row: 6;
     grid-row: 6;
-    -ms-grid-columns: (1fr)[3];
-        grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-
 @media screen and (min-width: 1025px) {
   section {
-    -ms-grid-column: 4;
-    -ms-grid-column-span: 25;
     grid-column: 4/29;
-    -ms-grid-columns: (1fr)[3];
-        grid-template-columns: repeat(3, 1fr);
-    -ms-grid-row: 6;
+    grid-template-columns: repeat(3, 1fr);
     grid-row: 6;
   }
 }
-
 section h2 {
   grid-column: 1/-1;
   text-align: center;
@@ -983,23 +799,14 @@ section h2 {
 }
 
 article {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
-
 article h3 {
   padding: 10px;
   font-size: 1rem;
 }
-
 article .artist-picture, article img {
   width: 12rem;
   height: 12rem;
@@ -1014,5 +821,4 @@ article .artist-picture, article img {
 input[type=range].custom-slider {
   top: 60px !important;
   right: -40px !important;
-}
-/*# sourceMappingURL=style-list.css.map */
+}/*# sourceMappingURL=style-list.css.map */
